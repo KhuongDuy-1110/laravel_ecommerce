@@ -23,7 +23,7 @@ class UserController extends Controller
             "email" => $request->email,
             "password" => Hash::make($request->password),
             "verification_code" => sha1(time()),
-            "expired_at" => 
+            "expired_at" => Carbon::now()->addSecond(60),
         ]);
 
         if($user == true)
@@ -61,9 +61,22 @@ class UserController extends Controller
 
     public function verified(Request $request)
     {
-        $find = DB::table("users")
-        ->where("verification_code","=",$request->code)
-        ->update(["email_verified_at" => Carbon::now()]);
-        return redirect(url('/login'))->with('flash_success', 'Your mail was verified, log in now !');
+        $find = DB::table("users")->where("verification_code","=",$request->code)->first();
+        if($find != null && $find->email_verified_at == null )
+        {
+            if(Carbon::now() < $find->expired_at )
+            {
+                DB::table("users")->where("verification_code","=",$request->code)
+                ->update(["email_verified_at" => Carbon::now()]);
+                return redirect(url('/login'))->with('flash_success', 'Your mail was verified, log in now !');
+            }
+            return redirect(url('/login'))->with('flash_warning', 'Time expired');
+        }
+        return redirect(url('/login'))->with('flash_warning', 'Something went wrong !');
+        // ->update(["email_verified_at" => Carbon::now()]);
+        
+
+
+        // return redirect(url('/login'))->with('flash_success', 'Your mail was verified, log in now !');
     }
 }
