@@ -25,11 +25,14 @@ Route::get('/dashboard', function (){
 Route::get('/logout','UserController@logout');
 
 #mailling
-Route::get('/mailling', function() {
-    $details = [
-        'title' => 'Incoming mail from Khuong Pham',
-        'body' => 'Mail testing'
-    ];
-    Mail::to('khuongc3@gmail.com')->send(new VerifyMail($details));
-    return redirect(url('/login'))->with('flash_success', 'Check your mail to verify');
-} );
+// Route::get('/mailling', function() {
+//     $details = [
+//         'title' => 'Incoming mail from Khuong Pham',
+//         'body' => 'Mail testing'
+//     ];
+//     Mail::to('khuongc3@gmail.com')->send(new VerifyMail($details));
+//     return redirect(url('/login'))->with('flash_success', 'Check your mail to verify');
+// } );
+
+# verify mail
+Route::get('/verify','UserController@verified');

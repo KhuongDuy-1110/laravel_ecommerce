@@ -5,6 +5,11 @@
       <div class="alert alert-success">
         {{ session('flash_success') }}
       </div>
+      @endif 
+      @if (session('flash_warning'))
+      <div class="alert alert-warning">
+        {{ session('flash_warning') }}
+      </div>
       @endif
       <form method="POST" >
       @csrf
