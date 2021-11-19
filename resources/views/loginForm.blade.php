@@ -25,7 +25,8 @@
       <div class="p-3 mb-2 bg-danger text-white">{{ $warning }}</div>
       @endif
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <a href="{{ url('/get-password') }}" class="btn btn-primary">Forgot password</a>
       </form>
   </div>
 @endsection

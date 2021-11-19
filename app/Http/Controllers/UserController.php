@@ -45,11 +45,19 @@ class UserController extends Controller
  
          if(Auth::attempt([
              'email' => $request->input('email'),
-             'password' => $request->input('password')
+             'password' => $request->input('password'),
          ], )){
-             if(Auth::User()->email_verified_at == null)
-                 return view('loginForm',['title'=>'Login','warning' => 'Your mail was unverified !']);
-             return redirect()->route('dashboard');
+             if(Auth::User()->role == 0)
+             {
+                if(Auth::User()->email_verified_at == null)
+                    return redirect()->back()->with('flash_warning', 'Your mail was unverified');
+                return redirect()->route('dashboard');
+             }
+             else if(Auth::User()->role == 1) {
+                 return redirect(url('/admin'));
+             }
+             return redirect()->back();
+             
          }
          return redirect()->back()->with('flash_warning', 'Your password or email is wrong');
     }
@@ -73,10 +81,10 @@ class UserController extends Controller
             return redirect(url('/login'))->with('flash_warning', 'Time expired');
         }
         return redirect(url('/login'))->with('flash_warning', 'Something went wrong !');
-        // ->update(["email_verified_at" => Carbon::now()]);
+    }
+
+    public function getpass(Request $request)
+    {
         
-
-
-        // return redirect(url('/login'))->with('flash_success', 'Your mail was verified, log in now !');
     }
 }

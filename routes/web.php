@@ -12,27 +12,40 @@ Route::get('/', function () {
 #user sign up, sign in
 Route::get('/login', function (){
     return view('loginForm',['title'=>'login']);
-});
+})->name('login');
 Route::post('/login','UserController@authenticate');
 Route::get('/register', function (){
     return view('registerForm',['title'=>'register']);
 });
 Route::post('/register','UserController@register');
 
-Route::get('/dashboard', function (){
-    return view('dashboard',['title'=>'welcome']);
-})->name('dashboard');
 Route::get('/logout','UserController@logout');
-
-#mailling
-// Route::get('/mailling', function() {
-//     $details = [
-//         'title' => 'Incoming mail from Khuong Pham',
-//         'body' => 'Mail testing'
-//     ];
-//     Mail::to('khuongc3@gmail.com')->send(new VerifyMail($details));
-//     return redirect(url('/login'))->with('flash_success', 'Check your mail to verify');
-// } );
+Route::get('/get-password','UserController@getpass');
 
 # verify mail
 Route::get('/verify','UserController@verified');
+
+# user login successfully
+
+#login required
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/dashboard', function (){
+        return view('dashboard',['title'=>'welcome']);
+    })->name('dashboard');
+
+    Route::prefix('admin')->group(function (){
+
+        #user CRUD
+        Route::get('/','Admin\AdminController@index');
+        Route::prefix('user')->group(function (){
+            Route::get('create','Admin\AdminController@create');
+            Route::post('create','Admin\AdminController@createPost');
+            Route::get('update/{id}','Admin\AdminController@update');
+            Route::post('update/{id}','Admin\AdminController@updatePost');
+            Route::get('delete/{id}','Admin\AdminController@delete');
+        });
+    });
+    
+    
+});
