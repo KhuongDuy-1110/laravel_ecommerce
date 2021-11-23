@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AdminRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
     public function index()
     {
+        // Log::info('AdminController index');
         $data = DB::table('users')->orderBy('id','desc')->paginate(5);
         return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
     }

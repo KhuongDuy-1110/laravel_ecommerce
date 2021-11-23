@@ -33,9 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', function (){
         return view('dashboard',['title'=>'welcome']);
     })->name('dashboard');
-
-    Route::prefix('admin')->group(function (){
-
+   
+    Route::group(['middleware' => 'adminRole','prefix' => 'admin'],function (){
+    
         #user CRUD
         Route::get('/','Admin\AdminController@index');
         Route::prefix('user')->group(function (){
@@ -47,5 +47,5 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
     
-    
 });
+
