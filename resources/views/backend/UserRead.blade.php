@@ -20,8 +20,13 @@
                             <td>{{ $rows->email }}</td>
                            
                             <td style="text-align:center;">
-                                <a href="{{ url('admin/user/update/'.$rows->id) }}" style="color: #152555;">Edit</a>&nbsp;
-                                <a href="{{ url('admin/user/delete/'.$rows->id) }}" onclick="return window.confirm('Are you sure?');" style="color: #152555;">Delete</a>
+                                <a href="{{ url('admin/user/'.$rows->id.'/edit') }}" style="color: #152555;">Edit</a>&nbsp;
+                                <!-- <a href="{{ url('admin/user/delete/'.$rows->id) }}" onclick="return window.confirm('Are you sure?');" style="color: #152555;">Delete</a> -->
+                                <form method="POST" action="{{ route('user.destroy',$rows->id) }}" >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

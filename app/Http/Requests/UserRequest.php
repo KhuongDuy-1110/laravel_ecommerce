@@ -26,7 +26,17 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'A name is required for this user',
+            'email.required' => 'Fill your email in here',
+            'password.required' => 'This field need password',
+        ];
+    }
+
 }
