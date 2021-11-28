@@ -34,13 +34,8 @@ class UserController extends Controller
         return view('backend.UserCreateUpdate',['title'=>'Edit']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function store(UserRequest $request)
     {
         $user = DB::table("users")->insert([
             'name' => $request->name,
@@ -51,37 +46,21 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         $data = DB::table("users")->where("id","=",$id)->first();
         return view('backend.UserUpdate',['record'=>$data,'title'=>'Edit']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function update(UserRequest $request, $id)
     {
         if($request->password)
         {
@@ -99,12 +78,7 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy($id)
     {
         $user = DB::table("users")->where("id","=",$id)->delete();

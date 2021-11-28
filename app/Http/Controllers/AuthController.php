@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AuthRequest;
 use Carbon\Carbon;
 
 class AuthController extends Controller
@@ -14,7 +15,7 @@ class AuthController extends Controller
     {
         
     }
-    public function register(Request $request)
+    public function register(AuthRequest $request)
     {
         $user = DB::table("users")->insert([
             "name" => $request->name,
