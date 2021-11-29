@@ -26,7 +26,7 @@
       @endif
 
       <button type="submit" class="btn btn-primary">Login</button>
-      <a href="{{ url('/get-password') }}" class="btn btn-primary">Forgot password</a>
+      <!-- <a href="{{ url('/get-password') }}" class="btn btn-primary">Forgot password</a> -->
       </form>
   </div>
 @endsection

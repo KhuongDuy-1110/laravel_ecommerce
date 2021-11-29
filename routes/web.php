@@ -56,4 +56,5 @@ Route::get('/respond_test',function(){
     return response('hello-world',200)->header('Content-Type','text/plain');
 });
 
+Route::get('test','AuthController@test');
 

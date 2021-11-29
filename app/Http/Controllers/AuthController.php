@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AuthRequest;
 use Carbon\Carbon;
+use App\Category;
 
 class AuthController extends Controller
 {
@@ -37,11 +38,6 @@ class AuthController extends Controller
     }
     public function authenticate(Request $request)
     {
-        // $this->validate($request, [
-        //     'email' => 'required|email:filter',
-        //      'password' => 'required'
-        //  ]);
- 
          if(Auth::attempt([
              'email' => $request->input('email'),
              'password' => $request->input('password'),
@@ -82,8 +78,9 @@ class AuthController extends Controller
         return redirect(url('/login'))->with('flash_warning', 'Something went wrong !');
     }
 
-    public function getpass(Request $request)
+    public function test(Request $request)
     {
-        
+        // $product = Category::find(2)->product()->get()->toArray();
+        // var_dump($product);
     }
 }
