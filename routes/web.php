@@ -9,7 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-# ==================================
+# ===============Backend=================== #
 
 #user sign up, sign in
 Route::get('/login', function (){
@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'adminRole','prefix' => 'admin'],function (){
     
         #user CRUD
-        Route::get('/','Admin\UserController@index');
+        Route::get('/','Admin\DashboardController@index');
         // Route::prefix('user')->group(function (){
         //     Route::get('create','Admin\UserController@create');
         //     Route::post('create','Admin\UserController@createPost');
@@ -45,16 +45,24 @@ Route::group(['middleware' => 'auth'], function () {
         //     Route::post('update/{id}','Admin\UserController@updatePost');
         //     Route::get('delete/{id}','Admin\UserController@delete');
         // });
-        Route::resource('user','Admin\UserController');
+        
+        // Route::resource('user','Admin\UserController');
+        // Route::resource('category','Admin\CategoryController');
+
+        Route::resources([
+            'user' => Admin\UserController::class,
+            'category'=> Admin\CategoryController::class,
+            'product' => Admin\ProductController::class,
+        ]);
     });
     
 });
 
 # ==================================
 
-Route::get('/respond_test',function(){
-    return response('hello-world',200)->header('Content-Type','text/plain');
-});
+// Route::get('/respond_test',function(){
+//     return response('hello-world',200)->header('Content-Type','text/plain');
+// });
 
-Route::get('test','AuthController@test');
+// Route::get('test','AuthController@test');
 

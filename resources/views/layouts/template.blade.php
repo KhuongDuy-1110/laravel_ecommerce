@@ -8,6 +8,42 @@
     <title>{{ isset($title)?$title:"Laravel" }}</title>
 </head>
 <body>
+
+    <!-- navigation -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="nvabar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-5">
+                    <li class="nav-item active">
+                        <a href="{{ url('admin/') }}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/user') }}" class="nav-link">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/category') }}" class="nav-link">Category </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/product') }}" class="nav-link">Products </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Sign up </a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link">|</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Sign in </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end_navigation -->
+
     @yield("content")
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
