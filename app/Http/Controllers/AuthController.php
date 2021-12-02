@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AuthRequest;
+use App\Jobs\SendRegisterMail;
 use Carbon\Carbon;
 use App\Category;
 

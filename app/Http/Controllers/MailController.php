@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyMail;
+use App\Jobs\SendRegisterMail;
 
 class MailController extends Controller
 {
@@ -15,6 +16,8 @@ class MailController extends Controller
             'body' => 'Please click the link below to verify your account: ',
             'verification_code' => $verification_code,
         ];
-        Mail::to($email)->send(new VerifyMail($details));
+        // Mail::to($email)->send(new VerifyMail($details));
+        $job = new SendRegisterMail($email,$details);
+        dispatch($job);
     }
 }
