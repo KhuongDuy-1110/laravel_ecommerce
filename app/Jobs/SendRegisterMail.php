@@ -16,14 +16,13 @@ class SendRegisterMail implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     
-    protected $email, $details;
+    public $details;
 
     public $tries = 1;
 
-    public function __construct($email,$details)
+    public function __construct($details)
     {
         $this->details = $details;
-        $this->email = $email;
     }
 
     /**
@@ -34,7 +33,8 @@ class SendRegisterMail implements ShouldQueue
     public function handle()
     {
         //  $email = new VerifyMail($this->details);
-         Mail::to($this->email)->send(new VerifyMail($this->details));
-        //  dd('mail was sent !');
+        $mail = $this->details->details['email'];
+        Mail::to($mail)->send(new VerifyMail($this->details));
+        //  dd( $this->details->details['email']);
     }
 }

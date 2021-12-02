@@ -15,9 +15,13 @@ class MailController extends Controller
             'title' => 'Incoming mail from Khuong Pham',
             'body' => 'Please click the link below to verify your account: ',
             'verification_code' => $verification_code,
+            'email' => $email,
         ];
         // Mail::to($email)->send(new VerifyMail($details));
-        $job = new SendRegisterMail($email,$details);
-        dispatch($job);
+
+        $job = new SendRegisterMail($details);
+        SendRegisterMail::dispatch($job);
+        
+        
     }
 }
