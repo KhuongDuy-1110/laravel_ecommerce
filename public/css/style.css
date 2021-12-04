@@ -1,0 +1,103 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+    
+}
+.product-lob{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.card:hover
+{
+    box-shadow: 4px 4px 6px -1px rgba(0,0,0,0.57);
+    -webkit-box-shadow: 4px 4px 6px -1px rgba(0,0,0,0.57);
+    -moz-box-shadow: 4px 4px 6px -1px rgba(0,0,0,0.57);
+    transition: 0.5s;
+}
+.btnCart{
+    width: 120px;
+    background-color: #FF6D6D;
+    border-radius: 2px;
+    color: white;
+}
+.btnCart:hover{
+    color: #FF6D6D;
+    background-color: white;
+    border: #FF6D6D 1px solid;
+}
+.price{
+    font-size: 40px;
+    font-weight: bold;
+    color: #C36A2D;
+}
+h5{
+    font-weight: bold;
+}
+.productDIMG{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+.productD{
+    margin: 50px 0px 50px 0px;
+}
+.productDPR{
+    font-weight: bold;
+    color: yellowgreen;
+}
+.btnPRD{
+    width: 160px;
+    height: 45px;
+    background-color: yellowgreen;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+}
+/* remove arrow of number input type */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+}
+.checkout ul{
+    border: 2px solid #ebebeb;
+    background: #f3f3f3;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 16px;
+    padding-bottom: 20px;
+}
+.checkout ul li{
+    list-style: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #252525;
+}
+.checkout ul li .subtotal{
+    font-weight: lighter;
+    text-transform: capitalize;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #fff;
+}
+.checkout ul li .subtotal span{
+    font-weight: bold;
+}
+.checkout ul li .cart-total{
+    padding-top: 10px;
+}
+.checkout ul li .cart-total span{
+    color: #e7ab3c;
+}
+.checkout ul li span{
+    float: right;
+}
+.checkout .process-btn{
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background: #252525;
+    padding: 15px 25px 14px 25px;
+    display: block;
+    text-align: center;
+}

@@ -40,7 +40,6 @@
                 <ul class="pagination">
                     {{ $data->links() }}
                 </ul>
-                <a href="{{ url('/logout') }}">Logout</a>
             </div>
         </div>
     </div>

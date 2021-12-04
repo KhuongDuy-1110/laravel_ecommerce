@@ -5,10 +5,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+#================Frontend================== #
+
+Route::get('/', 'HomeController@index');
+Route::get('/products','ProductController@index');
+Route::get('/cart','CartController@index');
+Route::get('cart/addcart/{id}','CartController@AddCart');
 # ===============Backend=================== #
 
 #user sign up, sign in

@@ -16,6 +16,7 @@
                         <th>description</th>
                         <th>price</th>
                         <th>category</th>
+                        <th>hot</th>
                         <th style="width:100px;"></th>
                     </tr>
                     @foreach($data as $rows)
@@ -29,6 +30,11 @@
                             <td>{{ $rows->description }}</td>
                             <td>{{ $rows->price }}</td>
                             <td>{{ $categoryName->name }}</td>
+                            <td>
+                                @if($rows->hot == 1 )
+                                    <i class="far fa-check"></i>
+                                @endif
+                            </td>
                            
                             <td style="text-align:center;">
                                 <a href="{{ url('admin/product/'.$rows->id.'/edit') }}" style="color: #152555;">Edit</a>&nbsp;

@@ -4,7 +4,8 @@
     <div class="panel panel-primary">
         <div class="panel-heading" style="background-color:#152555; color: white;">Add product</div>
         <div class="panel-body">
-            <form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('product.update',isset($record->id)?$record->id:'') }}" enctype="multipart/form-data">
+                @method('PUT')
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <!-- rows -->
                 <div class="row" style="margin-top:5px;">
@@ -41,7 +42,7 @@
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Price</div>
                     <div class="col-md-10">
-                        <input type="number" value="" name="price" class="form-control">
+                        <input type="number" value="{{ isset($record->price)?$record->price:'' }}" name="price" class="form-control">
                     </div>
                 </div>
                 @if($errors->has('Price'))
@@ -65,7 +66,7 @@
                             @endphp
                             @if(!empty($data))
                             @foreach($data as $rows)
-                            <option @if (isset($record->parent_id) && $record->parent_id == $rows->id) selected @endif
+                            <option @if (isset($record->category_id) && $record->category_id == $rows->id) selected @endif
                                 value="{{ $rows->id }}"> {{ $rows->name }}
                             </option>
                             @endforeach
@@ -85,7 +86,7 @@
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Hot</div>
                     <div class="col-md-1">
-                        <input type="checkbox" name="hot" class="form-control">
+                        <input type="checkbox" @if($record->hot ==1) checked @endif name="hot" class="form-control">
                     </div>
                 </div>
 
@@ -93,7 +94,7 @@
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Description</div>
                     <div class="col-md-10">
-                        <input type="text" value="" name="description" class="form-control">
+                        <input type="text" value="{{ isset($record->description)?$record->description:'' }}" name="description" class="form-control">
                     </div>
                 </div>
                 @if($errors->has('Description'))

@@ -29,9 +29,9 @@
                     <div class="col-md-10">
                         <select name="parent_id" class="form-control" style="width: 300px;">
                             <option value="0"></option>
-                            <?php
+                            @php
                                 $data = DB::table("category")->where("parent_id","=",0)->orderBy("id","asc")->get();
-                            ?>
+                            @endphp
                             @if(!empty($data))
                                 @foreach($data as $rows)
                                 <option @if (isset($record->parent_id) && $record->parent_id == $rows->id) selected @endif
