@@ -40,13 +40,6 @@
                         </select>
                     </div>
                 </div>
-                @if($errors->has('parent_id'))
-                <div class="row" style="margin-top:5px;">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10 text-danger">{{ $errors->first('parent_id') }}
-                    </div>
-                </div>
-                @endif
                 <!-- end rows -->
 
         

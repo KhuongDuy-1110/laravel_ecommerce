@@ -44,10 +44,10 @@
                         <input type="number" value="" name="price" class="form-control">
                     </div>
                 </div>
-                @if($errors->has('Price'))
+                @if($errors->has('price'))
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2"></div>
-                    <div class="col-md-10 text-danger">{{ $errors->first('Price') }}
+                    <div class="col-md-10 text-danger">{{ $errors->first('price') }}
                     </div>
                 </div>
                 @endif
@@ -73,10 +73,10 @@
                         </select>
                     </div>
                 </div>
-                @if($errors->has('Category'))
+                @if($errors->has('category'))
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2"></div>
-                    <div class="col-md-10 text-danger">{{ $errors->first('Category') }}
+                    <div class="col-md-10 text-danger">{{ $errors->first('category') }}
                     </div>
                 </div>
                 @endif
@@ -96,10 +96,10 @@
                         <input type="text" value="" name="description" class="form-control">
                     </div>
                 </div>
-                @if($errors->has('Description'))
+                @if($errors->has('description'))
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2"></div>
-                    <div class="col-md-10 text-danger">{{ $errors->first('Description') }}
+                    <div class="col-md-10 text-danger">{{ $errors->first('description') }}
                     </div>
                 </div>
                 @endif
@@ -112,6 +112,13 @@
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                 </div>
+                @if($errors->has('photo'))
+                <div class="row" style="margin-top:5px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10 text-danger">{{ $errors->first('photo') }}
+                    </div>
+                </div>
+                @endif
                 <style>
                     .custom-file-label{
                         left: 15px;

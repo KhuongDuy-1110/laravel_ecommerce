@@ -24,7 +24,7 @@ class CartController extends Controller
             $newCart->addCart($product,$id);
 
             $request->session()->put('Cart',$newCart);
-            dd(Session('cart'));
+            
         }
         
     }
