@@ -47,7 +47,7 @@ class AuthController extends Controller
              {
                 if(Auth::User()->email_verified_at == null)
                     return redirect()->back()->with('flash_warning', 'Your mail was unverified');
-                return redirect()->route('dashboard');
+                return redirect(url('/'));
              }
              else if(Auth::User()->role == 1) {
                  return redirect(url('/admin'));

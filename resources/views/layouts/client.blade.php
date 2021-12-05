@@ -18,7 +18,7 @@
     <!-- navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html"><img src="{{ asset('images/frontend/logo.png') }}" style="width: 70px; " alt="#">Laravel
+            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/frontend/logo.png') }}" style="width: 70px; " alt="#">Laravel
                 ecommerce</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="nvabar-toggler-icon"></span>
@@ -35,15 +35,27 @@
                         <a href="{{ url('/cart') }}" class="nav-link">Cart </a>
                     </li>
                 </ul>
+                @if(Auth::check())
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Welcome</a>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link">|</a></li>
+                        <li class="nav-item">
+                            <a href="{{ url('/logout') }}" class="nav-link">Log out</a>
+                        </li>
+                    </ul>
+                @else
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Sign up </a>
+                        <a href="{{ url('/register') }}" class="nav-link">Sign up </a>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link">|</a></li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Sign in </a>
+                        <a href="{{ url('/login') }}" class="nav-link">Sign in </a>
                     </li>
                 </ul>
+                @endif
             </div>
         </div>
     </nav>
@@ -56,7 +68,7 @@
     <div class="container-fluid padding">
         <div class="row text-center pt-5" style="background-color: #6C4A4A; color: white;">
             <div class="col-md-4">
-                <img src="img/logo.png" style="width: 70px;" alt="">
+                <img src="{{ asset('images/frontend/logo.png') }}" style="width: 70px;" alt="">
                 <!-- <hr class="light"> -->
                 <p>12-3456-789</p>
                 <p>khuong.pham@tda.company</p>

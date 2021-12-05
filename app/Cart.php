@@ -2,20 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class Cart
 {
-    public $product = null;
+    public $products = null;
     public $totalPrice = 0;
-    public $totalQuatity = 0;
+    public $totalQuantity = 0;
 
     public function __construct($cart)
     {
         if($cart){
-            $this->product = $cart->product;
+            $this->products = $cart->product;
             $this->totalPrice = $cart->totalPrice;
-            $this->totalQuatity = $cart->totalQuantity;
+            $this->totalQuantity = $cart->totalQuantity;
         }
     }
 
@@ -23,18 +23,17 @@ class Cart extends Model
     {
 
         $newProduct = ['quantity' => 0, 'price' => $product->price, 'productInfo' => $product ];
-        if($this->product){
-            if(array_key_exists($id,$product)){
-                $newProduct = $product[$id];
+        if($this->products){
+            if(array_key_exists($id,$products)){
+                $newProduct = $products[$id];
             }
         }
         $newProduct['quantity']++;
         $newProduct['price'] = $newProduct['quantity'] * $product->price;
-        $this->product[$id] = $newProduct;
+
+        $this->products[$id] = $newProduct;
         $this->totalPrice += $product->price;
-        $this->totalQuatity++;
-
-
+        $this->totalQuantity++;
     }
 
 }

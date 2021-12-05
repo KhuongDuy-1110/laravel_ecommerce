@@ -12,6 +12,10 @@ Route::get('/', 'HomeController@index');
 Route::get('/products','ProductController@index');
 Route::get('/cart','CartController@index');
 Route::get('cart/addcart/{id}','CartController@AddCart');
+
+
+
+
 # ===============Backend=================== #
 
 #user sign up, sign in

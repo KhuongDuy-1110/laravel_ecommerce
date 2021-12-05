@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        echo 'hihi';
+        return view('cart',['title'=>'Cart']);
     }
 
     public function AddCart(Request $request, $id)
@@ -21,11 +21,19 @@ class CartController extends Controller
 
             $oldCart = Session('cart') ? Session('cart') : null;
             $newCart = new Cart($oldCart);
+            
             $newCart->addCart($product,$id);
 
-            $request->session()->put('Cart',$newCart);
+            $request->session()->put('cart',$newCart);
             
         }
+        return redirect(url('/cart')); 
         
     }
+
+    public function updateCart(Request $request)
+    {
+        
+    }
+
 }
