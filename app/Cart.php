@@ -13,7 +13,7 @@ class Cart
     public function __construct($cart)
     {
         if($cart){
-            $this->products = $cart->product;
+            $this->products = $cart->products;
             $this->totalPrice = $cart->totalPrice;
             $this->totalQuantity = $cart->totalQuantity;
         }
@@ -24,8 +24,8 @@ class Cart
 
         $newProduct = ['quantity' => 0, 'price' => $product->price, 'productInfo' => $product ];
         if($this->products){
-            if(array_key_exists($id,$products)){
-                $newProduct = $products[$id];
+            if(array_key_exists($id,$this->products)){
+                $newProduct = $this->products[$id];
             }
         }
         $newProduct['quantity']++;

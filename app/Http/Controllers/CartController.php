@@ -26,6 +26,7 @@ class CartController extends Controller
 
             $request->session()->put('cart',$newCart);
             
+            
         }
         return redirect(url('/cart')); 
         
@@ -34,6 +35,11 @@ class CartController extends Controller
     public function updateCart(Request $request)
     {
         
+    }
+
+    public function DeleteCart(Request $request)
+    {
+
     }
 
 }
