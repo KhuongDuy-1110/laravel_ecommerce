@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\Log;
 
 #================Frontend================== #
 
-Route::get('/', 'HomeController@index');
-Route::get('/products','ProductController@index');
-Route::get('/cart','CartController@index');
-Route::get('cart/addcart/{id}','CartController@AddCart');
-
-
+Route::group(['middleware'=>'lang'], function() {
+    Route::get('/change-language/{language}','LanguageController@change');
+    Route::get('/', 'HomeController@index');
+    Route::get('/products','ProductController@index');
+    Route::get('/cart','CartController@index');
+    Route::get('cart/addcart/{id}','CartController@AddCart');
+});
 
 
 # ===============Backend=================== #

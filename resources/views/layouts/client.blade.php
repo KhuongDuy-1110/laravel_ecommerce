@@ -26,13 +26,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-5">
                     <li class="nav-item active">
-                        <a href="{{ url('/') }}" class="nav-link">Home</a>
+                        <a href="{{ url('/') }}" class="nav-link">{{ __('Home') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/products') }}" class="nav-link">Products</a>
+                        <a href="{{ url('/products') }}" class="nav-link">{{ __('Products') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/cart') }}" class="nav-link">Cart </a>
+                        <a href="{{ url('/cart') }}" class="nav-link">{{ __('Cart')}}</a>
                     </li>
                 </ul>
                 @if(Auth::check())
@@ -48,11 +48,11 @@
                 @else
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="{{ url('/register') }}" class="nav-link">Sign up </a>
+                        <a href="{{ url('/register') }}" class="nav-link">{{ __('Sign up') }} </a>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link">|</a></li>
                     <li class="nav-item">
-                        <a href="{{ url('/login') }}" class="nav-link">Sign in </a>
+                        <a href="{{ url('/login') }}" class="nav-link">{{ __('Sign in') }}</a>
                     </li>
                 </ul>
                 @endif
