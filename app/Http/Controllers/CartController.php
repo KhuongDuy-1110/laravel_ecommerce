@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cart;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Constraint\Count;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CartController extends Controller
@@ -37,9 +38,23 @@ class CartController extends Controller
         
     }
 
-    public function DeleteCart(Request $request)
+    public function DeleteCart(Request $request, $id)
     {
+        $oldCart = Session('cart') ? Session('cart') : null;
+        $newCart = new Cart($oldCart);
 
+        $newCart->deleteCart($id);
+        
+        if( Count($newCart->products) > 0 )
+        {
+            $request->session()->put('cart',$newCart);
+        }
+        else
+        {
+            $request->session()->forget('cart');
+        }
+        
+        return redirect(url('/cart'));
     }
 
 }

@@ -14,6 +14,7 @@ Route::group(['middleware'=>'lang'], function() {
     Route::get('/products','ProductController@index');
     Route::get('/cart','CartController@index');
     Route::get('cart/addcart/{id}','CartController@AddCart');
+    Route::get('/cart/updateCart','CartController@UpdateCart');
     Route::get('/cart/deleteCart/{id}','CartController@DeleteCart');
 });
 
