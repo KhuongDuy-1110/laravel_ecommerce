@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyMail;
 use App\Jobs\SendRegisterMail;
+use App\Jobs\SendOrderMail;
 
 class MailController extends Controller
 {
@@ -24,4 +25,18 @@ class MailController extends Controller
         
         
     }
+
+    public static function confirmOrderMail($email)
+    {
+        $details = [
+            'title' => 'Incoming confirmation order mail',
+            'body' => 'Thank you for choosing out product, here is your order !',
+            'email' => $email,
+        ];
+
+        $job = new SendOrderMail($details);
+        SendOrderMail::dispatch($job);
+
+    }
+
 }

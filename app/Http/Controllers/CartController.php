@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\Count;
 use Symfony\Component\HttpFoundation\Session\Session;
+use App\Http\Requests\CheckoutRequest;
 
 class CartController extends Controller
 {
@@ -38,7 +40,7 @@ class CartController extends Controller
         
     }
 
-    public function DeleteCart(Request $request, $id)
+    public function deleteCart(Request $request, $id)
     {
         $oldCart = Session('cart') ? Session('cart') : null;
         $newCart = new Cart($oldCart);
@@ -55,6 +57,12 @@ class CartController extends Controller
         }
         
         return redirect(url('/cart'));
+    }
+
+    public function checkOut()
+    {
+        $data = Auth::user();
+        return view('cartCheckout',['title'=>'Check out','data'=>$data]);
     }
 
 }

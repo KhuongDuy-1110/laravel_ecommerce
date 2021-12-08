@@ -58,7 +58,7 @@
         </ul>
         <div class="row m-auto">
             <a href="#" class="col-lg-5 btn process-btn">Update</a>
-            <a href="#" class="col-lg-5 btn process-btn ml-auto">Checkout</a>
+            <a href="{{ url('/cart/checkout') }}" class="col-lg-5 btn process-btn ml-auto">Checkout</a>
         </div>
     </div>
     @endif
