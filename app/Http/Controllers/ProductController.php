@@ -5,19 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use Illuminate\Support\Facades\Redis;
-use Cache;
+
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        
+    }
+
     public function index()
     {
-
-        // $data = Product::orderByDesc('id')->paginate(5);
-        // Redis::set('index.product',json_encode($data));
-        // $get = Redis::get('index.product');
-
-
-        dd(Redis::get('index.product'));
-        // return view('product',)
+       
+        if($data = Redis::get('index.product'))
+        {
+            $data = json_decode($data);
+        }
+        else {
+            $data = Product::orderByDesc('id')->get();
+            Redis::set('index.product',json_encode($data));
+        }
+        
+        // dd($data);
+        return view('product',['data' => json_decode(Redis::get('index.product')) ]);
+       
     }
 }

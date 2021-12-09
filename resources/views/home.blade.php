@@ -47,7 +47,7 @@
 
     <div class="container mb-5 mt-5">
         <div class="row">
-            @foreach($data as $rows)
+            @foreach($HotProducts as $rows)
             <!-- product1 -->
             <div class="col-md-4">
                 <div class="card mt-3">

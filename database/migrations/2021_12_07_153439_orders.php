@@ -16,9 +16,11 @@ class Orders extends Migration
         Schema::create('orders', function (Blueprint $table) {
 
             $table->id();
-            $table->string('client_id');
-            $table->string('client_email');
-            $table->string('client_address',100);
+            $table->integer('client_id');
+            $table->string('client_name',30);
+            $table->string('client_email',30);
+            $table->text('client_address');
+            $table->text('orderDetail');
             $table->timestamps();
 
         });
