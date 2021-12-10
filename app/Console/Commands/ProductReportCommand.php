@@ -50,6 +50,5 @@ class ProductReportCommand extends Command
 
         $this->info('Report has sent to email: '.$email.' '.$data['count']);
         
-
     }
 }
