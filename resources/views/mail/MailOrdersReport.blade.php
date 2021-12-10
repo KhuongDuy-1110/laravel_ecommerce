@@ -10,8 +10,11 @@
 </head>
 
 <body>
-    <h1>{{ $details->details['title'] }}</h1>
-    <p>{{ $details->details['body'] }}</p>
+
+
+    <h1>{{ $data->data['count'] }}</h1>
+    
+
 
     <div class="col-md-12">
         <table class="table table-bordered text-center">

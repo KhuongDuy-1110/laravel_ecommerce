@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyMail;
+// use App\Mail\OrdersReportmail;
 use App\Jobs\SendRegisterMail;
 use App\Jobs\SendOrderMail;
+use App\Jobs\SendProductReportMail; 
 
 class MailController extends Controller
 {
@@ -36,6 +38,13 @@ class MailController extends Controller
 
         $job = new SendOrderMail($details);
         SendOrderMail::dispatch($job);
+
+    }
+
+    public static function sendOrdersReport($data){
+
+        $job = new SendProductReportMail($data);
+        SendProductReportMail::dispatch($job);
 
     }
 
