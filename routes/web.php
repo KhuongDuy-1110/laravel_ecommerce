@@ -23,6 +23,9 @@ Route::group(['middleware'=>'lang'], function() {
         Route::post('/order','OrderController@mailling');
 
     });
+
+    Route::get('/telegram-message','TelegramController@updateActivity');
+
 });
 
 
