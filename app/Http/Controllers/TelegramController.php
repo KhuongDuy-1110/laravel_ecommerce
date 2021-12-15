@@ -10,8 +10,6 @@ class TelegramController extends Controller
 {
     public function updateActivity()
     {
-        // $activity = Telegram::getUpdates();
-        // dd($activity);
 
         $text = "A new order\n"
             . "<b>Email Address: </b>\n"
