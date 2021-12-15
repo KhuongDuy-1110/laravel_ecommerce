@@ -161,7 +161,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
         Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
@@ -230,11 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-<<<<<<< HEAD
-
-=======
         'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
->>>>>>> 3d8f1ed3fbc790ab7c8e21775b3529bc8b93dee7
 
     ],
 

@@ -15,31 +15,33 @@
 
     <div class="col-md-12">
         <table class="table table-bordered text-center">
-            @if( Session::has('cart') )
+            
             <thead>
                 <tr>
-                    <th>Product</th>
+                    <!-- <th>Product</th> -->
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
                 </tr>
-                @foreach(Session::get('cart')->products as $rows )
-                <tr>
-                    <td><img src="{{ asset('images/'.$rows['productInfo']->photo) }}" width="145px" height="98px" style="object-fit: cover;" alt=""></td>
-                    <td style="vertical-align: middle;">{{ $rows['productInfo']->name }}</td>
-                    <td style="vertical-align: middle;">{{ number_format($rows['productInfo']->price) }}</td>
-                    <td style="vertical-align: middle;">
-                        <div class="number-input md-number-input">
+                @if($details->details['orderDetail'])
+                    @foreach($details->details['orderDetail']->products as $rows)
+                        <tr>
+                            <!-- <td><img src="" width="145px" height="98px" style="object-fit: cover;" alt=""></td> -->
+                            <td style="vertical-align: middle;">{{ $rows['productInfo']->name }}</td>
+                            <td style="vertical-align: middle;">{{ number_format($rows['productInfo']->price) }}</td>
+                            <td style="vertical-align: middle;">
+                                <div class="number-input md-number-input">
 
-                            <input class="quantity w-25 text-center" name="quantity" value="{{ $rows['quantity'] }}" type="number">
+                                    <input class="quantity w-25 text-center" name="quantity" value="{{ $rows['quantity'] }}" type="number" disabled>
 
-                        </div>
-                    </td>
+                                </div>
+                            </td>
 
-                </tr>
-                @endforeach
+                        </tr>
+                    @endforeach
+                @endif
             </thead>
-            @endif
+            
         </table>
     </div>
 

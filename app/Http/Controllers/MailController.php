@@ -28,12 +28,13 @@ class MailController extends Controller
         
     }
 
-    public static function confirmOrderMail($email)
+    public static function confirmOrderMail($email,$orderDetail)
     {
         $details = [
             'title' => 'Incoming confirmation order mail',
             'body' => 'Thank you for choosing out product, here is your order !',
             'email' => $email,
+            'orderDetail' => $orderDetail,
         ];
 
         $job = new SendOrderMail($details);

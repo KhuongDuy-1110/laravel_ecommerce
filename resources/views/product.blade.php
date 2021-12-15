@@ -17,6 +17,7 @@
             </div>
         </div>
         <div class="row mb-5">
+            
             @foreach($data as $rows)
                 <div class="col-lg-3 text-center mb-5">
                     <div class="card border-0 bg-light mb-2">
@@ -27,7 +28,7 @@
                     <h5 class="pt-2">{{ $rows->name }}</h5>
                     <p class="price">$ {{ $rows->price }}</p>    
                     <a href="{{ url('/cart/addcart/'.$rows->id) }}" class="card-link btn btnCart"><i class="fas fa-cart-plus"></i></a> 
-                </div>  
+                </div>
             @endforeach
         </div>
         
