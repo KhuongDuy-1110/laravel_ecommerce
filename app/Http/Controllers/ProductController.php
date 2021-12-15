@@ -28,5 +28,6 @@ class ProductController extends Controller
         }
         
         return view('product',['data'=>json_decode(Redis::get('index.product')) ]);
+       
     }
 }

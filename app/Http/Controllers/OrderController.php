@@ -28,8 +28,11 @@ class OrderController extends Controller
         if($result)
         {
             MailController::confirmOrderMail($request->email,$orderDetail);
+
             event(new NewOrder($request->email));
+
             $request->session()->forget('cart');
+            
             return back();
         }
     }

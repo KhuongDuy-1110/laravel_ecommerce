@@ -22,7 +22,7 @@
                 <div class="col-lg-3 text-center mb-5">
                     <div class="card border-0 bg-light mb-2">
                         <div class="card-body">
-                            <img src="{{ asset('/images/frontend/'.$rows->photo) }}" class="img-fluid w-75" alt="">
+                            <img src="{{ asset('/images/'.$rows->photo) }}" class="img-fluid"  style="width: 330px; height: 206px; object-fit: contain;" alt="">
                         </div>
                     </div>
                     <h5 class="pt-2">{{ $rows->name }}</h5>
