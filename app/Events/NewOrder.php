@@ -14,11 +14,7 @@ class NewOrder
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
+    
 
     public $email;
     
@@ -27,11 +23,7 @@ class NewOrder
         $this->email = $email;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
+    
     public function broadcastOn()
     {
         return new PrivateChannel('channel-name');
