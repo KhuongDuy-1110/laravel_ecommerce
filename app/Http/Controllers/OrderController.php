@@ -40,6 +40,7 @@ class OrderController extends Controller
         {
             // send comfimation mail to customer
             MailController::confirmOrderMail($request->email,$orderDetail);
+            
             // send notification to channel in telegram
             event(new NewOrder($request->email));
 
