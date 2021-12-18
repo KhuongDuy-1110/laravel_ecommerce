@@ -18,12 +18,14 @@ class TelegramController extends Controller
             . "Incoming new message at ".Carbon::now('Asia/Ho_Chi_Minh');
  
         Telegram::sendMessage([
-            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            'chat_id' => '-1001778299908',
             'parse_mode' => 'HTML',
             'text' => $text,
         ]);
  
         return 0;
+        // $activity = Telegram::getUpdates();
+        // dd($activity);
 
     }
 

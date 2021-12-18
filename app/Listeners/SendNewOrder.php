@@ -33,10 +33,11 @@ class SendNewOrder
             . "<b>Email Address: </b>\n"
             . $event->email."\n"
             . "<b>Message: </b>\n"
-            . "Incoming new message at ".Carbon::now('Asia/Ho_Chi_Minh');
+            . "Incoming new order at ".Carbon::now('Asia/Ho_Chi_Minh');
 
         Telegram::sendMessage([
-            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            // 'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            'chat_id' => '-1001778299908',
             'parse_mode' => 'HTML',
             'text' => $text,
         ]);
