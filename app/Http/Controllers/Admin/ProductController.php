@@ -20,9 +20,9 @@ class ProductController extends Controller
     
     public function index()
     {
-        $data = Product::orderByDesc('id')->paginate(5);
+        // $data = Product::orderByDesc('id')->paginate(5);
 
-        // $data = $this->productRepository->all();
+        $data = $this->productRepository->read(5);
 
         return view('backend.ProductRead',['data'=>$data,'title'=>'Product']);
     }
