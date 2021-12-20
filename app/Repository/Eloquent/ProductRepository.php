@@ -18,4 +18,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return $this->model->all();
     }
+
+    public function getHotProduct()
+    {
+        return $this->model->where('hot',1)->get();
+    }
+
 }

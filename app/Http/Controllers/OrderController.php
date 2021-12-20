@@ -44,6 +44,7 @@ class OrderController extends Controller
             // send notification to channel in telegram
             event(new NewOrder($request->email));
 
+            // delete cart
             $request->session()->forget('cart');
             
             return back();
