@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 interface EloquentRepositoryInterface 
 {
+    public function read(int $n);
 
     public function create(array $attr): Model;
 

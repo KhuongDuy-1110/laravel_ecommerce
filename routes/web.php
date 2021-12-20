@@ -84,5 +84,3 @@ Route::group(['middleware' => 'auth'], function () {
 //     return response('hello-world',200)->header('Content-Type','text/plain');
 // });
 
-// Route::get('test','AuthController@test');
-

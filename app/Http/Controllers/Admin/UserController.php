@@ -10,25 +10,25 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use App\Repository\UserRepositoryInterface;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    private $userRepository;
+    
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function index()
     {
-        $data = DB::table('users')->orderBy('id','desc')->paginate(5);
+        $data = $this->userRepository->read(5);
         return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         return view('backend.UserCreateUpdate',['title'=>'Edit']);
@@ -37,13 +37,16 @@ class UserController extends Controller
     
     public function store(UserRequest $request)
     {
-        $user = DB::table("users")->insert([
+        
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'email_verified_at' => Carbon::now(),
-        ]);
+        ];
+        $this->userRepository->create($data);
         return redirect()->route('user.index');
+
     }
 
    
@@ -55,7 +58,7 @@ class UserController extends Controller
     
     public function edit($id)
     {
-        $data = DB::table("users")->where("id","=",$id)->first();
+        $data = $this->userRepository->find($id);
         return view('backend.UserUpdate',['record'=>$data,'title'=>'Edit']);
     }
 
@@ -64,24 +67,24 @@ class UserController extends Controller
     {
         if($request->password)
         {
-            $user = DB::table("users")->where("id","=",$id)
-            ->update([
+            $data = [
                 'name' => $request->name,
                 'password' => $request->password,
-            ]);
+            ];
         }
         else
-        $user = DB::table("users")->where("id","=",$id)
-            ->update([
-                'name' => $request->name,
-            ]);
+        {
+            $data = ['name' => $request->name];
+        }
+        $this->userRepository->update($id,$data);
         return redirect()->route('user.index');
     }
 
   
     public function destroy($id)
     {
-        $user = DB::table("users")->where("id","=",$id)->delete();
+        // $user = DB::table("users")->where("id","=",$id)->delete();
+        $this->userRepository->delete($id);
         return redirect()->route('user.index');
     }
 }

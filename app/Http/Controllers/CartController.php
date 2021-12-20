@@ -9,9 +9,18 @@ use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\Count;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Http\Requests\CheckoutRequest;
+use App\Repository\ProductRepositoryInterface;
 
 class CartController extends Controller
 {
+    
+    private $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     public function index()
     {
         return view('cart',['title'=>'Cart']);
@@ -19,20 +28,20 @@ class CartController extends Controller
 
     public function AddCart(Request $request, $id)
     {
-        $product = DB::table('product')->where('id',$id)->first();
-        if($product){
+        // $product = DB::table('product')->where('id',$id)->first();
 
+        $product = $this->productRepository->find($id);
+
+        if($product){
             $oldCart = Session('cart') ? Session('cart') : null;
             $newCart = new Cart($oldCart);
             
             $newCart->addCart($product,$id);
 
-            $request->session()->put('cart',$newCart);
-            
-            
+            $request->session()->put('cart',$newCart);        
         }
         return redirect(url('/cart')); 
-        
+
     }
 
     public function updateCart(Request $request)

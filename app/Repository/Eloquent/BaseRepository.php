@@ -12,7 +12,11 @@ class BaseRepository implements EloquentRepositoryInterface
     public function __construct(Model $model)
     {
         $this->model = $model;
-    
+    }
+
+    public function read(int $n)
+    {
+        return $this->model->orderByDesc('id')->paginate($n);
     }
 
     public function create(array $attr): Model
