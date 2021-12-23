@@ -32,9 +32,9 @@ class SendRegisterMail implements ShouldQueue
      */
     public function handle()
     {
-        //  $email = new VerifyMail($this->details);
+
         $mail = $this->details->details['email'];
         Mail::to($mail)->send(new VerifyMail($this->details));
-        //  dd( $this->details->details['email']);
+
     }
 }

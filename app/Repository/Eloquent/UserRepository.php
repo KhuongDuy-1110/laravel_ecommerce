@@ -14,6 +14,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         parent::__construct($model);
     }
 
+    public function all()
+    {
+        return $this->model->all();
+    }
+
     public function getDataFiltered($key,$value)
     {
         return $this->model->where($key,$value)->first();

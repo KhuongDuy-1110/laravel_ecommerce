@@ -25,6 +25,6 @@ Route::post('/login','ApiAuthController@login');
 Route::middleware(['auth:sanctum','throttle:60,1'])->group(function () {
 
     Route::post('/logout','ApiAuthController@logout');
-    Route::get('/test','ApiAuthController@test');
+    Route::get('/user','Api\UserController@index');
     
 });
