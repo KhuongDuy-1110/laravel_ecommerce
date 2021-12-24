@@ -3,5 +3,7 @@
     "Products" : "Products",
     "Cart" : "Cart",
     "Signin" : "Sign in",
-    "Signup" : "Sign up"
+    "Signup" : "Sign up",
+    "Welcome" : "Welcome",
+    "Log out" : "Log out"
 }
