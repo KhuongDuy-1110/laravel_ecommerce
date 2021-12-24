@@ -2,36 +2,52 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
-use Illuminate\Support\Facades\Bus;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use App\Jobs\SendOrderMail;
+// use PHPUnit\Framework\TestCase;
+// use Illuminate\Support\Facades\Bus;
+// use Illuminate\Foundation\Testing\RefreshDatabase;
+// use Illuminate\Foundation\Testing\WithoutMiddleware;
+// use App\Jobs\SendOrderMail;
+
+// use App\ClassToMock;
+use App\Http\Controllers\Admin\UserController;
+use App\Repository\UserRepositoryInterface;
+use Tests\TestCase;
+use Mockery;
 
 class UserTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
+
+    protected $controller, $mockObject;
+    
+    // public function setUp() : void
+    // {
+    //     parent::setUp();
+    //     $this->mockObject = Mockery::mock(UserController::class);
+    //     $this->controller = new UserController($this->mockObject);
+    // }
+    
+    // public function tearDown() : void
+    // {
+        
+    //     Mockery::close();
+    //     unset($this->controller);
+    //     parent::tearDown();
+
+    // }
+
+
+    public function test()
     {
 
-        $this->assertTrue(true);
-    }
+        // $userController = Mockery::mock(UserController::class)->makePartial();
+        // $userController->shouldReceive('index')
+        //                 ->withNoAgrs()
+        //                 ->andReturn(3);
+        
 
-    public function testSendOrderMail()
-    {
-        Bus::fake();
-        // Assert a specific type of job was dispatched meeting the given truth test...
 
-        Bus::assertDispatched(function (SendOrderMail $job) use ($order) {
-            return $job->order->id === $order->id;
-        });
+        // $this->mockObject->shouldReceive('index');
 
-        // Assert a job was not dispatched...
-        Bus::assertNotDispatched(AnotherJob::class);
     }
 
 }
