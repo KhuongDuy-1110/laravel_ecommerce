@@ -44,9 +44,9 @@ class CartController extends Controller
 
     }
 
-    public function updateCart(Request $request)
+    public function updateCart($n)
     {
-        
+        return $n++;
     }
 
     public function deleteCart(Request $request, $id)
