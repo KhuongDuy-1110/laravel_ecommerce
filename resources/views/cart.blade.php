@@ -14,7 +14,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12 text-center mb-3">
-            <h2 style="font-family: 'Lobster', cursive;">Shopping List</h2>
+            <h2 style="font-family: 'Lobster', cursive;">{{ __('Shopping List') }}</h2>
             <hr>
         </div>
         <div class="col-md-12">
@@ -22,10 +22,10 @@
                 @if( Session::has('cart') )
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
+                        <th>{{ __('Image') }}</th>
+                        <th>{{ __('Name') }}</th>
+                        <th>{{ __('Price') }}</th>
+                        <th>{{ __('Quantity') }}</th>
                         <td></td>
                     </tr>
                     @foreach(Session::get('cart')->products as $rows )
@@ -53,12 +53,12 @@
     @if( Session::has('cart') )
     <div class="checkout">
         <ul>
-            <li class="subtotal">Subtotal <span>$ {{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
-            <li class="cart-total">Total <span>$ {{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
+            <li class="subtotal">{{ __('Subtotal') }} <span>$ {{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
+            <li class="cart-total">{{ __('Total') }} <span>$ {{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
         </ul>
         <div class="row m-auto">
-            <a href="#" class="col-lg-5 btn process-btn">Update</a>
-            <a href="{{ url('/cart/checkout') }}" class="col-lg-5 btn process-btn ml-auto">Checkout</a>
+            <a href="#" class="col-lg-5 btn process-btn">{{ __('Update') }}</a>
+            <a href="{{ url('/cart/checkout') }}" class="col-lg-5 btn process-btn ml-auto">{{ __('Checkout') }}</a>
         </div>
     </div>
     @endif

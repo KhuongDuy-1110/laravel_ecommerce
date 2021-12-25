@@ -39,7 +39,7 @@
     <div class="container-fluid padding mt-5">
         <div class="row welcome text-center">
             <div class="col-12">
-                <h1 class="display-4" style="font-family: 'Lobster', cursive;">Hot Products</h1>
+                <h1 class="display-4" style="font-family: 'Lobster', cursive;">{{ __('Hot Products') }}</h1>
             </div>
             <hr style="height:0.5px;width:15%;color:gray;background-color:gray">
         </div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="p-3 shoe text-center  mt-3">
-                        <a href="{{ url('cart/addcart/'.$rows->id) }}" class="text-uppercase card-link text-dark">Add to cart</a>
+                        <a href="{{ url('cart/addcart/'.$rows->id) }}" class="text-uppercase card-link text-dark">{{ __('ADD TO CART') }}</a>
                     </div>
                 </div>
             </div>

@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-4">
                 <!-- <hr class="light"> -->
-                <h5>Our hours</h5>
+                <h5>{{ __('Our hours') }}</h5>
                 <hr class="light">
                 <p>Monday: 8.30AM - 5.30PM</p>
                 <p>Wednesday: 8.30AM - 5.30PM</p>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-md-4">
                 <!-- <hr class="light"> -->
-                <h5>Contact Support</h5>
+                <h5>{{ __('Contact Support') }}</h5>
                 <hr class="light">
                 <p>Monday: 8.30AM - 5.30PM</p>
                 <p>Wednesday: 8.30AM - 5.30PM</p>

@@ -12,7 +12,7 @@
     <div class="container-fluid product-lob">
         <div class="row py-5">
             <div class="col-lg-5 m-auto text-center">
-                <h1 style="font-family: 'Lobster', cursive;">Lorem Ispum</h1>
+                <h1 style="font-family: 'Lobster', cursive;">{{ __('All Products') }}</h1>
                 <h6 style="color: #FF6D6D;">All you need for your life !</h6>
             </div>
         </div>
