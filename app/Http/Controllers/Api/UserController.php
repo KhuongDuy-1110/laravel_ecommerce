@@ -16,7 +16,7 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         return UserResource::Collection($this->userRepository->all());
     }

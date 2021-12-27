@@ -22,7 +22,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login','ApiAuthController@login');
 
-Route::middleware(['auth:sanctum','throttle:60,1'])->group(function () {
+// Route::middleware(['auth:sanctum','throttle:2,1'])->group(function () {
+
+//     Route::post('/logout','ApiAuthController@logout');
+//     Route::get('/user','Api\UserController@index');
+    
+// });
+
+Route::middleware(['auth:sanctum','throttle:test'])->group(function () {
 
     Route::post('/logout','ApiAuthController@logout');
     Route::get('/user','Api\UserController@index');

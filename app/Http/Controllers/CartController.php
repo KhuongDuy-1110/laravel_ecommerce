@@ -38,14 +38,16 @@ class CartController extends Controller
             
             $newCart->addCart($product,$id);
 
-            $request->session()->put('cart',$newCart);        
+            $request->session()->put('cart',$newCart);
         }
-        return redirect(url('/cart')); 
+        return redirect(url('/cart'));
+        
 
     }
 
     public function updateCart($n)
     {
+        // mockery testing
         return $n++;
     }
 
