@@ -70,7 +70,7 @@ class AuthController extends Controller
                 return redirect(url('/'));
 
              }
-             else if(Auth::User()->role == 1) {
+             else if(Auth::User()->role > 0) {
 
                  return redirect(url('/admin'));
 

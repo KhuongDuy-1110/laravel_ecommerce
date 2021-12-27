@@ -8,6 +8,7 @@ use App\Product;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
 use App\Repository\ProductRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -20,23 +21,25 @@ class ProductController extends Controller
     
     public function index()
     {
-        // $data = Product::orderByDesc('id')->paginate(5);
 
         $data = $this->productRepository->read(5);
-
         return view('backend.ProductRead',['data'=>$data,'title'=>'Product']);
+
     }
 
     
     public function create()
     {
+        
+        $this->authorize('create',Product::class);
         return view('backend.ProductCreate',['title'=>'Product create']);
+
     }
 
     
     public function store(ProductRequest $request)
     {
-        $product = new Product;
+        // $product = new Product;
 
         if($request->hasFile('photo')){
             $filenameWithExt = $request->file('photo')->getClientOriginalName();
@@ -48,16 +51,27 @@ class ProductController extends Controller
         else
             $fileNameToStore = 'noimage'.time().'.jpg';
    
-        $product->name = $request->name;
-        $product->title = $request->title;
-        $product->price = $request->price;
-        $product->category_id = $request->category;
-        $product->hot = isset($request->hot)?1:0;
-        $product->description = $request->description;
-        $product->photo = $fileNameToStore;
+        // $product->name = $request->name;
+        // $product->title = $request->title;
+        // $product->price = $request->price;
+        // $product->category_id = $request->category;
+        // $product->hot = isset($request->hot)?1:0;
+        // $product->description = $request->description;
+        // $product->photo = $fileNameToStore;
 
-        $product->save();
-        
+        // $product->save();
+
+        $data = [
+            'name' => $request->name,
+            'title' => $request->title,
+            'price' => $request->price,
+            'category_id' => $request->category,
+            'hot' => isset($request->hot)?1:0,
+            'description' => $request->description,
+            'photo' => $fileNameToStore,
+        ];
+
+        $this->productRepository->create($data);
 
         return redirect()->route('product.index'); 
         
@@ -73,14 +87,20 @@ class ProductController extends Controller
     
     public function edit($id)
     {
-        $product = Product::find($id);
+
+        // $product = Product::find($id);
+        $product = $this->productRepository->find($id);
+        $this->authorize('update',$product);
         return view('backend.ProductUpdate',['record'=>$product, 'title'=>'Update']);
     }
 
     
     public function update(ProductRequest $request, $id)
     {
-        $product = Product::find($id);
+        
+        $product = $this->productRepository->find($id);
+        
+        $this->authorize('update',$product);
 
         if($request->hasFile('photo')){
             Storage::delete('images/'.$product->photo);
@@ -91,27 +111,34 @@ class ProductController extends Controller
             $path = $request->file('photo')->storeAs('images',$fileNameToStore);
         }
         else
+        {
             $fileNameToStore = $product->photo;
-   
-        $product->name = $request->name;
-        $product->title = $request->title;
-        $product->price = $request->price;
-        $product->category_id = $request->category;
-        $product->hot = isset($request->hot)?1:0;
-        $product->description = $request->description;
-        $product->photo = $fileNameToStore;
+        }
 
-        $product->save();
+        $data = [
+            'name' => $request->name,
+            'title' => $request->title,
+            'price' => $request->price,
+            'category_id' => $request->category,
+            'hot' => isset($request->hot)?1:0,
+            'description' => $request->description,
+            'photo' => $fileNameToStore,
+        ];
+
+        $this->productRepository->update($id,$data);
+        return redirect()->route('product.index');
         
-        return redirect()->route('product.index'); 
     }
 
     
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+
+        $product = $this->productRepository->find($id);
+        $this->authorize('delete',$product);
+        $this->productRepository->delete($id);
         Storage::delete('images/'.$product->photo);
         return redirect()->route('product.index');
+
     }
 }
