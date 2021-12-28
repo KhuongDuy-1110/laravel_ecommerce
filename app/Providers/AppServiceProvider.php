@@ -36,17 +36,19 @@ class AppServiceProvider extends ServiceProvider
 
         
         // config rate limit by ip
+        
+        
+    }
+    
+    protected function configureRateLimiting()
+    {
+        
         RateLimiter::for('test', function (Request $request) {
             return Limit::perMinute(100)->by($request->ip())->response(function(){
                 return response('denied',429);
             });
         });
-        
 
-    }
-
-    protected function configureRateLimiting()
-    {
     }
 
 }
