@@ -20,12 +20,8 @@ class SendNewOrder
         //
     }
 
-    /**
-     * Handle the event.
-     *
-     * @param  object  $event
-     * @return void
-     */
+
+
     public function handle(NewOrder $event)
     {
 

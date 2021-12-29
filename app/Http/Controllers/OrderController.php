@@ -47,8 +47,7 @@ class OrderController extends Controller
             // delete cart
             $request->session()->forget('cart');
             
-            return back();
-            
+            return back();           
         }
     }
 }
