@@ -31,7 +31,7 @@ class ProductPolicy
      */
     public function view(User $user, Product $product)
     {
-        return true;
+        // return true;
     }
 
     /**
@@ -41,10 +41,10 @@ class ProductPolicy
      * @return mixed
      */
     public function create(User $user)
-    {
-        
+    {       
         // return $user->role === 2;
-        return ($user->role->id === Roles::ROLE_MANAGER || $user->role->id === Roles::ROLE_STAFF);
+        // return ($user->role->id === Roles::ROLE_MANAGER || $user->role->id === Roles::ROLE_STAFF);
+
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product)
     {
-        return $user->role === 2;
+        // return $user->role === 2;
     }
 
     /**
@@ -68,7 +68,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product)
     {
-        return $user->role === 2;
+        // return $user->role === 2;
     }
 
     /**
