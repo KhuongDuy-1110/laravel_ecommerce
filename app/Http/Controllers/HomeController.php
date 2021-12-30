@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index(){
 
         $hotProduct = $this->productRepository->getHotProduct();
-        return view('home',['data'=>$hotProduct,'title'=>'Ecommerce']);
+        return view('home',['data'=>$hotProduct,'title'=>'Home']);
         
         // echo json_encode($hotProduct);
 
