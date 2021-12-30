@@ -42,13 +42,12 @@ class AppServiceProvider extends ServiceProvider
     
     protected function configureRateLimiting()
     {
-
+        
         RateLimiter::for('test', function (Request $request) {
             return Limit::perMinute(100)->by($request->ip())->response(function(){
                 return response('denied',429);
             });
         });
-        
     }
 
 }

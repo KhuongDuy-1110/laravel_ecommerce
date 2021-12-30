@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Product;
 use App\User;
+use App\Roles;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProductPolicy
@@ -42,8 +43,8 @@ class ProductPolicy
     public function create(User $user)
     {
         
-        return $user->role === 2;
-
+        // return $user->role === 2;
+        return ($user->role->id === Roles::ROLE_MANAGER || $user->role->id === Roles::ROLE_STAFF);
     }
 
     /**
