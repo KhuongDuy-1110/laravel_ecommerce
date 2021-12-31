@@ -11,6 +11,7 @@ use App\Http\Requests\UserRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Repository\UserRepositoryInterface;
+use App\User;
 
 class UserController extends Controller
 {
@@ -26,6 +27,7 @@ class UserController extends Controller
     {
         $data = $this->userRepository->read(5);
         return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
+        // dd(User::find(4)->userRole);
     }
 
     

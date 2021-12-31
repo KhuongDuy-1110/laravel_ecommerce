@@ -20,16 +20,8 @@ class ProductController extends Controller
     public function index()
     {
 
-        if($data = Redis::get('index.product'))
-        {
-            $data = json_decode($data);
-        }
-        else {
-            $data = $this->productRepository->all();
-            Redis::set('index.product',json_encode($data));
-        }
-        
-        return view('product',['data'=>json_decode(Redis::get('index.product')),'title' => 'Product' ]);
+        $data = json_decode($this->productRepository->all());
+        return view('product',['data'=>$data,'title' => 'Product' ]);       
        
     }
 }

@@ -6,22 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\CategoryRequest;
-use App\Repository\CategoryRepositoryInterface;
+use App\Services\CategoryService;
 
 class CategoryController extends Controller
 {
 
-    private $categoryRepository;
+    private $categoryService;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryService $categoryService)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryService = $categoryService;
     }
    
     public function index()
     {
 
-        $data = $this->categoryRepository->getParent("parent_id",0);
+        $data = $this->categoryService->view();
         return view('backend.CategoryRead',['data'=>$data,'title'=>'Category']);
 
     }
@@ -36,9 +36,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
 
-        $data = $request->all();
-        $this->categoryRepository->create($data);
-
+        $this->categoryService->create($request)        ;
         return redirect()->route('category.index');
 
     }
@@ -52,8 +50,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
 
-        $category = $this->categoryRepository->find($id);
-
+        $category = $this->categoryService->edit($id);
         return view('backend.CategoryUpdate',['record'=>$category, 'title'=>'Update']);
 
     }
@@ -61,19 +58,17 @@ class CategoryController extends Controller
     
     public function update(CategoryRequest $request, $id)
     {
-
-        $data = $request->all();
-        $this->categoryRepository->update($id,$data);
-
+        
+        $this->categoryService->update($request,$id);
         return redirect()->route('category.index');
+        
     }
 
     
     public function destroy($id)
     {
         
-        $this->categoryRepository->delete($id);
-
+        $this->categoryService->delete($id);
         return redirect()->route('category.index');
 
     }

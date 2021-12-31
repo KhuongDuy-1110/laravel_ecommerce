@@ -14,6 +14,8 @@ use App\Repository\Eloquent\ProductRepository;
 use App\Repository\Eloquent\OrderRepository;
 use App\Repository\Eloquent\UserRepository;
 use App\Repository\Eloquent\CategoryRepository;
+use App\Repository\Eloquent\CacheProductRepository;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -22,11 +24,33 @@ class RepositoryServiceProvider extends ServiceProvider
     
     public function register()
     {
+        $productRepo = null;
+        if(env('APP_CACHE')) {
+            $productRepo = CacheProductRepository::class;
+        } else {
+            $productRepo = ProductRepository::class;
+        }
+
         $this->app->bind(EloquentRepositoryInterface::class, BaseRepository::class);
-        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        // $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        $this->app->bind(ProductRepositoryInterface::class, $productRepo);
+        
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+        // $this->app->bind(ProductRepositoryInterface::class, 
+        //     function(){
+        //         // if(env('APP_CACHE')) {
+        //         //     Log::info('app_cache true');
+        //         //     return CacheProductRepository::class;
+        //         // } else {
+        //         //     Log::info('app_cache false');
+        //         //     return ProductRepository::class;
+        //         // }
+        //         return CacheProductRepository::class;
+        //     }
+        //     // CacheProductRepository::class
+        // );
     }
 
     

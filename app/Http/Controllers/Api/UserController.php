@@ -20,4 +20,6 @@ class UserController extends Controller
     {
         return UserResource::Collection($this->userRepository->all());
     }
+
+    
 }
