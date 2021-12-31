@@ -164,9 +164,7 @@ class ProductController extends Controller
     {
 
         $this->productService->create($request);
-
-        return redirect()->route('product.index'); 
-        
+        return redirect()->route('product.index');       
         
     }
 
