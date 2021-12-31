@@ -7,8 +7,13 @@ use App\Product;
 
 interface ProductRepositoryInterface
 {
-    public function all(): Collection;
+    public function all();
 
     public function getHotProduct();
+
+    public function updateProductList(): Collection;
+
+    public function save();
+
     
 }

@@ -89,10 +89,12 @@ class ProductService
 
     public function delete($id)
     {
+
         $product = $this->productRepository->find($id);
         // $this->authorize('delete',$product);
         $this->productRepository->delete($id);
         Storage::delete('images/'.$product->photo);
+        
     }
 
 }
