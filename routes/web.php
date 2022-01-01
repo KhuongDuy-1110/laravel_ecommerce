@@ -12,6 +12,7 @@ Route::group(['middleware'=>'lang'], function() {
     Route::get('/change-language/{language}','LanguageController@change');
     Route::get('/', 'HomeController@index');
     Route::get('/products','ProductController@index');
+    Route::get('/products/detail/{id}','ProductController@detail');
 
     Route::group(['middleware'=>'auth','prefix'=>'cart'], function(){
 

@@ -30,4 +30,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     }
 
+    public function save()
+    {
+        
+    }
+
 }

@@ -24,4 +24,11 @@ class ProductController extends Controller
         return view('product',['data'=>$data,'title' => 'Product' ]);       
        
     }
+
+    public function detail(Request $request)
+    {
+        $data = $this->productRepository->find($request->id);
+        return view('productDetail',['data'=>$data]);
+    }
+
 }

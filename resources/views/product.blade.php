@@ -25,7 +25,7 @@
                             <img src="{{ asset('/images/'.$rows->photo) }}" class="img-fluid"  style="width: 330px; height: 206px; object-fit: contain;" alt="">
                         </div>
                     </div>
-                    <h5 class="pt-2">{{ $rows->name }}</h5>
+                    <a href="{{ url('/products/detail/'.$rows->id) }}" class="badge card-link text-dark" ><h5 class="pt-2">{{ $rows->name }}</h5></a>
                     <p class="price">$ {{ $rows->price }}</p>    
                     <a href="{{ url('/cart/addcart/'.$rows->id) }}" class="card-link btn btnCart"><i class="fas fa-cart-plus"></i></a> 
                 </div>
