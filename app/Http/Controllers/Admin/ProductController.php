@@ -36,8 +36,13 @@ class ProductController extends Controller
     
     public function create()
     {
-        
+
+        // $data = Auth::user();
+        $this->authorize('create',Product::class);
         return view('backend.ProductCreate',['title'=>'Product create']);
+        // $data = User::find(3)->userRole->role_id;
+        // dd(Auth::us);
+        
 
     }
 

@@ -6,6 +6,8 @@ use App\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
+use App\Product;
+use App\User;
 
 class ProductService
 {

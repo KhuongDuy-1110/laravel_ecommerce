@@ -31,7 +31,7 @@ class ProductPolicy
      */
     public function view(User $user, Product $product)
     {
-        // return true;
+        return true;
     }
 
     /**
@@ -42,8 +42,9 @@ class ProductPolicy
      */
     public function create(User $user)
     {       
-        // return $user->role === 2;
-        // return ($user->role->id === Roles::ROLE_MANAGER || $user->role->id === Roles::ROLE_STAFF);
+        // hihi@gmail.com -> manager
+        // nva@gmail.com -> user
+        return $user->userRole->role_id === Roles::ROLE_MANAGER;
 
     }
 

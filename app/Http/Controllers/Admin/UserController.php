@@ -25,9 +25,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = $this->userRepository->read(5);
-        return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
-        // dd(User::find(4)->userRole);
+        // $data = $this->userRepository->read(5);
+        // return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
+        dd(User::find(4)->userRole->role_id);
     }
 
     
