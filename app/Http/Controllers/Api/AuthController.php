@@ -10,7 +10,7 @@ use App\Repository\UserRepositoryInterface;
 use App\Http\Resources\UserResource;
 use App\User;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
     private $userRepository;
 
@@ -23,10 +23,9 @@ class AuthController extends Controller
     {
         
         $user = $this->userRepository->getDataFiltered('email',$request->email);
-        if(!$user || !Hash::check($request->password,$user->password)){
-            return response([
-                'message' => ['no record found'],
-            ], 404);
+        if(!$user || !Hash::check($request->password,$user->password))
+        {
+            return $this->responseLoginFail();
         }
         $token = $user->createToken('app-token')->plainTextToken;
         $response = [
@@ -34,17 +33,13 @@ class AuthController extends Controller
             'token' => $token,
         ];
 
-        return response($response,201);
+        return $this->responseSuccess($response);
     }
 
     public function logout(Request $request)
     {
-
         Auth::user()->tokens()->delete();
-
-        return [
-            'message' => 'Logged out',
-        ];
+        return $this->responseLogout();
     }
 
 }

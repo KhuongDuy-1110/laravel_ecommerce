@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Repository\UserRepositoryInterface;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
     private $userRepository;
 
@@ -18,7 +18,8 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        return UserResource::Collection($this->userRepository->all());
+        $data = UserResource::Collection($this->userRepository->all());
+        return $this->responseSuccess($data);
     }
 
     
