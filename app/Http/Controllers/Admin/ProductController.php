@@ -5,11 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
-use App\User;
-use App\Roles;
-// use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
-// use App\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use App\Services\ProductService;
 
@@ -37,12 +33,8 @@ class ProductController extends Controller
     public function create()
     {
 
-        // $data = Auth::user();
         $this->authorize('create',Product::class);
-        return view('backend.ProductCreate',['title'=>'Product create']);
-        // $data = User::find(3)->userRole->role_id;
-        // dd(Auth::us);
-        
+        return view('backend.ProductCreate',['title'=>'Product create']);      
 
     }
 
@@ -64,8 +56,9 @@ class ProductController extends Controller
     
     public function edit($id)
     {
-
+        
         $product = $this->productService->edit($id);
+        $this->authorize('update',$product);
         return view('backend.ProductUpdate',['record'=>$product, 'title'=>'Update']);
     
     }
@@ -73,7 +66,8 @@ class ProductController extends Controller
     
     public function update(ProductRequest $request, $id)
     {
-        
+
+        $this->authorize('update',$this->productService->edit($id));
         $this->productService->update($request,$id);
         return redirect()->route('product.index');
         
@@ -83,6 +77,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
 
+        $this->authorize('delete',$this->productService->edit($id));
         $this->productService->delete($id);
         return redirect()->route('product.index');
 

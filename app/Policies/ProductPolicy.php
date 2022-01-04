@@ -44,7 +44,7 @@ class ProductPolicy
     {       
         // hihi@gmail.com -> manager
         // nva@gmail.com -> user
-        return $user->userRole->role_id === Roles::ROLE_MANAGER;
+        return $user->userRole->role_id === Roles::ROLE_MANAGER || $user->userRole->role_id === Roles::ROLE_STAFF;
 
     }
 
@@ -57,7 +57,8 @@ class ProductPolicy
      */
     public function update(User $user, Product $product)
     {
-        // return $user->role === 2;
+        
+        return $user->userRole->role_id === Roles::ROLE_MANAGER || $user->userRole->role_id === Roles::ROLE_STAFF;
     }
 
     /**
@@ -69,7 +70,8 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product)
     {
-        // return $user->role === 2;
+        
+        return $user->userRole->role_id === Roles::ROLE_MANAGER || $user->userRole->role_id === Roles::ROLE_STAFF;
     }
 
     /**
