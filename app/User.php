@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -34,15 +36,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userRole()
-    {
-        return $this->hasOne('App\UserRole','user_id');
-    }
+    // public function userRole()
+    // {
+    //     return $this->hasOne('App\UserRole','user_id');
+    // }
 
-    public function role()
+    public function roles()
     {
-        return $this->userRole->role();
-        // return $this->hasOne('App\UserRole');
+        return $this->belongsToMany(Role::class, 'role_user');
     }
 
 }

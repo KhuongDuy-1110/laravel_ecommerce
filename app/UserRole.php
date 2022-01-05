@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Role;
 use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
@@ -17,7 +18,7 @@ class UserRole extends Model
 
     public function role()
     {
-        return $this->belongsTo('App\Roles','role_id');
+        return $this->belongsTo(Role::class,'role_id');
     }
 
 }

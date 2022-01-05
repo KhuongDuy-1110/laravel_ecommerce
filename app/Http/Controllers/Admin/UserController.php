@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Repository\UserRepositoryInterface;
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -34,6 +35,8 @@ class UserController extends Controller
     public function create()
     {
         return view('backend.UserCreateUpdate',['title'=>'Edit']);
+        // $role = User::find(72)->roles;
+        // dd($role[0]['name']);
     }
 
     
@@ -46,7 +49,9 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'email_verified_at' => Carbon::now(),
         ];
-        $this->userRepository->create($data);
+
+
+        $this->userRepository->createWithRole($data,$request->role);
         return redirect()->route('user.index');
 
     }
@@ -78,7 +83,7 @@ class UserController extends Controller
         {
             $data = ['name' => $request->name];
         }
-        $this->userRepository->update($id,$data);
+        $this->userRepository->updateWithRole($id, $data, $request->role );
         return redirect()->route('user.index');
     }
 

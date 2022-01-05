@@ -33,7 +33,7 @@ class AuthController extends ApiController
             'token' => $token,
         ];
 
-        return $this->responseSuccess($response);
+        return $this->responseSuccess($response,['Content-Type', 'text/html']);
     }
 
     public function logout(Request $request)

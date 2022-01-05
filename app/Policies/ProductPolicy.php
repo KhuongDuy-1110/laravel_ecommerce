@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Product;
 use App\User;
-use App\Roles;
+use App\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProductPolicy
@@ -44,7 +44,9 @@ class ProductPolicy
     {       
         // hihi@gmail.com -> manager
         // nva@gmail.com -> user
-        return $user->userRole->role_id === Roles::ROLE_MANAGER || $user->userRole->role_id === Roles::ROLE_STAFF;
+        // return $user->userRole->role_id === Role::ROLE_MANAGER || $user->userRole->role_id === Role::ROLE_STAFF;
+        
+        return $user->roles[0]['name'] === 'manager';
 
     }
 
@@ -58,7 +60,7 @@ class ProductPolicy
     public function update(User $user, Product $product)
     {
         
-        return $user->userRole->role_id === Roles::ROLE_MANAGER || $user->userRole->role_id === Roles::ROLE_STAFF;
+        return $user->userRole->role_id === Role::ROLE_MANAGER || $user->userRole->role_id === Role::ROLE_STAFF;
     }
 
     /**
@@ -71,7 +73,7 @@ class ProductPolicy
     public function delete(User $user, Product $product)
     {
         
-        return $user->userRole->role_id === Roles::ROLE_MANAGER || $user->userRole->role_id === Roles::ROLE_STAFF;
+        return $user->userRole->role_id === Role::ROLE_MANAGER || $user->userRole->role_id === Role::ROLE_STAFF;
     }
 
     /**

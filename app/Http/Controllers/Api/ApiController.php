@@ -8,11 +8,11 @@ use App\Http\Resources\UserResource;
 
 class ApiController extends Controller
 {
-    protected $transfomer = null;
+    // protected $transfomer = null;
 
     public function response($data, $statusCode = 200, $headers = [] )
     {
-        return response()->json($data, $statusCode, $headers);
+        return response()->json($data, $statusCode,$headers);
     }
 
     public function responseSuccess($message,$headers = [])
@@ -50,6 +50,11 @@ class ApiController extends Controller
     public function responseLogout()
     {
         return $this->response('Logged out');
+    }
+
+    public function responseWithTranformation($data,$resources, $statusCode = 200, $header = [])
+    {
+        return $this->response($resources::Collection($data),$statusCode, $header);
     }
 
 }

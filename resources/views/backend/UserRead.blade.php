@@ -12,12 +12,15 @@
                     <tr>
                         <th>name</th>
                         <th>email</th>
+                        <th>role</th>
                         <th style="width:100px;"></th>
                     </tr>
                     @foreach($data as $rows)
+                        
                         <tr>
                             <td>{{ $rows->name }}</td>
                             <td>{{ $rows->email }}</td>
+                            <td></td>
                            
                             <td style="text-align:center;">
                                 <a href="{{ url('admin/user/'.$rows->id.'/edit') }}" style="color: #152555;">Edit</a>&nbsp;

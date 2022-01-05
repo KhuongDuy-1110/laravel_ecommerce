@@ -18,9 +18,16 @@ class UserController extends ApiController
 
     public function index(Request $request)
     {
-        $data = UserResource::Collection($this->userRepository->all());
-        return $this->responseSuccess($data);
+        // $data = UserResource::Collection($this->userRepository->all());
+        // return $this->responseSuccess($data);
+
+        $data = $this->userRepository->all();
+        
+        return $this->responseWithTranformation($data,UserResource::class);
+
     }
+
+
 
     
 }
