@@ -53,7 +53,6 @@ class ProductService
     public function edit($id)
     {
         $product = $this->productRepository->find($id);
-        // $this->authorize('update',$product);
         return $product;
     }
 
@@ -61,7 +60,6 @@ class ProductService
     {
         $product = $this->productRepository->find($id);
         
-        // $this->authorize('update',$product);
 
         if($request->hasFile('photo')){
             Storage::delete('images/'.$product->photo);
@@ -93,7 +91,6 @@ class ProductService
     {
 
         $product = $this->productRepository->find($id);
-        // $this->authorize('delete',$product);
         $this->productRepository->delete($id);
         Storage::delete('images/'.$product->photo);
         
