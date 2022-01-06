@@ -29,6 +29,7 @@ class CategoryController extends Controller
     
     public function create()
     {
+        $this->authorize('create',Category::class);
         return view('backend.CategoryCreate',['title'=>'create']);
     }
 
@@ -36,7 +37,8 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
 
-        $this->categoryService->create($request)        ;
+        $this->authorize('create',Category::class);
+        $this->categoryService->create($request);
         return redirect()->route('category.index');
 
     }
@@ -49,8 +51,8 @@ class CategoryController extends Controller
     
     public function edit($id)
     {
-
         $category = $this->categoryService->edit($id);
+        $this->authorize('update',$category);
         return view('backend.CategoryUpdate',['record'=>$category, 'title'=>'Update']);
 
     }
@@ -60,6 +62,7 @@ class CategoryController extends Controller
     {
         
         $this->categoryService->update($request,$id);
+        $this->authorize('update',$this->categoryService->edit($id));
         return redirect()->route('category.index');
         
     }
@@ -69,6 +72,7 @@ class CategoryController extends Controller
     {
         
         $this->categoryService->delete($id);
+        $this->authorize('delete',$this->categoryService->edit($id));
         return redirect()->route('category.index');
 
     }

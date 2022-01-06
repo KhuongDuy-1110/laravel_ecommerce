@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    const ROLE_MANAGER = 1;
-    const ROLE_STAFF = 2;
-    const ROLE_USER = 3;
+    const ROLE_MANAGER = 'manager';
+    const ROLE_STAFF = 'staff';
+    const ROLE_USER = 'user';
 
     public $timestamps = false;
     protected $table = 'roles';

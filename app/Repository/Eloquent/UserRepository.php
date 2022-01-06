@@ -33,13 +33,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function updateWithRole($id, array $arr, $roleId)
     {
         $result = $this->find($id)->roles()->detach();
-        // if($result)
-        // {
-        //     dd(1);
-        // }
-        // else {
-        //     dd(1231);
-        // }
+        
         return $this->update($id,$arr)->roles()->attach($roleId);
     }
 

@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Product;
 use App\User;
 use App\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProductPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -26,10 +26,10 @@ class ProductPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Product  $product
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function view(User $user, Product $product)
+    public function view(User $user, User $model)
     {
         return true;
     }
@@ -41,24 +41,19 @@ class ProductPolicy
      * @return mixed
      */
     public function create(User $user)
-    {       
-        // nvaa@gmail.com -> user
-        // nva@gmail.com -> manager
-        
+    {
         return $user->roles[0]['name'] === Role::ROLE_MANAGER;
-
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Product  $product
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function update(User $user, Product $product)
+    public function update(User $user, User $model)
     {
-        
         return $user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF;
     }
 
@@ -66,23 +61,22 @@ class ProductPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Product  $product
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function delete(User $user, Product $product)
+    public function delete(User $user, User $model)
     {
-        
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER;
+        return Auth::user()->id != $model->id && $user->roles[0]['name'] === Role::ROLE_MANAGER;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Product  $product
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function restore(User $user, Product $product)
+    public function restore(User $user, User $model)
     {
         //
     }
@@ -91,10 +85,10 @@ class ProductPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Product  $product
+     * @param  \App\User  $model
      * @return mixed
      */
-    public function forceDelete(User $user, Product $product)
+    public function forceDelete(User $user, User $model)
     {
         //
     }

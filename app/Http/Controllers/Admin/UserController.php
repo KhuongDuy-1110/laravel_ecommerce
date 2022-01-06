@@ -34,9 +34,8 @@ class UserController extends Controller
     
     public function create()
     {
+        $this->authorize('create',User::class);
         return view('backend.UserCreateUpdate',['title'=>'Edit']);
-        // $role = User::find(72)->roles;
-        // dd($role[0]['name']);
     }
 
     
@@ -50,7 +49,7 @@ class UserController extends Controller
             'email_verified_at' => Carbon::now(),
         ];
 
-
+        $this->authorize('create',User::class);
         $this->userRepository->createWithRole($data,$request->role);
         return redirect()->route('user.index');
 
@@ -66,6 +65,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = $this->userRepository->find($id);
+        $this->authorize('update',$data);
         return view('backend.UserUpdate',['record'=>$data,'title'=>'Edit']);
     }
 
@@ -76,20 +76,22 @@ class UserController extends Controller
         {
             $data = [
                 'name' => $request->name,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
             ];
         }
         else
         {
             $data = ['name' => $request->name];
         }
-        $this->userRepository->updateWithRole($id, $data, $request->role );
+        $this->authorize('update',$this->userRepository->find($id));
+        $this->userRepository->updateWithRole($id, $data, $request->role);
         return redirect()->route('user.index');
     }
 
   
     public function destroy($id)
     {
+        $this->authorize('delete',$this->userRepository->find($id));
         $this->userRepository->delete($id);
         return redirect()->route('user.index');
     }

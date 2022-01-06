@@ -10,7 +10,7 @@
         </ul>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100 " src="{{ asset('images/frontend/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
+                <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
                 <div class="carousel-caption">
                     <h1 class="display-2">Welcome</h1>
                     <h3>Lets take a tour !</h3>
@@ -18,10 +18,10 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('images/frontend/microsoft-edge-FAaz8lkinzs-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
+                <img class="d-block w-100" src="{{ asset('images/banner/microsoft-edge-8tvoDBqOHZU-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('images/frontend/windows-wYTd-B7BdoQ-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
+                <img class="d-block w-100" src="{{ asset('images/banner/windows-wYTd-B7BdoQ-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
             </div>
         </div>
         <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">

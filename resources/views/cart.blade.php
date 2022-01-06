@@ -3,7 +3,7 @@
 
 <!-- banner -->
 <div class="img-fluid">
-    <img src="{{ asset('images/frontend/murat-demircan-beDmytOHU5k-unsplash.jpg') }}" style="width: 100%; height: 400px; object-fit: cover;" alt="">
+    <img src="{{ asset('images/banner/murat-demircan-beDmytOHU5k-unsplash.jpg') }}" style="width: 100%; height: 400px; object-fit: cover;" alt="">
 </div>
 <!-- end_banner -->
 

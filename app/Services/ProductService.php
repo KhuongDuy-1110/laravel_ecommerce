@@ -20,7 +20,19 @@ class ProductService
 
     public function view()
     {
-        return $this->productRepository->read(5);
+        // return $this->productRepository->read(5);
+        $dataSelect = [ 
+            'product.id', 
+            'product.name as productName',
+            'product.photo',
+            'product.title',
+            'product.description',
+            'product.price',
+            'product.hot',
+            'category.name as categoryName',
+        ];
+
+        return $this->productRepository->leftJoinTable('category','category.id',$dataSelect,5);
     }
 
     public function create(ProductRequest $request)

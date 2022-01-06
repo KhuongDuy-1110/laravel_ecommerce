@@ -15,5 +15,7 @@ interface ProductRepositoryInterface
 
     public function save();
 
+    public function leftJoinTable($table, $tableId, $dataSelect = [] ,$n);
+
     
 }

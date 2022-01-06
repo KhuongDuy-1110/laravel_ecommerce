@@ -20,16 +20,14 @@
                         <th style="width:100px;"></th>
                     </tr>
                     @foreach($data as $rows)
-                        @php
-                            $categoryName = DB::table("category")->where("id",$rows->category_id)->first();
-                        @endphp
+                        
                         <tr>
                             <td><img src="{{ asset('images/'.$rows->photo) }}" style="width: 100px; height:70px; object-fit: cover;" alt=""></td>
-                            <td>{{ $rows->name }}</td>
+                            <td>{{ $rows->productName }}</td>
                             <td>{{ $rows->title }}</td>
                             <td>{{ $rows->description }}</td>
                             <td>{{ $rows->price }}</td>
-                            <td>{{ $categoryName->name }}</td>
+                            <td>{{ isset($rows->categoryName)?$rows->categoryName:'' }}</td>
                             <td>
                                 @if($rows->hot == 1 )
                                     <i class="far fa-check"></i>
