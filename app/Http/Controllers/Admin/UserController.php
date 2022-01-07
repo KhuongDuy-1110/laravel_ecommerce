@@ -5,30 +5,31 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Repository\UserRepositoryInterface;
+use App\Services\UserService;
 use App\User;
 use App\Role;
 
 class UserController extends Controller
 {
 
-    private $userRepository;
+    private $userService;
+    private $data;
     
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserService $userService)
     {
-        $this->userRepository = $userRepository;
+        $this->userService = $userService;
+        $this->data = $this->userService->view();
     }
 
     public function index()
     {
-        $data = $this->userRepository->read(5);
-        return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
-        
+        return view('backend.UserRead',['data'=>$this->data, 'title'=>'Users']);
     }
 
     
@@ -41,16 +42,9 @@ class UserController extends Controller
     
     public function store(UserRequest $request)
     {
-        
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'email_verified_at' => Carbon::now(),
-        ];
 
         $this->authorize('create',User::class);
-        $this->userRepository->createWithRole($data,$request->role);
+        $this->userService->create($request);
         return redirect()->route('user.index');
 
     }
@@ -64,7 +58,7 @@ class UserController extends Controller
     
     public function edit($id)
     {
-        $data = $this->userRepository->find($id);
+        $data = $this->userService->view($id);
         $this->authorize('update',$data);
         return view('backend.UserUpdate',['record'=>$data,'title'=>'Edit']);
     }
@@ -72,27 +66,16 @@ class UserController extends Controller
     
     public function update(UserRequest $request, $id)
     {
-        if($request->password)
-        {
-            $data = [
-                'name' => $request->name,
-                'password' => Hash::make($request->password),
-            ];
-        }
-        else
-        {
-            $data = ['name' => $request->name];
-        }
-        $this->authorize('update',$this->userRepository->find($id));
-        $this->userRepository->updateWithRole($id, $data, $request->role);
+        $this->authorize('update',$this->userService->edit($id));
+        $this->userService->update($request, $id);
         return redirect()->route('user.index');
     }
 
   
     public function destroy($id)
     {
-        $this->authorize('delete',$this->userRepository->find($id));
-        $this->userRepository->delete($id);
+        $this->authorize('delete',$this->userService->edit($id));
+        $this->userService->delete($id);
         return redirect()->route('user.index');
     }
 }

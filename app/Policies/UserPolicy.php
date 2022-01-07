@@ -54,7 +54,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF;
+        return Auth::user()->id != $model->userId && ($user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF);
     }
 
     /**

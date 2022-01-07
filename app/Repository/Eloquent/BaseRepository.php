@@ -53,4 +53,13 @@ class BaseRepository implements EloquentRepositoryInterface
         }
         return false;
     }
+
+    public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id)
+    {
+        return $this->model->leftJoin($table,$table1Id,'=',$table2Id)
+                            ->select($dataSelect)
+                            ->orderByDesc('id')
+                            ->paginate($n);
+    }
+
 }

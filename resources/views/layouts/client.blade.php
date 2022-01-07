@@ -18,20 +18,20 @@
     <!-- navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/frontend/logo.png') }}" style="width: 70px; " alt="#">Laravel
+            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/banner/logo.png') }}" style="width: 70px; " alt="#">Laravel
                 ecommerce</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="nvabar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-5">
-                    <li class="nav-item {{ (isset($title)&&$title=='Home')?'active':'' }}">
+                    <li class="nav-item {{ (isset($title)&&$title === 'Home')?'active':'' }}">
                         <a href="{{ url('/') }}" class="nav-link">{{ __('Home') }}</a>
                     </li>
-                    <li class="nav-item {{ (isset($title)&&$title=='Product')?'active':'' }} ">
+                    <li class="nav-item {{ (isset($title)&&$title === 'Product')?'active':'' }} ">
                         <a href="{{ url('/products') }}" class="nav-link">{{ __('Products') }}</a>
                     </li>
-                    <li class="nav-item {{ (isset($title)&&$title=='Cart')?'active':'' }} ">
+                    <li class="nav-item {{ (isset($title)&&$title === 'Cart')?'active':'' }} ">
                         <a href="{{ url('/cart') }}" class="nav-link">{{ __('Cart')}}</a>
                     </li>
                 </ul>
@@ -68,7 +68,7 @@
     <div class="container-fluid padding">
         <div class="row text-center pt-5" style="background-color: #6C4A4A; color: white;">
             <div class="col-md-4">
-                <img src="{{ asset('images/frontend/logo.png') }}" style="width: 70px;" alt="">
+                <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
                 <!-- <hr class="light"> -->
                 <p>12-3456-789</p>
                 <p>khuong.pham@tda.company</p>

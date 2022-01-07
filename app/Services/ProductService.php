@@ -32,7 +32,7 @@ class ProductService
             'category.name as categoryName',
         ];
 
-        return $this->productRepository->leftJoinTable('category','category.id',$dataSelect,5);
+        return $this->productRepository->leftJoinTable('category','category.id',$dataSelect,5,'product.category_id');
     }
 
     public function create(ProductRequest $request)
