@@ -12,6 +12,8 @@ interface UserRepositoryInterface
 
     public function updateWithRole($id, array $arr, $roleId);
 
-    public function deleteWithRole($id,$roleId);
+    public function deleteWithRole($id);
+
+    public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n,$findById = null);
     
 }

@@ -24,8 +24,5 @@ class LanguageController extends Controller
 
         return redirect(url('/'));
 
-        // $request->session()->put('language','vi');
-        // $test = $request->session()->get('language');
-        // echo config('app.locale');
     }
 }

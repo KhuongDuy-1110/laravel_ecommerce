@@ -61,8 +61,8 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         
-        $this->categoryService->update($request,$id);
         $this->authorize('update',$this->categoryService->edit($id));
+        $this->categoryService->update($request,$id);
         return redirect()->route('category.index');
         
     }
@@ -71,8 +71,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         
-        $this->categoryService->delete($id);
         $this->authorize('delete',$this->categoryService->edit($id));
+        $this->categoryService->delete($id);
         return redirect()->route('category.index');
 
     }

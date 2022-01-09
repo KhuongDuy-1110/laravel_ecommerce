@@ -25,13 +25,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-5">
-                    <li class="nav-item {{ (isset($title)&&$title=='Home')?'active':'' }}">
+                    <li class="nav-item {{ (isset($title)&&$title === 'Home')?'active':'' }}">
                         <a href="{{ url('/') }}" class="nav-link">{{ __('Home') }}</a>
                     </li>
-                    <li class="nav-item {{ (isset($title)&&$title=='Product')?'active':'' }} ">
+                    <li class="nav-item {{ (isset($title)&&$title === 'Product')?'active':'' }} ">
                         <a href="{{ url('/products') }}" class="nav-link">{{ __('Products') }}</a>
                     </li>
-                    <li class="nav-item {{ (isset($title)&&$title=='Cart')?'active':'' }} ">
+                    <li class="nav-item {{ (isset($title)&&$title === 'Cart')?'active':'' }} ">
                         <a href="{{ url('/cart') }}" class="nav-link">{{ __('Cart')}}</a>
                     </li>
                 </ul>

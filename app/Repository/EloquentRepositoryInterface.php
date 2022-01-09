@@ -14,5 +14,7 @@ interface EloquentRepositoryInterface
     public function update($id, array $attr);
 
     public function delete($id);
+
+    public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id);
     
 }

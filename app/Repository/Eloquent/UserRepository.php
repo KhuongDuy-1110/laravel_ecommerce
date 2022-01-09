@@ -37,8 +37,30 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->update($id,$arr)->roles()->attach($roleId);
     }
 
-    public function deleteWithRole($id,$roleId)
+    public function deleteWithRole($id)
     {
+        $result = $this->find($id)->roles()->detach();
+        return $this->delete($id);
+    }
+
+    public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n, $findById = null)
+    {
+        if($findById === null)
+        {
+            return $this->model->leftJoin($table2,$table2Id['user'],'=',$tableId)
+                                ->leftJoin($table3,$table2Id['role'],'=',$table3Id)
+                                ->select($dataSelect)
+                                ->orderByDesc($table.'.id')
+                                ->paginate($n);
+        }
+        else
+        {
+            return $this->model->leftJoin($table2,$table2Id['user'],'=',$tableId)
+                                ->leftJoin($table3,$table2Id['role'],'=',$table3Id)
+                                ->where($table.'.id',$findById)
+                                ->select($dataSelect)
+                                ->first();
+        }
 
     }
 

@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
-
 use App\Repository\UserRepositoryInterface;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request; 
+use App\Role;
+use App\User;
 
 class UserService
 {
@@ -17,9 +20,23 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function view()
+    public function view($findById = null)
     {
-        return $this->userRepository->all();
+
+        $dataSelect = [
+            'users.id as userId',
+            'users.email as userEmail',
+            'users.name as userName',
+            'roles.id as roleId',
+            'roles.name as roleName',
+        ];
+        $table2Id = [
+            'user' => 'role_user.user_id',
+            'role' => 'role_user.role_id'
+        ];
+
+        return $this->userRepository->leftJoinUser('users','users.id','role_user',$table2Id,'roles','roles.id',$dataSelect,5,$findById);
+
     }
 
     public function create(UserRequest $request)
@@ -31,7 +48,8 @@ class UserService
             'password' => Hash::make($request->password),
             'email_verified_at' => Carbon::now(),
         ];
-        $this->userRepository->create($data);
+
+        $this->userRepository->createWithRole($data,$request->role);
 
     }
 
@@ -46,19 +64,19 @@ class UserService
         {
             $data = [
                 'name' => $request->name,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
             ];
         }
         else
         {
             $data = ['name' => $request->name];
         }
-        $this->userRepository->update($id,$data);
+        $this->userRepository->updateWithRole($id,$data,$request->role);
     }
 
-    public function delete($id)
+    public function delete( $id)
     {
-        $this->userRepository->delete($id);
+        $this->userRepository->deleteWithRole($id);
     }
 
 }

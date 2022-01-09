@@ -35,11 +35,5 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         
     }
 
-    public function leftJoinTable($table,$tableId, $dataSelect = [],$n)
-    {
-        return $this->model->leftJoin($table,$tableId,'=','product.category_id')
-                            ->select($dataSelect)->orderByDesc('id')->paginate($n);
-                            // ->get();
-    }
 
 }
