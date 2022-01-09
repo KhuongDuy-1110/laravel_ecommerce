@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('images/banner/microsoft-edge-8tvoDBqOHZU-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
+                <img class="d-block w-100" src="{{ asset('images/banner/microsoft-edge-FAaz8lkinzs-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="{{ asset('images/banner/windows-wYTd-B7BdoQ-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
