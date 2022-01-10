@@ -26,6 +26,7 @@ class ProductController extends Controller
 
         $data = $this->productService->view();
         return view('backend.ProductRead',['data'=>$data,'title'=>'Product']);
+        // dd($data);
 
     }
 

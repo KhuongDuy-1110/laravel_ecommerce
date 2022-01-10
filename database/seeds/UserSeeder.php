@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         //     'password' => Hash::make('123'),
         // ]);
         
-        factory(App\User::class,10)->create();
+        factory(App\User::class,100)->create();
 
     }
 }
