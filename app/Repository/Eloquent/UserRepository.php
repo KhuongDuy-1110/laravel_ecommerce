@@ -45,7 +45,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n, $findById = null)
     {
-        if($findById === null)
+        if($findById == null)
         {
             return $this->model->leftJoin($table2,$table2Id['user'],'=',$tableId)
                                 ->leftJoin($table3,$table2Id['role'],'=',$table3Id)

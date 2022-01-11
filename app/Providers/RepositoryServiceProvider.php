@@ -25,7 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $productRepo = null;
-        if(env('APP_CACHE')) {
+        if(env('APP_CACHE')=='true') {
             $productRepo = CacheProductRepository::class;
         } else {
             $productRepo = ProductRepository::class;

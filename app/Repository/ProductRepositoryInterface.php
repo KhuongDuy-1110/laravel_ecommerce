@@ -15,7 +15,7 @@ interface ProductRepositoryInterface
 
     public function save();
 
-    
+    // public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id);
 
     
 }

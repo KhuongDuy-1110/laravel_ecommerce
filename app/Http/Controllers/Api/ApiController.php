@@ -47,14 +47,15 @@ class ApiController extends Controller
 
     }
 
-    public function responseLogout()
-    {
-        return $this->response('Logged out');
-    }
-
+    
     public function responseWithTranformation($data,$resources, $statusCode = 200, $header = [])
     {
         return $this->response($resources::Collection($data),$statusCode, $header);
     }
-
+    
+    public function responseLogout()
+    {
+        return $this->response('Logged out');
+    }
+    
 }
