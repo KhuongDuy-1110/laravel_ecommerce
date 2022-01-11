@@ -36,6 +36,26 @@ class Cart
         $this->totalQuantity++;
     }
 
+    public function updateCart($request, $product, $id)
+    {
+        if($request->type === '0' && $this->products[$id]['quantity'] === 1)
+        {
+            $this->deleteCart($id);
+        }
+        elseif($request->type === '0')
+        {
+            $this->products[$id]['quantity']--;
+            $this->totalPrice -= $this->products[$id]['price'];
+            $this->totalQuantity -= $this->products[$id]['quantity'];     
+        }
+        else
+        {
+            $this->products[$id]['quantity']++;
+            $this->totalPrice += $this->products[$id]['price'];
+            $this->totalQuantity += $this->products[$id]['quantity']; 
+        }       
+    }
+
     public function deleteCart($id)
     {
         $this->totalPrice -= $this->products[$id]['price'];

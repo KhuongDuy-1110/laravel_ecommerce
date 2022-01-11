@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row productD">
         <div class="col-lg-5">
-            <img src="{{ asset('/images/'.$data->photo) }}" class="productDIMG" alt="">
+            <img src="{{ asset('/images/'.$data->photo) }}" class="productDIMG" style="border-radius: 10px;" alt="">
         </div>
         <div class="col-lg-7">
             <div class="row pt-5">
@@ -34,7 +34,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-lg-12">
-                    <a href="#" class="card-link btn btnPRD">Add to cart</a>
+                    <a href="{{ url('/cart/addcart/'.$data->id) }}" class="card-link btn btnPRD">Add to cart</a>
                 </div>
             </div>
         </div>

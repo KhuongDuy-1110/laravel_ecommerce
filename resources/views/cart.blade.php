@@ -35,9 +35,9 @@
                         <td style="vertical-align: middle;">{{ number_format($rows['productInfo']->price) }}</td>
                         <td style="vertical-align: middle;">
                             <div class="number-input md-number-input">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus btn">-</button>
-                                <input class="quantity w-25 text-center" name="quantity" value="{{ $rows['quantity'] }}" type="number">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus btn">+</button>
+                                <a href="{{ url('/cart/updateCart/'.$rows['productInfo']->id.'/0') }}" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus btn">-</a>
+                                <input class="quantity w-25 text-center" id="quanty-item-{{ $rows['productInfo']->id }}" name="quantity" value="{{ $rows['quantity'] }}" type="number">
+                                <a href="{{ url('/cart/updateCart/'.$rows['productInfo']->id.'/1') }}" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus btn">+</a>
                             </div>
                         </td>
                         <td style="vertical-align: middle;"><a href="{{ url('/cart/deleteCart/'.$rows['productInfo']->id ) }}" class="btn btn-light"><i class="fas fa-times"></i></a></td>

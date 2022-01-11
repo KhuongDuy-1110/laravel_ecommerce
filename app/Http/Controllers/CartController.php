@@ -14,7 +14,7 @@ use App\Repository\ProductRepositoryInterface;
 class CartController extends Controller
 {
     
-    private $productRepository;
+    private $productRepository, $cart;
 
     public function __construct(ProductRepositoryInterface $productRepository)
     {
@@ -28,8 +28,6 @@ class CartController extends Controller
 
     public function AddCart(Request $request, $id)
     {
-        // $product = DB::table('product')->where('id',$id)->first();
-
         $product = $this->productRepository->find($id);
 
         if($product){
@@ -41,14 +39,21 @@ class CartController extends Controller
             $request->session()->put('cart',$newCart);
         }
         return redirect(url('/cart'));
-        
-
     }
 
-    public function updateCart($n)
+    public function updateCart(Request $request, $id)
     {
-        // mockery testing
-        return $n++;
+        $product = $this->productRepository->find($id);
+
+        $oldCart = Session('cart') ? Session('cart') : null;
+        if($oldCart)
+        {
+            $newCart = new Cart($oldCart);
+            $newCart->updateCart($request, $product, $id);
+            $request->session()->put('cart',$newCart);
+            return redirect(url('/cart'));
+        }
+
     }
 
     public function deleteCart(Request $request, $id)

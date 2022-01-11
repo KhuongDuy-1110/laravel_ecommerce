@@ -54,7 +54,7 @@
                     <div class="product-1 align-item-center p-2 text-center">
                         <img src="{{ asset('images/'.$rows->photo) }}"
                             style="width: 330px; height: 206px; object-fit: contain; " alt="" class="rounded">
-                        <h5>{{ $rows->name }}</h5>
+                        <a href="{{ url('/products/detail/'.$rows->id) }}" class="badge card-link text-dark" ><h5>{{ $rows->name }}</h5></a>
                         <div class="mt-3 info">
                             <span class="text1 d-block">{{ $rows->title }}</span>
                             <span class="text1">oiretoivmme</span>
