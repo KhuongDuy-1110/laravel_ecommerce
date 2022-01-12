@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\View\Composers\HotProductsComposer;
+use App\Http\View\Composers\CategoryComposer;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
 use App\Product;
@@ -28,16 +29,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // View::Composer(['home'], function ($view){
-        //     $view->with('HotProducts',Product::where('hot',1)->orderBy('id','desc')->get());
-        // });
-
+        // view composer        
         View::Composer(['home'], HotProductsComposer::class);
-
-        
-        // config rate limit by ip
-        
-        
+        View::Composer(['layouts/client'],CategoryComposer::class);
+   
     }
     
     protected function configureRateLimiting()

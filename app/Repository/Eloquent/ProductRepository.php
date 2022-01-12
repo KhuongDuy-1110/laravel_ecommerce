@@ -25,6 +25,11 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return $this->model->where('hot',1)->get();
     }
 
+    public function filterByCategory($id)
+    {
+        return $this->model->where('category_id',$id)->get();
+    }
+
     public function updateProductList(): Collection
     {
 

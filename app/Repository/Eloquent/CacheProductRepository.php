@@ -32,6 +32,11 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         return $rawProducts;
 
     }
+    
+    public function filterByCategory($id)
+    {
+        return $this->model->where('category_id',$id)->get();
+    }
 
     // public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id)
     // {

@@ -28,9 +28,19 @@
                     <li class="nav-item {{ (isset($title)&&$title === 'Home')?'active':'' }}">
                         <a href="{{ url('/') }}" class="nav-link">{{ __('Home') }}</a>
                     </li>
-                    <li class="nav-item {{ (isset($title)&&$title === 'Product')?'active':'' }} ">
+                    <!-- <li class="nav-item {{ (isset($title)&&$title === 'Product')?'active':'' }} ">
                         <a href="{{ url('/products') }}" class="nav-link">{{ __('Products') }}</a>
+                    </li> -->
+
+                    <li class="nav-item dropdown {{ (isset($title)&&$title === 'Product')?'active':'' }}">
+                        <a href="#" class="nav-link dropdown-toggle" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('Products') }}</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @foreach($Category as $rows)
+                                <a class="dropdown-item" href="{{ url('/products/'.$rows->id) }}">{{ $rows->name }}</a>
+                            @endforeach
+                        </div>   
                     </li>
+
                     <li class="nav-item {{ (isset($title)&&$title === 'Cart')?'active':'' }} ">
                         <a href="{{ url('/cart') }}" class="nav-link">{{ __('Cart')}}</a>
                     </li>
@@ -98,7 +108,6 @@
     </div>
 
     <!-- end_footer -->
-
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

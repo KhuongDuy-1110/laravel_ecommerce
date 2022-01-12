@@ -101,3 +101,7 @@ h5{
     display: block;
     text-align: center;
 }
+/* multi level menu */
+.dropdown:hover>.dropdown-menu{
+    display: block;
+}

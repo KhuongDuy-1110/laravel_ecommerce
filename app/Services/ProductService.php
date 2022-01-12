@@ -35,6 +35,11 @@ class ProductService
         return $this->productRepository->leftJoinTable('category','category.id',$dataSelect,5,'product.category_id');
     }
 
+    public function categoryFilter($id)
+    {
+        return $this->productRepository->filterByCategory($id);
+    }
+
     public function create(ProductRequest $request)
     {
         if($request->hasFile('photo')){
