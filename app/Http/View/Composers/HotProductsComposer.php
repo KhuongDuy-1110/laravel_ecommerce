@@ -3,12 +3,20 @@
 namespace App\Http\View\Composers;
 
 use Illuminate\View\View;
-use App\Product;
+use App\Services\ProductService;
 
 class HotProductsComposer
 {
+    private $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function compose (View $view)
     {
-        $view->with('HotProducts',Product::where('hot',1)->orderBy('id','desc')->get());
+        $data = $this->productService->getHotProduct();
+        $view->with('HotProducts',$data);
     }
 }

@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request; 
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 
 class UserService
 {
@@ -22,7 +22,6 @@ class UserService
 
     public function view($findById = null)
     {
-
         $dataSelect = [
             'users.id as userId',
             'users.email as userEmail',
@@ -36,12 +35,10 @@ class UserService
         ];
 
         return $this->userRepository->leftJoinUser('users','users.id','role_user',$table2Id,'roles','roles.id',$dataSelect,5,$findById);
-
     }
 
     public function create(UserRequest $request)
     {
-
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -50,7 +47,6 @@ class UserService
         ];
 
         $this->userRepository->createWithRole($data,$request->role);
-
     }
 
     public function edit($id)
@@ -69,7 +65,9 @@ class UserService
         }
         else
         {
-            $data = ['name' => $request->name];
+            $data = [
+                'name' => $request->name,
+            ];
         }
         $this->userRepository->updateWithRole($id,$data,$request->role);
     }

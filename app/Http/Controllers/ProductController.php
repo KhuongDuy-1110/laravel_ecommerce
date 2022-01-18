@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Redis;
 use App\Repository\ProductRepositoryInterface;
 use App\Services\ProductService;
 
@@ -21,19 +20,19 @@ class ProductController extends Controller
     public function index()
     {
         $data = json_decode($this->productRepository->all());
-        return view('product',['data'=>$data,'title' => 'Product' ]);             
+        return view('frontend/Product',['data'=>$data,'title' => 'Product' ]);             
     }
 
     public function categoryFilter(Request $request)
     {
         $data = $this->productService->categoryFilter($request->id);
-        return view('product',['data'=>$data, 'title' => 'Product']);
+        return view('frontend/Product',['data'=>$data, 'title' => 'Product']);
     }
 
     public function detail(Request $request)
     {
         $data = $this->productRepository->find($request->id);
-        return view('productDetail',['data'=>$data]);
+        return view('frontend/ProductDetail',['data'=>$data]);
     }
 
 }

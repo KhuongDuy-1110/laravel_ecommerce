@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // view composer        
-        View::Composer(['home'], HotProductsComposer::class);
-        View::Composer(['layouts/client'],CategoryComposer::class);
+        View::Composer(['frontend/Home'], HotProductsComposer::class);
+        View::Composer(['layouts/client','backend/ProductCreate','backend/ProductUpdate'],CategoryComposer::class);
    
     }
     

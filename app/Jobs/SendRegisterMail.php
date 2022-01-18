@@ -7,17 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyMail;
 
 class SendRegisterMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    
+   
     public $details;
-
     public $tries = 1;
 
     public function __construct($details)
@@ -25,16 +22,9 @@ class SendRegisterMail implements ShouldQueue
         $this->details = $details;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
     public function handle()
     {
-
         $mail = $this->details->details['email'];
         Mail::to($mail)->send(new VerifyMail($this->details));
-
     }
 }

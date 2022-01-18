@@ -6,8 +6,8 @@ use App\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
-use App\Product;
-use App\User;
+use App\Models\Product;
+use App\Models\User;
 
 class ProductService
 {
@@ -20,7 +20,6 @@ class ProductService
 
     public function view()
     {
-        // return $this->productRepository->read(5);
         $dataSelect = [ 
             'product.id', 
             'product.name as productName',
@@ -38,6 +37,11 @@ class ProductService
     public function categoryFilter($id)
     {
         return $this->productRepository->filterByCategory($id);
+    }
+
+    public function getHotProduct()
+    {
+        return $this->productRepository->getHotProduct();
     }
 
     public function create(ProductRequest $request)
@@ -106,11 +110,9 @@ class ProductService
 
     public function delete($id)
     {
-
         $product = $this->productRepository->find($id);
         $this->productRepository->delete($id);
-        Storage::delete('images/'.$product->photo);
-        
+        Storage::delete('images/'.$product->photo);       
     }
 
 }

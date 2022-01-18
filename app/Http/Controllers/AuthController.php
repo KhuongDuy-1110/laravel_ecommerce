@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AuthRequest;
 use App\Jobs\SendRegisterMail;
 use Carbon\Carbon;
-use App\Category;
+use App\Models\Category;
 use App\Repository\UserRepositoryInterface;
 
 class AuthController extends Controller
@@ -89,18 +89,13 @@ class AuthController extends Controller
 
     public function verified(Request $request)
     {
-        // $find = DB::table("users")->where("verification_code","=",$request->code)->first();
-
         $find = $this->userRepository->getDataFiltered('verification_code',$request->code);
 
         if($find != null && $find->email_verified_at == null )
         {
             if(Carbon::now('Asia/Ho_Chi_Minh') < $find->expired_at )
             {
-                // DB::table("users")->where("verification_code","=",$request->code)->update(["email_verified_at" => Carbon::now('Asia/Ho_Chi_Minh')]);
-
                 $this->userRepository->update($find->id, ["email_verified_at" => Carbon::now('Asia/Ho_Chi_Minh')] );
-
                 return redirect(url('/login'))->with('flash_success', 'Your mail was verified, log in now !');
             }
             return redirect(url('/login'))->with('flash_warning', 'Time expired');

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cart;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\Count;
@@ -23,7 +23,7 @@ class CartController extends Controller
 
     public function index()
     {
-        return view('cart',['title'=>'Cart']);
+        return view('frontend/Cart',['title'=>'Cart']);
     }
 
     public function AddCart(Request $request, $id)
@@ -78,7 +78,7 @@ class CartController extends Controller
     public function checkOut()
     {
         $data = Auth::user();
-        return view('cartCheckout',['title'=>'Check out','data'=>$data]);
+        return view('frontend/CartCheckout',['title'=>'Check out','data'=>$data]);
     }
 
 }

@@ -53,23 +53,18 @@
                 </div>
                 @endif
                 <!-- end rows -->
-
-
                 <!-- rows -->
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Category</div>
                     <div class="col-md-10">
                         <select name="category" class="form-control" style="width: 300px;">
-                            <option value="0"></option>
-                            @php
-                                $data = DB::table("category")->orderBy("id", "asc")->get();
-                            @endphp
-                            @if(!empty($data))
-                            @foreach($data as $rows)
-                            <option @if (isset($record->category_id) && $record->category_id == $rows->id) selected @endif
-                                value="{{ $rows->id }}"> {{ $rows->name }}
-                            </option>
-                            @endforeach
+                                    <option value="0"></option>
+                            @if(!empty($Category))
+                                @foreach($Category as $rows)
+                                    <option @if (isset($record->category_id) && $record->category_id == $rows->id) selected @endif
+                                        value="{{ $rows->id }}"> {{ $rows->name }}
+                                    </option>                           
+                                @endforeach
                             @endif
                         </select>
                     </div>

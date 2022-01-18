@@ -57,7 +57,7 @@
                         <a href="{{ url('/products/detail/'.$rows->id) }}" class="badge card-link text-dark" ><h5>{{ $rows->name }}</h5></a>
                         <div class="mt-3 info">
                             <span class="text1 d-block">{{ $rows->title }}</span>
-                            <span class="text1">oiretoivmme</span>
+                            <span class="text1">{{ $rows->name }} / {{ $rows->title }}</span>
                         </div>
                         <div class="cost mt-3 text-dark">
                             <span>$ {{ $rows->price }}</span>
@@ -77,14 +77,7 @@
             </div>
             <!-- end_product1 -->
             @endforeach
-            
-
-
-
         </div>
     </div>
-
     <!-- end_hot products -->
-
-
 @endsection

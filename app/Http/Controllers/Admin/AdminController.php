@@ -13,55 +13,5 @@ use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
-    // public function index()
-    // {
-    //     // Log::info('AdminController index');
-    //     $data = DB::table('users')->orderBy('id','desc')->paginate(5);
-    //     return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
-    // }
-
-    // public function create()
-    // {
-    //     return view('backend.UserCreateUpdate',['title'=>'Edit']);
-    // }
-    // public function createPost(AdminRequest $request)
-    // {
-    //     $user = DB::table("users")->insert([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //         'email_verified_at' => Carbon::now(),
-    //     ]);
-    //     return redirect(url('/admin'));
-    // }
-
-    // public function update(Request $request)
-    // {
-    //     $data = DB::table("users")->where("id","=",$request->id)->first();
-    //     return view('backend.UserCreateUpdate',['record'=>$data,'title'=>'Edit']);
-        
-    // }
-    // public function updatePost(AdminRequest $request)
-    // {
-    //     if($request->password)
-    //     {
-    //         $user = DB::table("users")->where("id","=",$request->id)
-    //         ->update([
-    //             'name' => $request->name,
-    //             'password' => $request->password,
-    //         ]);
-    //     }
-    //     else
-    //     $user = DB::table("users")->where("id","=",$request->id)
-    //         ->update([
-    //             'name' => $request->name,
-    //         ]);
-    //     return redirect(url('/admin'));
-    // }
-    // public function delete(Request $request)
-    // {
-    //     $user = DB::table("users")->where("id","=",$request->id)->delete();
-    //     return redirect(url('/admin'));
-    // }
-
+    
 }

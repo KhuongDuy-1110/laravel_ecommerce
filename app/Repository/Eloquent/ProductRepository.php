@@ -2,7 +2,7 @@
 
 namespace App\Repository\Eloquent;
 
-use App\Product;
+use App\Models\Product;
 use Illuminate\Support\Collection;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\ProductRepositoryInterface;

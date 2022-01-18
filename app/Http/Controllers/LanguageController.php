@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\App;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use Session;
 
@@ -21,8 +21,6 @@ class LanguageController extends Controller
             $language = 'vi';
         }
         $request->session()->put('language',$language);
-
         return redirect(url('/'));
-
     }
 }

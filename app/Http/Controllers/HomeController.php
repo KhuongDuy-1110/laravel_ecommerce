@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Models\Product;
 use App\Repository\ProductRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-
     private $productRepository;
 
     public function __construct(ProductRepositoryInterface $productRepository)
@@ -16,12 +16,8 @@ class HomeController extends Controller
         $this->productRepository = $productRepository;
     }
 
-    public function index(){
-
-        $hotProduct = json_decode($this->productRepository->getHotProduct());
-        return view('home',['data'=>$hotProduct,'title'=>'Home']);
-        
-        // echo json_encode($hotProduct);
-
+    public function index()
+    {
+        return view('frontend/Home',['title'=>'Home']);
     }
 }

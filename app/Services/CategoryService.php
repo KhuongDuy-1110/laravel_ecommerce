@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Repository\CategoryRepositoryInterface;
-use App\Category;
+use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 
 class CategoryService

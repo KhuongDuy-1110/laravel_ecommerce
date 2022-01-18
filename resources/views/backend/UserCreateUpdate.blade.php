@@ -28,7 +28,13 @@
                     <input type="mail" value="{{ isset($record->email)?$record->email:'' }}" name="email" class="form-control">
                     </div>
                 </div>
-
+                @if($errors->has('email'))
+                <div class="row" style="margin-top:5px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10 text-danger">{{ $errors->first('email') }}
+                    </div>
+                </div>
+                @endif
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Role</div>
                     <div class="col-md-10">
@@ -48,13 +54,7 @@
                     </div>
                 </div>
 
-                @if($errors->has('email'))
-                <div class="row" style="margin-top:5px;">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10 text-danger">{{ $errors->first('email') }}
-                    </div>
-                </div>
-                @endif
+                
                 <!-- end rows -->
                 <!-- rows -->
                 <div class="row" style="margin-top:5px;">

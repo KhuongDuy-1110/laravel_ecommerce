@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Repository\UserRepositoryInterface;
 use App\Http\Resources\UserResource;
-use App\User;
+use App\Models\User;
 
 class AuthController extends ApiController
 {

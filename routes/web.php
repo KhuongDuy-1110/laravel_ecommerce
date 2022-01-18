@@ -4,8 +4,6 @@ use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
-
-
 #================Frontend================== #
 
 Route::group(['middleware'=>'lang'], function() {
@@ -14,42 +12,34 @@ Route::group(['middleware'=>'lang'], function() {
     Route::get('/products','ProductController@index');
     Route::get('/products/{id}','ProductController@categoryFilter');
     Route::get('/products/detail/{id}','ProductController@detail');
-
-    Route::group(['middleware'=>'auth','prefix'=>'cart'], function(){
-
+    Route::group(['middleware'=>'auth','prefix'=>'cart'], function()
+    {
         Route::get('/','CartController@index');
         Route::get('/addcart/{id}','CartController@AddCart');
         Route::get('/updateCart/{id}/{type?}','CartController@updateCart');
         Route::get('/deleteCart/{id}','CartController@deleteCart');
         Route::get('/checkout','CartController@checkOut');
         Route::post('/order','OrderController@mailling');
-
     });
-
     Route::get('/telegram-message','TelegramController@updateActivity');
-
 });
-
 
 # ===============Backend=================== #
 
-#user sign up, sign in
 Route::get('/login', function (){
-    return view('loginForm',['title'=>'login']);
+    return view('frontend/LoginForm',['title'=>'login']);
 })->name('login');
 Route::post('/login','AuthController@authenticate');
 Route::get('/register', function (){
-    return view('registerForm',['title'=>'register']);
+    return view('frontend/RegisterForm',['title'=>'register']);
 });
 Route::post('/register','AuthController@register');
 Route::get('/logout','AuthController@logout');
 Route::get('/get-password','AuthController@getpass');
-# verify mail
 Route::get('/verify','AuthController@verified');
 
 # ==================================
 
-#login required
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', function (){
@@ -57,32 +47,13 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('dashboard');
    
     Route::group(['middleware' => 'adminRole','prefix' => 'admin'],function (){
-    
-        #user CRUD
         Route::get('/','Admin\DashboardController@index');
-        // Route::prefix('user')->group(function (){
-        //     Route::get('create','Admin\UserController@create');
-        //     Route::post('create','Admin\UserController@createPost');
-        //     Route::get('update/{id}','Admin\UserController@update');
-        //     Route::post('update/{id}','Admin\UserController@updatePost');
-        //     Route::get('delete/{id}','Admin\UserController@delete');
-        // });
-        
-        // Route::resource('user','Admin\UserController');
-        // Route::resource('category','Admin\CategoryController');
-
         Route::resources([
             'user' => Admin\UserController::class,
             'category'=> Admin\CategoryController::class,
             'product' => Admin\ProductController::class,
         ]);
-    });
-    
+    });   
 });
 
 # ==================================
-
-// Route::get('/respond_test',function(){
-//     return response('hello-world',200)->header('Content-Type','text/plain');
-// });
-

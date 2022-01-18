@@ -4,12 +4,10 @@ namespace App\Repository\Eloquent;
 
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\UserRepositoryInterface;
-use App\User;
-
+use App\Models\User;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
-{
-    
+{    
     public function __construct(User $model)
     {
         parent::__construct($model);
@@ -61,7 +59,5 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
                                 ->select($dataSelect)
                                 ->first();
         }
-
     }
-
 }

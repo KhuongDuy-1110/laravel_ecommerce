@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Role;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
@@ -12,7 +12,7 @@ class UserRole extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User','user_id');
+        return $this->belongsTo('App\Models\User','user_id');
     }
 
     public function role()

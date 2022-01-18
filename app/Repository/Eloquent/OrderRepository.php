@@ -2,7 +2,7 @@
 
 namespace App\Repository\Eloquent;
 
-use App\Orders;
+use App\Models\Orders;
 use Illuminate\Support\Collection;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\OrderRepositoryInterface;

@@ -2,7 +2,7 @@
 
 namespace App\Repository\Eloquent;
 
-use App\Product;
+use App\Models\Product;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redis;
 use App\Repository\Eloquent\BaseRepository;
@@ -74,20 +74,16 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         // return $products;
     }
 
-
     public function getHotProduct()
     {
-
-        $hotProduct = Redis::get('product.hot');
-
-        if(!$hotProduct)
+        $hotProduct = json_decode(Redis::get('product.hot'));
+        if($hotProduct)
+            return $hotProduct;
+        else
         {
             $data = $this->model->where('hot',1)->get();
-            $hotProduct = Redis::set('product.all',json_encode($data));
+            $hotProduct = Redis::set('product.hot',json_encode($data));
         }
-
-        return $hotProduct;
-
+        return json_decode(Redis::get('product.hot'));
     }
-
 }

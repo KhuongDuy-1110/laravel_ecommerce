@@ -4,11 +4,10 @@ namespace App\Http\View\Composers;
 
 use Illuminate\View\View;
 use App\Services\CategoryService;
-use App\Product;
 
 class CategoryComposer
 {
-    private $categoryService;
+    private $categoryService; 
 
     public function __construct(CategoryService $categoryService)
     {
@@ -20,5 +19,4 @@ class CategoryComposer
         $data = $this->categoryService->view();
         $view->with('Category',$data);
     }
-
 }
