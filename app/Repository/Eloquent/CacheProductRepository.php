@@ -10,32 +10,52 @@ use App\Repository\ProductRepositoryInterface;
 
 class CacheProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
-    // const CACHE_TTL = 600;
+    const CACHE_TTL = 60;
 
     public function __construct(Product $model)
     {
         parent::__construct($model);
     }
 
-
     public function all()
     {
-
-        $rawProducts = Redis::get('product.all');
-
-        if(!$rawProducts)
+        if(Redis::get('product.all'))
+        {
+            return json_decode(Redis::get('product.all'));
+        }
+        else
         {
             $data = $this->model->all();
-            $rawProducts = Redis::set('product.all',json_encode($data));
+            Redis::set('product.all',json_encode($data));
+            Redis::expire('product.all', self::CACHE_TTL);
         }
+        return json_decode(Redis::get('product.all'));
+    }
 
-        return $rawProducts;
-
+    public function getHotProduct()
+    {
+        if(Redis::get('product.hot'))
+            return json_decode(Redis::get('product.hot'));
+        else
+        {
+            $data = $this->model->where('hot',1)->get();
+            Redis::set('product.hot',json_encode($data));
+            Redis::expire('product.hot', self::CACHE_TTL);
+        }
+        return json_decode(Redis::get('product.hot'));
     }
     
     public function filterByCategory($id)
     {
-        return $this->model->where('category_id',$id)->get();
+        if(Redis::get('product.category_id.'.$id))
+            return json_decode(Redis::get('product.category_id.'.$id));
+        else
+        {
+            $data = $this->model->where('category_id',$id)->get();
+            Redis::set('product.category_id.'.$id, json_encode($data));
+            Redis::expire('product.category_id.'.$id, self::CACHE_TTL);
+        }
+        return json_decode(Redis::get('product.category_id.'.$id));
     }
 
     // public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id)
@@ -58,9 +78,8 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
     // }
 
     public function save()
-    {
-        
-        return 0;
+    {      
+
     }
 
     public function updateProductList():collection
@@ -72,18 +91,5 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         // Redis::expire('product.all', self::CACHE_TTL);
 
         // return $products;
-    }
-
-    public function getHotProduct()
-    {
-        $hotProduct = json_decode(Redis::get('product.hot'));
-        if($hotProduct)
-            return $hotProduct;
-        else
-        {
-            $data = $this->model->where('hot',1)->get();
-            $hotProduct = Redis::set('product.hot',json_encode($data));
-        }
-        return json_decode(Redis::get('product.hot'));
     }
 }

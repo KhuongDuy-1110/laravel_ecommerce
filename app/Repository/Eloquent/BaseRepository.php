@@ -33,7 +33,6 @@ class BaseRepository implements EloquentRepositoryInterface
     public function update($id, array $attr)
     {
         $data = $this->model->find($id);
-
         if($data)
         {
             $data->update($attr);
@@ -61,5 +60,4 @@ class BaseRepository implements EloquentRepositoryInterface
                             ->orderByDesc('id')
                             ->paginate($n);
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repository;
+
 use Illuminate\Database\Eloquent\Model;
 
 interface EloquentRepositoryInterface 
@@ -16,5 +17,4 @@ interface EloquentRepositoryInterface
     public function delete($id);
 
     public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id);
-    
 }

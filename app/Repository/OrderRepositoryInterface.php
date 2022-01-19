@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use Illuminate\Support\Collection;
-use App\Orders;
 
 interface OrderRepositoryInterface
 {

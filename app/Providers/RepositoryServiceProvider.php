@@ -20,30 +20,26 @@ class RepositoryServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        // $productRepo = null;
-        // if(env('APP_CACHE')=='true') {
-        //     $productRepo = CacheProductRepository::class;
-        // } else {
-        //     $productRepo = ProductRepository::class;
-        // }
-
         $this->app->bind(EloquentRepositoryInterface::class, BaseRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
-        // $this->app->bind(ProductRepositoryInterface::class, $productRepo);
-        $this->app->bind(ProductRepositoryInterface::class, function($app){
-                if(env('APP_CACHE')) {
-                    Log::info('hehe');
-                    return CacheProductRepository::class;
-                } else {
-                    Log::info('haha');
-                    return ProductRepository::class;
+        $this->app->bind(ProductRepositoryInterface::class, function(){
+                $model = \App\Models\Product::class;
+                if(env('APP_CACHE')) 
+                {
+                    
+                    return new CacheProductRepository(new $model);
+                }
+                else
+                {
+                    
+                    return new ProductRepository(new $model);
                 }
             }
         );
     }
-    
+     
     public function boot()
     {
         
