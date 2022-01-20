@@ -10,7 +10,7 @@ interface EloquentRepositoryInterface
 
     public function create(array $attr): Model;
 
-    public function find($id): ?Model;
+    public function find($id);
 
     public function update($id, array $attr);
 

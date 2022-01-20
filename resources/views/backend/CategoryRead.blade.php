@@ -25,26 +25,6 @@
                             </form>
                         </td>
                     </tr>
-
-                    @php
-                        $dataSub = DB::table("category")->where("parent_id",$rows->id)->get();
-                    @endphp
-                        
-                    @if (!empty($dataSub))
-                        @foreach ($dataSub as $rowsSub)
-                        <tr>
-                            <td style="padding-left: 60px;">{{ $rowsSub->name }}</td>
-                            <td style="text-align:center;">
-                                <a href="{{ url('admin/category/'.$rowsSub->id.'/edit') }}" style="color: #152555;">Edit</a>
-                                <form method="POST" action="{{ route('category.destroy',$rowsSub->id) }}" >
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    @endif
                 @endforeach
             </table>
             <style type="text/css">

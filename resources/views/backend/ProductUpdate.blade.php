@@ -81,7 +81,7 @@
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Hot</div>
                     <div class="col-md-1">
-                        <input type="checkbox" @if($record->hot ==1) checked @endif name="hot" class="form-control">
+                        <input type="checkbox" @if($record->hot == 1) checked @endif name="hot" class="form-control">
                     </div>
                 </div>
 
