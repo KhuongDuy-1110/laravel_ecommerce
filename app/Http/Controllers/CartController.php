@@ -53,7 +53,6 @@ class CartController extends Controller
             $request->session()->put('cart',$newCart);
             return redirect(url('/cart'));
         }
-
     }
 
     public function deleteCart(Request $request, $id)

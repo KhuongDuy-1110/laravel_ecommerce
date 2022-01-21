@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Orders;
+use App\Models\Orders;
 use Carbon\Carbon;
 use App\Http\Controllers\MailController;
 

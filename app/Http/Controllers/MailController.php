@@ -20,12 +20,9 @@ class MailController extends Controller
             'verification_code' => $verification_code,
             'email' => $email,
         ];
-        // Mail::to($email)->send(new VerifyMail($details));
 
         $job = new SendRegisterMail($details);
-        SendRegisterMail::dispatch($job);
-        
-        
+        SendRegisterMail::dispatch($job);        
     }
 
     public static function confirmOrderMail($email,$orderDetail)
@@ -39,14 +36,11 @@ class MailController extends Controller
 
         $job = new SendOrderMail($details);
         SendOrderMail::dispatch($job);
-
     }
 
-    public static function sendOrdersReport($data){
-
+    public static function sendOrdersReport($data)
+    {
         $job = new SendProductReportMail($data);
         SendProductReportMail::dispatch($job);
-
     }
-
 }

@@ -35,10 +35,5 @@ class SendOrderMail implements ShouldQueue
     {
         $mail = $this->details->details['email'];
         Mail::to($mail)->send(new OrderMail($this->details));
-
-        // foreach($this->details->details['orderDetail'] as $rows)
-        //     var_dump($rows['quantity']);
-        
-        // dd($this->details->details['orderDetail']->products['7']['productInfo']->name);
     }
 }

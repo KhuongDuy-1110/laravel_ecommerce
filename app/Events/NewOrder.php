@@ -14,8 +14,6 @@ class NewOrder
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    
-
     public $email;
     
     public function __construct( $email )
@@ -23,7 +21,6 @@ class NewOrder
         $this->email = $email;
     }
 
-    
     public function broadcastOn()
     {
         return new PrivateChannel('channel-name');

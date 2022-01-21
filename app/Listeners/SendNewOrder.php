@@ -10,21 +10,13 @@ use Carbon\Carbon;
 
 class SendNewOrder
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
     }
 
-
-
     public function handle(NewOrder $event)
     {
-
         $text = "A new order\n"
             . "<b>Email Address: </b>\n"
             . $event->email."\n"
@@ -32,8 +24,7 @@ class SendNewOrder
             . "Incoming new order at ".Carbon::now('Asia/Ho_Chi_Minh');
 
         Telegram::sendMessage([
-            // 'chat_id' => env('TELEGRAM_CHANNEL_ID'),
-            'chat_id' => '-1001778299908',
+            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
             'parse_mode' => 'HTML',
             'text' => $text,
         ]);
