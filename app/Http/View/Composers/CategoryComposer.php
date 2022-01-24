@@ -16,7 +16,7 @@ class CategoryComposer
 
     public function compose (View $view)
     {
-        $data = $this->categoryService->view();
+        $data = $this->categoryService->getCategories();
         $view->with('Category',$data);
     }
 }

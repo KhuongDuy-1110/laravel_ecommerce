@@ -15,7 +15,7 @@ class CategoryService
         $this->categoryRepository = $categoryRepository;       
     }
 
-    public function view()
+    public function getCategories()
     {
         return $this->categoryRepository->getParent("parent_id",0);
     }

@@ -24,12 +24,10 @@ class SendOrderMail implements ShouldQueue
     public $details;
     public $tries = 1;
 
-
     public function __construct($details)
     {
         $this->details = $details;
     }
-
     
     public function handle()
     {

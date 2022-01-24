@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = $this->userService->view();
+        $data = $this->userService->getUsers();
         return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
     }
    
@@ -47,7 +47,7 @@ class UserController extends Controller
    
     public function edit(User $user)
     {
-        $data = $this->userService->view($user->id);
+        $data = $this->userService->getUsers($user->id);
         return view('backend.UserUpdate',['record'=>$data,'title'=>'Edit']);
     }
    

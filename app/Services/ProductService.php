@@ -18,7 +18,7 @@ class ProductService
         $this->productRepository = $productRepository;
     }
 
-    public function view()
+    public function getProducts()
     {
         $dataSelect = [ 
             'product.id', 

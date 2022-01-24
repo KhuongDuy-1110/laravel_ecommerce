@@ -20,7 +20,7 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function view($findById = null)
+    public function getUsers($findById = null)
     {
         $dataSelect = [
             'users.id as userId',
