@@ -60,4 +60,5 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
                                 ->first();
         }
     }
+    // orm, eage loading 
 }

@@ -46,7 +46,6 @@ class ApiController extends Controller
         ],422);
 
     }
-
     
     public function responseWithTranformation($data,$resources, $statusCode = 200, $header = [])
     {
