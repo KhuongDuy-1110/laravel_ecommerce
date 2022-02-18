@@ -18,9 +18,13 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->model->all();
     }
 
-    public function getUsers($n)
+    public function getUsers($findById = null)
     {
-        return $this->model->with('roles')->orderByDesc('id')->paginate($n);
+        if($findById)
+        {
+            return $this->model->with('roles')->find($findById);
+        }
+        return $this->model->with('roles')->orderByDesc('id')->paginate(5);
     }
 
     public function getDataFiltered($key,$value)
@@ -65,6 +69,4 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
                                 ->first();
         }
     }
-    // orm, eage loading 
-
 }

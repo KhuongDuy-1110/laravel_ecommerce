@@ -21,12 +21,12 @@
                             <td>{{ $rows->name }}</td>
                             <td>{{ $rows->email }}</td>
                             <td>
-                                @if($rows->roles)
+                                @if(count($rows->roles))
                                     @foreach($rows->roles as $userRole)
                                         {{ $userRole->name }}
                                     @endforeach
                                 @else
-                                    {{ 'x' }}
+                                    <i class="fa-solid fa-ban"></i>
                                 @endif
                             </td>
                            

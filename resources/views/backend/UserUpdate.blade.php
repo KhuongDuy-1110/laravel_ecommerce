@@ -11,7 +11,7 @@
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Name</div>
                     <div class="col-md-10">
-                        <input type="text" value="{{ isset($record->userName)?$record->userName:'' }}" name="name" class="form-control">
+                        <input type="text" value="{{ isset($record->name)?$record->name:'' }}" name="name" class="form-control">
                     </div>
                 </div>
                 @if($errors->has('name'))
@@ -26,7 +26,7 @@
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Email</div>
                     <div class="col-md-10">
-                    <input type="mail" value="{{ isset($record->userEmail)?$record->userEmail:'' }}" name="email" class="form-control">
+                    <input type="mail" value="{{ isset($record->email)?$record->email:'' }}" name="email" class="form-control">
                     </div>
                 </div>
                 @if($errors->has('email'))
@@ -37,7 +37,8 @@
                 </div>
                 @endif
                 <!-- end rows -->
-
+                @if(count($record->roles))
+                @foreach($record->roles as $roleUser)
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Role</div>
                     <div class="col-md-10">
@@ -48,7 +49,7 @@
                             @endphp
                             @if(!empty($data))
                                 @foreach($data as $rows)
-                                    <option @if (isset($record->roleId) && $record->roleId == $rows->id) selected @endif
+                                    <option @if (isset($roleUser->id) && $roleUser->id == $rows->id) selected @endif
                                         value="{{ $rows->id }}"> {{ $rows->name }}
                                     </option>
                                 @endforeach
@@ -56,12 +57,30 @@
                         </select>
                     </div>
                 </div>
-
+                @endforeach
+                @else
+                <div class="row" style="margin-top:5px;">
+                    <div class="col-md-2">Role</div>
+                    <div class="col-md-10">
+                        <select name="role" class="form-control" style="width: 300px;">
+                            <option value="0"></option>
+                            @php
+                                $data = DB::table("roles")->orderBy("id", "asc")->get();
+                            @endphp
+                            @if(!empty($data))
+                                @foreach($data as $rows)
+                                    <option value="{{ $rows->id }}"> {{ $rows->name }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                @endif
                 <!-- rows -->
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Password</div>
                     <div class="col-md-10">
-                    <input type="password" value="" name="password" class="form-control">
+                    <input type="password" value="" name="password" class="form-control" placeholder="Dont type anything if you dont want to change password">
                     </div>
                 </div>
                 @if($errors->has('password'))

@@ -20,9 +20,9 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function getUsers()
+    public function getUsers($findById = null)
     {
-        return $this->userRepository->getUsers(5);
+        return $this->userRepository->getUsers($findById);
     }
 
     public function create(UserRequest $request)
