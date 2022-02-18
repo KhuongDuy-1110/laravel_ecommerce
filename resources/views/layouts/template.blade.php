@@ -30,6 +30,9 @@
                     <li class="nav-item">
                         <a href="{{ url('admin/product') }}" class="nav-link">Products </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/order') }}" class="nav-link">Orders </a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">

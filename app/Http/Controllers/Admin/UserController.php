@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Log;
 use App\Services\UserService;
 use App\Models\User;
 use App\Models\Role;
+use Doctrine\DBAL\Query\QueryException;
+use Exception;
 
 class UserController extends Controller
 {
@@ -36,7 +38,14 @@ class UserController extends Controller
     
     public function store(UserRequest $request)
     {
-        $this->userService->create($request);
+         try
+         {
+            $this->userService->create($request);
+         }
+         catch (Exception $e)
+         {
+             return redirect()->back()->with('error','Something wrong !');
+         }
         return redirect()->route('user.index')->with('success','User created susessfully !');
     }
   

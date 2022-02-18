@@ -14,5 +14,7 @@ interface UserRepositoryInterface
 
     public function deleteWithRole($id);
 
-    public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n,$findById = null);   
+    public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n,$findById = null);
+    
+    public function getUsers($n);
 }

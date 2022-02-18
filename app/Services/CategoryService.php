@@ -34,7 +34,7 @@ class CategoryService
     public function update(CategoryRequest $request,$id)
     {
         $data = $request->all();
-        $this->categoryRepository->update($id,$data);
+        return $this->categoryRepository->update($id,$data);
     }
 
     public function delete($id)

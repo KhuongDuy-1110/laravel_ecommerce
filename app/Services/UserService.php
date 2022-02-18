@@ -20,21 +20,9 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function getUsers($findById = null)
+    public function getUsers()
     {
-        $dataSelect = [
-            'users.id as userId',
-            'users.email as userEmail',
-            'users.name as userName',
-            'roles.id as roleId',
-            'roles.name as roleName',
-        ];
-        $table2Id = [
-            'user' => 'role_user.user_id',
-            'role' => 'role_user.role_id'
-        ];
-
-        return $this->userRepository->leftJoinUser('users','users.id','role_user',$table2Id,'roles','roles.id',$dataSelect,5,$findById);
+        return $this->userRepository->getUsers(5);
     }
 
     public function create(UserRequest $request)
@@ -77,4 +65,20 @@ class UserService
         $this->userRepository->deleteWithRole($id);
     }
 
+    public function getUsersByJoin($findById = null)
+    {
+        $dataSelect = [
+            'users.id as userId',
+            'users.email as userEmail',
+            'users.name as userName',
+            'roles.id as roleId',
+            'roles.name as roleName',
+        ];
+        $table2Id = [
+            'user' => 'role_user.user_id',
+            'role' => 'role_user.role_id'
+        ];
+
+        return $this->userRepository->leftJoinUser('users','users.id','role_user',$table2Id,'roles','roles.id',$dataSelect,5,$findById);
+    }
 }

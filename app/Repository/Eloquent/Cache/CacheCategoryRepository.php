@@ -57,13 +57,15 @@ class CacheCategoryRepository extends BaseRepository implements CategoryReposito
         $data = $this->model->find($id);
         if($data)
         {
-            $data->update($attr);
             if(Redis::get('category.'.$id))
             {
                 Redis::del('category.'.$id);
             }
+            $data->update($attr);
             Redis::set('category.'.$id,json_encode($data));
             Redis::expire('category.'.$id, self::CACHE_TTL);
+
+            $this->updateCache('category.parent');
 
             return $data;
         }            
@@ -98,6 +100,17 @@ class CacheCategoryRepository extends BaseRepository implements CategoryReposito
             Redis::expire('category.parent',self::CACHE_TTL);
 
             return $data;
+        }
+    }
+
+    public function updateCache($cacheName)
+    {
+        $data = $this->model->where("parent_id",0)->get();
+        if(Redis::get($cacheName))
+        {
+            Redis::del($cacheName);
+            Redis::set($cacheName,json_encode($data));
+            Redis::expire($cacheName,self::CACHE_TTL);
         }
     }
 }
