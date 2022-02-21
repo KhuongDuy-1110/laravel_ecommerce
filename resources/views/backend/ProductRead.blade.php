@@ -19,24 +19,27 @@
                         <th>hot</th>
                         <th style="width:100px;"></th>
                     </tr>
-                    @foreach($data as $rows)
-                        
+                    @foreach($products as $product)
                         <tr>
-                            <td><img src="{{ asset('images/'.$rows->photo) }}" style="width: 100px; height:70px; object-fit: cover;" alt=""></td>
-                            <td>{{ $rows->productName }}</td>
-                            <td>{{ $rows->title }}</td>
-                            <td>{{ $rows->description }}</td>
-                            <td>{{ $rows->price }}</td>
-                            <td>{{ isset($rows->categoryName)?$rows->categoryName:'' }}</td>
+                            <td><img src="{{ asset('images/'.$product->photo) }}" style="width: 100px; height:70px; object-fit: cover;" alt=""></td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->title }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->price }}</td>
                             <td>
-                                @if($rows->hot == 1 )
-                                    <i class="far fa-check"></i>
+                                @if($product->category)
+                                {{ $product->category->name }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($product->hot == 1 )
+                                    <i class="fa-solid fa-check"></i>
                                 @endif
                             </td>
                            
                             <td style="text-align:center;">
-                                <a href="{{ url('admin/product/'.$rows->id.'/edit') }}" style="color: #152555;">Edit</a>&nbsp;
-                                <form method="POST" action="{{ route('product.destroy',$rows->id) }}" >
+                                <a href="{{ url('admin/product/'.$product->id.'/edit') }}" style="color: #152555;">Edit</a>&nbsp;
+                                <form method="POST" action="{{ route('product.destroy',$product->id) }}" >
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>
@@ -52,7 +55,7 @@
                     }
                 </style>
                 <ul class="pagination">
-                    {{ $data->links() }}
+                    {{ $products->links() }}
                 </ul>
             </div>
         </div>

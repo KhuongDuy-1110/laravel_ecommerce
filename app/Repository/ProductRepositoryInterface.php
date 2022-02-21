@@ -11,4 +11,6 @@ interface ProductRepositoryInterface
     public function getHotProduct();
 
     public function filterByCategory($id);
+
+    public function updateCacheByEvents($n);
 }

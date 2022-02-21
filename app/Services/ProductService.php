@@ -18,6 +18,11 @@ class ProductService
         $this->productRepository = $productRepository;
     }
 
+    public function getAllProducts()
+    {
+        return $this->productRepository->all();
+    }
+
     public function getProducts()
     {
         $dataSelect = [ 

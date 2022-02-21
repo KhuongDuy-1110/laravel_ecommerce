@@ -19,8 +19,8 @@ class ProductController extends Controller
     
     public function index()
     {
-        $data = $this->productService->getProducts();
-        return view('backend.ProductRead',['data'=>$data,'title'=>'Product']);
+        $products = $this->productService->getAllProducts();
+        return view('backend.ProductRead',['products'=>$products,'title'=>'Product']);
     }
   
     public function create()

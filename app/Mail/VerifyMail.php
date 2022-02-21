@@ -17,7 +17,6 @@ class VerifyMail extends Mailable
         $this->details = $details;
     }
 
-    
     public function build()
     {
         return $this->subject('Incoming mail ...')->view('mail.MailVerify',['details'=>$this->details]);

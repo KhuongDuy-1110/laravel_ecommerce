@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redis;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\ProductRepositoryInterface;
+use Illuminate\Support\Facades\Cache;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +22,10 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
 
     public function all()
     {
-
+        $products = Cache::remember('product-page-'.request('page',1),self::CACHE_TTL, function (){
+            return $this->model->with('category')->orderByDesc('id')->paginate(5);
+        });
+        return $products;
     }
 
     public function create(array $attr): Model
@@ -34,6 +38,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         }
         Redis::set('product.'.$data->id,json_encode($data));
         Redis::expire('product.'.$data->id, self::CACHE_TTL);
+        $this->updateCacheByEvents(5);
 
         return $data;
     }
@@ -65,6 +70,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
             }
             Redis::set('product.'.$id,json_encode($data));
             Redis::expire('product.'.$id, self::CACHE_TTL);
+            $this->updateCacheByEvents(5);
 
             return $data;
         }            
@@ -113,20 +119,33 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         return json_decode(Redis::get('product.category_id.'.$id));
     }
 
-    // public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id)
-    // {
-    //     if(Redis::get('product.all'))
-    //         return json_decode(Redis::get('product.all'));
-    //     else
-    //     {
-    //         $data = $this->model->leftJoin($table,$table1Id,'=',$table2Id)
-    //                             ->select($dataSelect)
-    //                             ->orderByDesc('id')
-    //                             ->paginate($n);
-    //         Redis::set('product.all',json_encode($data)); 
-    //         Redis::expire('product.all', self::CACHE_TTL);
+    public function updateCacheByEvents($n)
+    {
+        $count = $this->model->count('*');
+        for($i = 1; $i <= $count/$n + 1; $i++ )
+        {
+            if(Cache::has('product-page-'.$i))
+                Cache::forget('product-page-'.$i);
+        }
+        Cache::remember('product-page-'.request('page',1),self::CACHE_TTL, function () use ($n) {
+            return $this->model->with('category')->orderByDesc('id')->paginate($n);
+        });
+    }
 
-    //         return $data;
-    //     }
-    // }
+    public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id)
+    {
+        // if(Redis::get('product.all'))
+        //     return json_decode(Redis::get('product.all'));
+        // else
+        // {
+        //     $data = $this->model->leftJoin($table,$table1Id,'=',$table2Id)
+        //                         ->select($dataSelect)
+        //                         ->orderByDesc('id')
+        //                         ->paginate($n);
+        //     Redis::expire('product.all', self::CACHE_TTL);
+
+        //     return $data;
+        // }
+        
+    }
 }
