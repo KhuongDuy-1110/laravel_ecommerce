@@ -4,11 +4,9 @@ namespace App\Repository\Eloquent\Cache;
 
 use App\Models\Product;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Redis;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Cache;
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class CacheProductRepository extends BaseRepository implements ProductRepositoryInterface
@@ -31,16 +29,8 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
     public function create(array $attr): Model
     {
         $data = $this->model->create($attr);
-
-        // if(Redis::get('product.'.$data->id))
-        // {
-        //     Redis::del('product.'.$data->id);
-        // }
-        // Redis::set('product.'.$data->id,json_encode($data));
-        // Redis::expire('product.'.$data->id, self::CACHE_TTL);
-
+        $this->deleteOldCache();
         Cache::put('product.'.$data->id,$data,self::CACHE_TTL);
-        $this->deleteOldCache(5);
 
         return $data;
     }
@@ -59,7 +49,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         if($data)
         {
             $data->update($attr);
-            $this->deleteOldCache(5);
+            $this->deleteOldCache();
             return $data;
         }            
         else
@@ -74,7 +64,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
             if(Cache::has('product.'.$id))
                 Cache::forget('product.'.$id);
             $data->delete();           
-            $this->deleteOldCache(5);
+            $this->deleteOldCache();
             return true;
         }
         return false;
@@ -96,7 +86,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         return $products;
     }
 
-    public function deleteOldCache($n)
+    public function deleteOldCache()
     {
         Cache::flush();
     }
