@@ -32,30 +32,25 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
     {
         $data = $this->model->create($attr);
 
-        if(Redis::get('product.'.$data->id))
-        {
-            Redis::del('product.'.$data->id);
-        }
-        Redis::set('product.'.$data->id,json_encode($data));
-        Redis::expire('product.'.$data->id, self::CACHE_TTL);
-        $this->updateCacheByEvents(5);
+        // if(Redis::get('product.'.$data->id))
+        // {
+        //     Redis::del('product.'.$data->id);
+        // }
+        // Redis::set('product.'.$data->id,json_encode($data));
+        // Redis::expire('product.'.$data->id, self::CACHE_TTL);
+
+        Cache::put('product.'.$data->id,$data,self::CACHE_TTL);
+        $this->deleteOldCache(5);
 
         return $data;
     }
 
     public function find($id)
     {
-        if(Redis::get('product.'.$id))
-            return json_decode(Redis::get('product.'.$id));
-        else
-        {
-            $data = $this->model->find($id);
-
-            Redis::set('product.'.$id,json_encode($data));
-            Redis::expire('product.'.$id, self::CACHE_TTL);
-
-            return $data;
-        }
+        $product = Cache::remember('product.'.$id,self::CACHE_TTL,function() use ($id) {
+            return $this->model->find($id);
+        });
+        return $product;
     }
 
     public function update($id, array $attr)
@@ -64,14 +59,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         if($data)
         {
             $data->update($attr);
-            if(Redis::get('product.'.$id))
-            {
-                Redis::del('product.'.$id);
-            }
-            Redis::set('product.'.$id,json_encode($data));
-            Redis::expire('product.'.$id, self::CACHE_TTL);
-            $this->updateCacheByEvents(5);
-
+            $this->deleteOldCache(5);
             return $data;
         }            
         else
@@ -83,11 +71,10 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         $data = $this->model->find($id);
         if($data)
         {
-            if(Redis::get('product.'.$id))
-            {
-                Redis::del('product.'.$id);
-            }
+            if(Cache::has('product.'.$id))
+                Cache::forget('product.'.$id);
             $data->delete();           
+            $this->deleteOldCache(5);
             return true;
         }
         return false;
@@ -95,41 +82,23 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
 
     public function getHotProduct()
     {
-        if(Redis::get('product.hot'))
-            return json_decode(Redis::get('product.hot'));
-        else
-        {
-            $data = $this->model->where('hot',1)->get();
-            Redis::set('product.hot',json_encode($data));
-            Redis::expire('product.hot', self::CACHE_TTL);
-        }
-        return json_decode(Redis::get('product.hot'));
+        $hotProducts = Cache::remember('product.hot',self::CACHE_TTL, function(){
+            return $this->model->where('hot',1)->get();
+        });
+        return $hotProducts;
     }
     
     public function filterByCategory($id)
     {
-        if(Redis::get('product.category_id.'.$id))
-            return json_decode(Redis::get('product.category_id.'.$id));
-        else
-        {
-            $data = $this->model->where('category_id',$id)->get();
-            Redis::set('product.category_id.'.$id, json_encode($data));
-            Redis::expire('product.category_id.'.$id, self::CACHE_TTL);
-        }
-        return json_decode(Redis::get('product.category_id.'.$id));
+        $products = Cache::remember('product.category_id.'.$id,self::CACHE_TTL, function() use ($id) {
+            return $this->model->where('category_id',$id)->get();
+        } );
+        return $products;
     }
 
-    public function updateCacheByEvents($n)
+    public function deleteOldCache($n)
     {
-        $count = $this->model->count('*');
-        for($i = 1; $i <= $count/$n + 1; $i++ )
-        {
-            if(Cache::has('product-page-'.$i))
-                Cache::forget('product-page-'.$i);
-        }
-        Cache::remember('product-page-'.request('page',1),self::CACHE_TTL, function () use ($n) {
-            return $this->model->with('category')->orderByDesc('id')->paginate($n);
-        });
+        Cache::flush();
     }
 
     public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id)

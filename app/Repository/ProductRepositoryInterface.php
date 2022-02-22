@@ -12,5 +12,5 @@ interface ProductRepositoryInterface
 
     public function filterByCategory($id);
 
-    public function updateCacheByEvents($n);
+    public function deleteOldCache($n);
 }
