@@ -15,9 +15,9 @@ class CategoryService
         $this->categoryRepository = $categoryRepository;       
     }
 
-    public function getCategories()
+    public function getCategories($paginate = null)
     {
-        return $this->categoryRepository->getParent("parent_id",0);
+        return $this->categoryRepository->getCategoriesByKey("parent_id",0,$paginate);
     }
 
     public function create(CategoryRequest $request)

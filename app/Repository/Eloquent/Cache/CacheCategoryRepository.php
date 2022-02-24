@@ -4,11 +4,10 @@ namespace App\Repository\Eloquent\Cache;
 
 use App\Models\Category;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Redis;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\CategoryRepositoryInterface;
-use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class CacheCategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
@@ -24,13 +23,31 @@ class CacheCategoryRepository extends BaseRepository implements CategoryReposito
         
     }
 
+    public function getCategoriesByKey($key, $value, $paginate = null)
+    {
+        if($paginate)
+        {
+            $categories = Cache::remember('category.parent-'.request('page',1),self::CACHE_TTL, function() use ($key,$value,$paginate) {
+                return $this->model->where($key,$value)->orderByDesc('id')->paginate($paginate);
+            });
+        }
+        else
+        {
+            $categories = Cache::remember('category.all',self::CACHE_TTL, function (){
+                return $this->model->where("parent_id",0)->orderByDesc('id')->get();
+            });
+        }
+        
+        return $categories;
+    }
+
     public function create(array $attr): Model
     {
         $data = $this->model->create($attr);
         if($data)
         {
-            Redis::set('category.'.$data->id,json_encode($data));
-            Redis::expire('category.'.$data->id, self::CACHE_TTL);
+            Cache::flush();
+            Cache::put('category.'.$data->id,$data,self::CACHE_TTL);
             return $data;
         }
         else
@@ -39,35 +56,22 @@ class CacheCategoryRepository extends BaseRepository implements CategoryReposito
 
     public function find($id)
     {
-        if(Redis::get('category.'.$id))
-            return json_decode(Redis::get('category.'.$id));
-        else
-        {
-            $data = $this->model->find($id);
-
-            Redis::set('category.'.$id,json_encode($data));
-            Redis::expire('category.'.$id, self::CACHE_TTL);
-
-            return $data;
-        }
+        $category = Cache::remember('category.'.$id, self::CACHE_TTL, function() use ($id) {
+            return $this->model->find($id);
+        });
+        return $category;
     }
 
     public function update($id, array $attr)
     {
-        $data = $this->model->find($id);
-        if($data)
+        $category = $this->model->find($id);
+        if($category)
         {
-            if(Redis::get('category.'.$id))
-            {
-                Redis::del('category.'.$id);
-            }
-            $data->update($attr);
-            Redis::set('category.'.$id,json_encode($data));
-            Redis::expire('category.'.$id, self::CACHE_TTL);
+            $category->update($attr);
+            Cache::flush();
+            Cache::put('category.'.$category->id, $category, self::CACHE_TTL);
 
-            $this->updateCache('category.parent');
-
-            return $data;
+            return $category;
         }            
         else
             return false;
@@ -78,39 +82,10 @@ class CacheCategoryRepository extends BaseRepository implements CategoryReposito
         $data = $this->model->find($id);
         if($data)
         {
-            if(Redis::get('category.'.$id))
-            {
-                Redis::del('category.'.$id);
-            }
             $data->delete();           
+            Cache::flush();
             return true;
         }
         return false;
-    }
-
-    public function getParent($key, $value)
-    {
-        if(Redis::get('category.parent'))
-            return json_decode(Redis::get('category.parent'));
-        else
-        {
-            $data = $this->model->where($key,$value)->get();
-
-            Redis::set('category.parent',json_encode($data));
-            Redis::expire('category.parent',self::CACHE_TTL);
-
-            return $data;
-        }
-    }
-
-    public function updateCache($cacheName)
-    {
-        $data = $this->model->where("parent_id",0)->get();
-        if(Redis::get($cacheName))
-        {
-            Redis::del($cacheName);
-            Redis::set($cacheName,json_encode($data));
-            Redis::expire($cacheName,self::CACHE_TTL);
-        }
     }
 }

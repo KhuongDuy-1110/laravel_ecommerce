@@ -20,8 +20,7 @@ class CategoryController extends Controller
    
     public function index()
     {
-        $data = $this->categoryService->getCategories();
-        // dd($data);
+        $data = $this->categoryService->getCategories(5);
         return view('backend.CategoryRead',['data'=>$data,'title'=>'Category']);
     }
     

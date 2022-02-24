@@ -13,22 +13,28 @@
                     <th style="width:100px;"></th>
                 </tr>
                 @foreach($data as $rows)
-                    <tr>
-                        <td>{{ $rows->name }}</td>
-                        <td style="text-align:center;">
-                            <a href="{{ url('admin/category/'.$rows->id.'/edit') }}">Edit</a>&nbsp;
-                            <!-- <a href="{{ url('admin/categories/delete/'.$rows->id) }}" onclick="return window.confirm('Are you sure?');">Delete</a> -->
-                            <form method="POST" action="{{ route('category.destroy',$rows->id) }}" >
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ $rows->name }}</td>
+                    <td style="text-align:center;">
+                        <a href="{{ url('admin/category/'.$rows->id.'/edit') }}">Edit</a>&nbsp;
+                        <!-- <a href="{{ url('admin/categories/delete/'.$rows->id) }}" onclick="return window.confirm('Are you sure?');">Delete</a> -->
+                        <form method="POST" action="{{ route('category.destroy',$rows->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
             </table>
+            <ul class="pagination">
+                {{ $data->links() }}
+            </ul>
             <style type="text/css">
-                .pagination{padding:0px; margin:0px;}
+                .pagination {
+                    padding: 0px;
+                    margin: 0px;
+                }
             </style>
         </div>
     </div>

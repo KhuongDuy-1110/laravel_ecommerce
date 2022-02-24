@@ -6,5 +6,5 @@ use Illuminate\Support\Collection;
 
 interface OrderRepositoryInterface
 {
-    public function all(): Collection;
+    public function all($paginate = null);
 }

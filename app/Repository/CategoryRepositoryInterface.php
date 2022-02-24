@@ -6,5 +6,5 @@ interface CategoryRepositoryInterface
 {
     public function all();
     
-    public function getParent($key,$value);
+    public function getCategoriesByKey($key, $value, $paginate);
 }

@@ -4,7 +4,7 @@ use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 
-#================Frontend================== #
+# ================Frontend================== #
 
 Route::group(['middleware'=>'lang'], function() {
     Route::get('/change-language/{language}','LanguageController@change');
@@ -53,6 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
             'category'=> Admin\CategoryController::class,
             'product' => Admin\ProductController::class,
         ]);
+        Route::group(['prefix' => 'order'], function(){
+            Route::get('/','Admin\OrderController@index');
+        });
     });   
 });
 
