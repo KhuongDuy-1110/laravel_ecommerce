@@ -24,6 +24,7 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
+            'phone' => 'required',
             'address' => 'required',
         ];
     }

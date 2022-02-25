@@ -34,6 +34,19 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="inputAddress" class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputAddress" name="phone" placeholder="Phone number">
+                    </div>
+                </div>
+                @if($errors->has('phone'))
+                <div class="row" style="margin-top:5px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10 text-danger">{{ $errors->first('phone') }}
+                    </div>
+                </div>
+                @endif
+                <div class="form-group row">
                     <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Address">

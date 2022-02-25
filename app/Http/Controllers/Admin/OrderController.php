@@ -18,8 +18,13 @@ class OrderController extends Controller
     public function index()
     {
         $orders = $this->orderService->getOrders(5);
-        return view('backend.OrderRead', ['orders' => $orders, 'title' => 'Order']);
-       
-            
+        return view('backend.OrderRead', ['orders' => $orders, 'title' => 'Order']);     
+    }
+
+    public function find(Request $request)
+    {
+        $order = $this->orderService->getOrdersByUser($request->id);
+        dd($order->toArray());
+        // return view('backend.OrderDetail',['order' => $order]);
     }
 }

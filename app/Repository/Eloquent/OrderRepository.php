@@ -17,5 +17,10 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     public function all($paginate = null)
     {
         return $this->model::with('user')->orderByDesc('id')->paginate($paginate);
-    } 
+    }
+
+    public function find($id)
+    {
+        return $this->model::with('user')->find($id);
+    }
 }

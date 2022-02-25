@@ -6,6 +6,8 @@ use App\Repository\Eloquent\BaseRepository;
 use App\Repository\UserRepositoryInterface;
 use App\Models\User;
 
+use function PHPUnit\Framework\returnSelf;
+
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {    
     public function __construct(User $model)
@@ -68,5 +70,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
                                 ->select($dataSelect)
                                 ->first();
         }
+    }
+
+    public function getAllOrdersPerUser($id = null)
+    {
+        if($id)
+            return $this->model::with('orders')->find($id);
     }
 }

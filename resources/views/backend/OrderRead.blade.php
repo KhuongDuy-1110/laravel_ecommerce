@@ -9,7 +9,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Order quantity</th>
                         <th>Detail</th>
                         <th style="width:100px;"></th>
                     </tr>
@@ -17,8 +18,9 @@
                         <tr>
                             <td>{{ $order->user->name }}</td>
                             <td>{{ $order->user->email }}</td>
+                            <td>{{ $order->client_phone }}</td>
                             <td>{{ $order->client_address }}</td>
-                            <td><a href="">Order detail</a></td>
+                            <td><a href="{{ url('admin/order/detail/'.$order->user->id) }}">Order detail</a></td>
                             <td style="text-align:center;">
                                 <a href="" style="color: #152555;">Edit</a>&nbsp;
                                 <form method="POST" action="" >

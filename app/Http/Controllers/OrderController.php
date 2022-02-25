@@ -26,8 +26,7 @@ class OrderController extends Controller
         }
         $data = [
             'client_id' => $user->id,
-            'client_name' => $user->name,
-            'client_email' => $user->email,
+            'client_phone' => $request->phone,
             'client_address' => $request->address,
             'orderDetail' => json_encode($orderDetail),
         ];
