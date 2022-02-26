@@ -16,9 +16,9 @@ class OrderService
         $this->userRepository = $userRepository;
     }
 
-    public function getOrders($paginate = null)
+    public function getOrdersPerUser($paginate = null)
     {
-        return $this->orderRepository->all($paginate);
+        return $this->userRepository->getAllOrdersPerUser();
     }
 
     public function getOrdersByUser($id)

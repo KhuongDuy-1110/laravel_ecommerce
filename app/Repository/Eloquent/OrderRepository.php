@@ -23,4 +23,9 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     {
         return $this->model::with('user')->find($id);
     }
+
+    // public function countOrderByUser()
+    // {
+
+    // }
 }

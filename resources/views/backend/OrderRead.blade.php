@@ -9,18 +9,18 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Phone</th>
                         <th>Order quantity</th>
                         <th>Detail</th>
                         <th style="width:100px;"></th>
                     </tr>
-                    @foreach($orders as $order)
+                    @foreach($users as $user)
+                    
+                        @if($user->orders_count > 0)
                         <tr>
-                            <td>{{ $order->user->name }}</td>
-                            <td>{{ $order->user->email }}</td>
-                            <td>{{ $order->client_phone }}</td>
-                            <td>{{ $order->client_address }}</td>
-                            <td><a href="{{ url('admin/order/detail/'.$order->user->id) }}">Order detail</a></td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->orders_count }}</td>
+                            <td><a href="{{ url('admin/order/detail/'.$user->id) }}">Orders detail</a></td>
                             <td style="text-align:center;">
                                 <a href="" style="color: #152555;">Edit</a>&nbsp;
                                 <form method="POST" action="" >
@@ -30,6 +30,8 @@
                                 </form>
                             </td>
                         </tr>
+                        @endif
+                    
                     @endforeach
                 </table>
                 <style type="text/css">
@@ -39,7 +41,7 @@
                     }
                 </style>
                 <ul class="pagination">
-                    {{ $orders->links() }}
+                    
                 </ul>
             </div>
         </div>

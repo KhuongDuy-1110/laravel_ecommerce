@@ -17,8 +17,8 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = $this->orderService->getOrders(5);
-        return view('backend.OrderRead', ['orders' => $orders, 'title' => 'Order']);     
+        $users = $this->orderService->getOrdersPerUser();
+        return view('backend.OrderRead', ['users' => $users, 'title' => 'Order']);     
     }
 
     public function find(Request $request)
