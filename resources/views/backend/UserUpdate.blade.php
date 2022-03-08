@@ -1,10 +1,10 @@
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8" style="margin: auto; margin-top: 50px;">
+<div class="col-md-12" style="margin: auto; margin-top: 50px; margin-bottom: 400px;">
     <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#152555; color: white;">Add edit user</div>
+        <div class="panel-heading" style="background-color: #152555; color: white; padding: 10px; border-radius: 5px 5px 0px 0px; ">Update user</div>
         <div class="panel-body">
-            <form method="post" action=" {{ route('user.update',isset($record->userId)?$record->userId:'') }} ">
+            <form method="post" action=" {{ route('user.update',isset($record->id)?$record->id:'') }} ">
                 @method('PUT')
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <!-- rows -->

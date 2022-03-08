@@ -1,13 +1,13 @@
 @extends("layouts.template")
 @section("content")
-<div class="col-md-8 m-auto ">
+<div class="col-md-12">
     <div style="margin-bottom:5px;">
-        <a href="{{ url('admin/category/create') }}" class="btn btn-primary">Add category</a>
+        <a href="{{ url('admin/category/create') }}" class="btn btn-primary" style="background-color: #152555;">Add category</a>
     </div>
     <div class="panel panel-primary">
-        <div class="panel-heading">List Categories</div>
+        <div class="panel-heading" style="background-color: #152555; color: white; padding: 10px; border-radius: 5px 5px 0px 0px ;">Categories</div>
         <div class="panel-body">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover mb-0">
                 <tr>
                     <th>Name</th>
                     <th style="width:100px;"></th>
@@ -27,15 +27,16 @@
                 </tr>
                 @endforeach
             </table>
-            <ul class="pagination">
-                {{ $data->links() }}
-            </ul>
+            <div class="panel-heading mb-3" style="background-color: #152555; color: white; padding: 10px; border-radius: 0px 0px 5px 5px ;"></div>
             <style type="text/css">
                 .pagination {
                     padding: 0px;
                     margin: 0px;
                 }
-            </style>
+                </style>
+            <ul class="pagination" >
+                {{ $data->links() }}
+            </ul>
         </div>
     </div>
 </div>

@@ -33,13 +33,13 @@
                     <th>Order at</th>
                     <th>Products detail</th>
                 </tr>
-                @foreach($user->orders as $order)
+                @foreach($user->orders as $num => $order)
                 @php
                 $orderDetail = json_decode($order->orderDetail);
 
                 @endphp
                 <tr>
-                    <td></td>
+                    <td>{{ $num+=1 }}</td>
                     <td>{{ $orderDetail->totalQuantity }}</td>
                     <td>{{ $orderDetail->totalPrice }}</td>
                     <td>{{ $order->client_phone }}</td>
@@ -60,22 +60,10 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- <table>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td><img src="" width="145px" height="98px" style="object-fit: cover;" alt=""></td>
-                                            <td style="vertical-align: middle;"></td>
-                                            <td style="vertical-align: middle;"></td>
-                                            <td style="vertical-align: middle;"></td>
-                                            <td style="vertical-align: middle;"></td>
-                                        </tr>
-                                    </table> -->
+                                    <div>
+                                        <img src="" alt="" class="img-thumbnail">
+                                        <p>jashdkjashd</p>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
