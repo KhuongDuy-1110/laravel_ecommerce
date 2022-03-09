@@ -1,8 +1,8 @@
 @extends("layouts.template")
 @section("content")
-<div class="col-md-8" style="margin: auto; margin-top: 50px;">
+<div class="col-md-12" style="margin: auto; margin-top: 50px;">
     <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color: #152555; color: white;">User Infomation</div>
+        <div class="panel-heading" style="background-color: #152555; color: white; padding: 10px; border-radius: 5px 5px 0px 0px ;">User Infomation</div>
         <div class="panel-body">
             <div style="color: red;">{{ isset($message)?$message:'' }}</div>
             <table class="table table-bordered table-hover">
@@ -22,7 +22,7 @@
         <div class="panel-body">
             <table class="table table-bordered table-hover mt-5">
                 <tr>
-                    <th colspan="7" style="background-color: #152555; color: white;">User's Orders</th>
+                    <td colspan="7" style="background-color: #152555; color: white; border-radius: 5px 5px 0px 0px;">User's Orders</td>
                 </tr>
                 <tr>
                     <th>Number</th>

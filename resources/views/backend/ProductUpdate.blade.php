@@ -1,8 +1,8 @@
 @extends('layouts.template')
 @section('content')
-<div class="col-md-8" style="margin: auto; margin-top: 50px;">
+<div class="col-md-12" style="margin: auto; margin-top: 50px;">
     <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#152555; color: white;">Add product</div>
+        <div class="panel-heading" style="background-color: #152555; color: white; padding: 10px; border-radius: 5px 5px 0px 0px ;">Update product</div>
         <div class="panel-body">
             <form method="post" action="{{ route('product.update',isset($record->id)?$record->id:'') }}" enctype="multipart/form-data">
                 @method('PUT')

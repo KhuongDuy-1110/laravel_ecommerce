@@ -108,7 +108,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="{{ url('logout') }}"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="{{ url('admin/logout') }}"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -136,23 +136,28 @@
 						</a>
 					</li>
 					<li class="dropdown">
+						<a href="{{ url('admin/manage') }}" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-user"></span><span class="mtext">Administrator</span>
+						</a>
+					</li>
+					<li class="dropdown">
 						<a href="{{ url('admin/user') }}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-user-1"></span><span class="mtext">User</span>
+							<span class="micon dw dw-user-1"></span><span class="mtext">Users</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="{{ url('admin/category') }}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Category</span>
+							<span class="micon dw dw-edit2"></span><span class="mtext">Categories</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="{{ url('admin/product') }}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-copy"></span><span class="mtext">Product</span>
+							<span class="micon dw dw-copy"></span><span class="mtext">Products</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="{{ url('admin/order') }}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-paste"></span><span class="mtext">Order</span>
+							<span class="micon dw dw-paint-brush"></span><span class="mtext">Orders</span>
 						</a>
 					</li>
 					

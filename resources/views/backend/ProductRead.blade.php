@@ -1,16 +1,16 @@
 @extends("layouts.template")
 @section("content")
-<div class="col-md-8" style="margin: auto; margin-top: 50px;">
+<div class="col-md-12" style="margin: auto; margin-top: 50px;">
         <div style="margin-bottom:5px;">
             <a href="{{ url('/admin/product/create') }}" class="btn btn-primary" style="background-color: #152555;">Add product</a>
         </div>
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background-color: #152555; color: white;">All products</div>
+            <div class="panel-heading" style="background-color: #152555; color: white; padding: 10px; border-radius: 5px 5px 0px 0px ;">All products</div>
             <div class="panel-body">
                 <div style="color: red;">{{ isset($message)?$message:'' }}</div>
                 <table class="table table-bordered table-hover">
                     <tr>
-                        <th style="width: 100px;"></th>
+                        <th style="width: 150px;"></th>
                         <th>name</th>
                         <th>title</th>
                         <th>description</th>
