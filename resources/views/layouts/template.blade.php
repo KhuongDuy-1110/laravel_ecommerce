@@ -136,8 +136,8 @@
 						</a>
 					</li>
 					<li class="dropdown">
-						<a href="{{ url('admin/manage') }}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-user"></span><span class="mtext">Administrator</span>
+						<a href="{{ url('admin/account') }}" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-user"></span><span class="mtext">Accounts</span>
 						</a>
 					</li>
 					<li class="dropdown">
