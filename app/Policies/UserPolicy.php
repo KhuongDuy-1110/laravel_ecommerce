@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -11,37 +12,37 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Admin $admin)
     {
         return true;
     }
 
-    public function view(User $user, User $model)
+    public function view(Admin $admin, User $model)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Admin $admin)
     {
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER;
     }
 
-    public function update(User $user, User $model)
+    public function update(Admin $admin, User $model)
     {
-        return Auth::user()->id != $model->id && ($user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF);
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER || $admin->roles[0]['name'] === Role::ROLE_STAFF;
     }
 
-    public function delete(User $user, User $model)
+    public function delete(Admin $admin, User $model)
     {
-        return Auth::user()->id != $model->id && $user->roles[0]['name'] === Role::ROLE_MANAGER;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER;
     }
 
-    public function restore(User $user, User $model)
+    public function restore(Admin $admin, User $model)
     {
         //
     }
 
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(Admin $admin, User $model)
     {
         //
     }

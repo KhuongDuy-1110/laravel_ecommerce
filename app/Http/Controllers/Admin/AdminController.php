@@ -17,7 +17,6 @@ class AdminController extends Controller
         if(Auth::guard('admin')->attempt($credentials))
         {
             return redirect(url('/admin'));
-            
         }
         return redirect()->back()->with('error', 'Your password or email is wrong');
     }

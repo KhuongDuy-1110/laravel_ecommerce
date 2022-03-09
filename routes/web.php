@@ -12,7 +12,7 @@ Route::group(['middleware'=>'lang'], function() {
     Route::get('/products','ProductController@index');
     Route::get('/products/{id}','ProductController@categoryFilter');
     Route::get('/products/detail/{id}','ProductController@detail');
-    Route::group(['middleware'=>'auth','prefix'=>'cart'], function()
+    Route::group(['middleware'=>'auth.user','prefix'=>'cart'], function()
     {
         Route::get('/','CartController@index');
         Route::get('/addcart/{id}','CartController@AddCart');
@@ -64,20 +64,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
             Route::get('/','Admin\OrderController@index');
             Route::get('/detail/{id}','Admin\OrderController@find');
         });
-    }); 
-   
-    // Route::group(['middleware' => 'adminRole','prefix' => 'admin'],function (){
-    //     Route::get('/','Admin\DashboardController@index');
-    //     Route::resources([
-    //         'user' => Admin\UserController::class,
-    //         'category'=> Admin\CategoryController::class,
-    //         'product' => Admin\ProductController::class,
-    //     ]);
-    //     Route::group(['prefix' => 'order'], function(){
-    //         Route::get('/','Admin\OrderController@index');
-    //         Route::get('/detail/{id}','Admin\OrderController@find');
-    //     });
-    // });   
+    });   
 });
 
 # ==================================

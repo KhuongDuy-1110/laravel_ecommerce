@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Category;
-use App\Models\User;
+use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -11,37 +11,37 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Admin $admin)
     {
         return true;
     }
 
-    public function view(User $user, Category $category)
+    public function view(Admin $admin, Category $category)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Admin $admin)
     {
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER || $admin->roles[0]['name'] === Role::ROLE_STAFF;
     }
 
-    public function update(User $user, Category $category)
+    public function update(Admin $admin, Category $category)
     {
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER || $admin->roles[0]['name'] === Role::ROLE_STAFF;
     }
 
-    public function delete(User $user, Category $category)
+    public function delete(Admin $admin, Category $category)
     {
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER || $admin->roles[0]['name'] === Role::ROLE_STAFF;
     }
 
-    public function restore(User $user, Category $category)
+    public function restore(Admin $admin, Category $category)
     {
         //
     }
 
-    public function forceDelete(User $user, Category $category)
+    public function forceDelete(Admin $admin, Category $category)
     {
         //
     }

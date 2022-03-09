@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Product;
-use App\Models\User;
+use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -11,41 +11,41 @@ class ProductPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user)
+    public function viewAny(Admin $admin)
     {
         return true;
     }
 
-    public function view(User $user, Product $product)
+    public function view(Admin $admin, Product $product)
     {
         return true;
     }
 
-    public function create(User $user)
+    public function create(Admin $admin)
     {       
-        // nvaa@gmail.com -> user
+        // nvaa@gmail.com -> Admin
         // nva@gmail.com -> manager        
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER;
     }
 
-    public function update(User $user, Product $product)
+    public function update(Admin $admin, Product $product)
     {
         
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER || $user->roles[0]['name'] === Role::ROLE_STAFF;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER || $admin->roles[0]['name'] === Role::ROLE_STAFF;
     }
 
-    public function delete(User $user, Product $product)
+    public function delete(Admin $admin, Product $product)
     {
         
-        return $user->roles[0]['name'] === Role::ROLE_MANAGER;
+        return $admin->roles[0]['name'] === Role::ROLE_MANAGER;
     }
 
-    public function restore(User $user, Product $product)
+    public function restore(Admin $admin, Product $product)
     {
         //
     }
 
-    public function forceDelete(User $user, Product $product)
+    public function forceDelete(Admin $admin, Product $product)
     {
         //
     }
