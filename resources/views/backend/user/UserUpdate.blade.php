@@ -37,45 +37,6 @@
                 </div>
                 @endif
                 <!-- end rows -->
-                @if(count($record->roles))
-                @foreach($record->roles as $roleUser)
-                <div class="row" style="margin-top:5px;">
-                    <div class="col-md-2">Role</div>
-                    <div class="col-md-10">
-                        <select name="role" class="form-control" style="width: 300px;">
-                            <option value="0"></option>
-                            @php
-                                $data = DB::table("roles")->orderBy("id", "asc")->get();
-                            @endphp
-                            @if(!empty($data))
-                                @foreach($data as $rows)
-                                    <option @if (isset($roleUser->id) && $roleUser->id == $rows->id) selected @endif
-                                        value="{{ $rows->id }}"> {{ $rows->name }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                </div>
-                @endforeach
-                @else
-                <div class="row" style="margin-top:5px;">
-                    <div class="col-md-2">Role</div>
-                    <div class="col-md-10">
-                        <select name="role" class="form-control" style="width: 300px;">
-                            <option value="0"></option>
-                            @php
-                                $data = DB::table("roles")->orderBy("id", "asc")->get();
-                            @endphp
-                            @if(!empty($data))
-                                @foreach($data as $rows)
-                                    <option value="{{ $rows->id }}"> {{ $rows->name }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                </div>
-                @endif
                 <!-- rows -->
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Password</div>

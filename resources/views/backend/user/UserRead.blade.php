@@ -12,7 +12,6 @@
                     <tr>
                         <th>name</th>
                         <th>email</th>
-                        <th>role</th>
                         <th style="width:100px;"></th>
                     </tr>
                     @foreach($data as $rows)
@@ -20,16 +19,6 @@
                         <tr>
                             <td>{{ $rows->name }}</td>
                             <td>{{ $rows->email }}</td>
-                            <td>
-                                @if(count($rows->roles))
-                                    @foreach($rows->roles as $userRole)
-                                        {{ $userRole->name }}
-                                    @endforeach
-                                @else
-                                    <i class="fa-solid fa-ban"></i>
-                                @endif
-                            </td>
-                           
                             <td style="text-align:center;">
                                 <a href="{{ url('admin/user/'.$rows->id.'/edit') }}" style="color: #152555;">Edit</a>&nbsp;
                                 <!-- <a href="{{ url('admin/user/delete/'.$rows->id) }}" onclick="return window.confirm('Are you sure?');" style="color: #152555;">Delete</a> -->

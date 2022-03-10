@@ -28,12 +28,12 @@ class UserController extends Controller
     public function index()
     {
         $data = $this->userService->getUsers();
-        return view('backend.UserRead',['data'=>$data, 'title'=>'Users']);
+        return view('backend.user.UserRead',['data'=>$data, 'title'=>'Users']);
     }
    
     public function create()
     {
-        return view('backend.UserCreateUpdate',['title'=>'Edit']);
+        return view('backend.user.UserCreate',['title'=>'Edit']);
     }
     
     public function store(UserRequest $request)
@@ -57,7 +57,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $data = $this->userService->getUsers($user->id);
-        return view('backend.UserUpdate',['record'=>$data,'title'=>'Edit']);
+        return view('backend.user.UserUpdate',['record'=>$data,'title'=>'Edit']);
     }
    
     public function update(UserRequest $request, User $user)

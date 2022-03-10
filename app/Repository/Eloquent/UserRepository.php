@@ -24,9 +24,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         if($findById)
         {
-            return $this->model->with('roles')->find($findById);
+            return $this->model->find($findById);
         }
-        return $this->model->with('roles')->orderByDesc('id')->paginate(5);
+        return $this->model->orderByDesc('id')->paginate(5);
     }
 
     public function getDataFiltered($key,$value)
@@ -34,23 +34,23 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->model->where($key,$value)->first();
     }
 
-    public function createWithRole($data,$roleId)
-    {
-        return $this->create($data)->roles()->attach($roleId);
-    }
+    // public function create($data)
+    // {
+    //     return $this->create($data);
+    // }
 
-    public function updateWithRole($id, array $arr, $roleId)
-    {
-        $result = $this->find($id)->roles()->detach();
+    // public function update($id, array $arr)
+    // {
+    //     $result = $this->find($id)->roles()->detach();
         
-        return $this->update($id,$arr)->roles()->attach($roleId);
-    }
+    //     return $this->update($id,$arr)->roles()->attach($roleId);
+    // }
 
-    public function deleteWithRole($id)
-    {
-        $result = $this->find($id)->roles()->detach();
-        return $this->delete($id);
-    }
+    // public function delete($id)
+    // {
+    //     $result = $this->find($id)->roles()->detach();
+    //     return $this->delete($id);
+    // }
 
     public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n, $findById = null)
     {

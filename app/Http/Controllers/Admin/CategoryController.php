@@ -21,12 +21,12 @@ class CategoryController extends Controller
     public function index()
     {
         $data = $this->categoryService->getCategories(5);
-        return view('backend.CategoryRead',['data'=>$data,'title'=>'Category']);
+        return view('backend.category.CategoryRead',['data'=>$data,'title'=>'Category']);
     }
     
     public function create()
     {
-        return view('backend.CategoryCreate',['title'=>'create']);
+        return view('backend.category.CategoryCreate',['title'=>'create']);
     }
    
     public function store(CategoryRequest $request)
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $category = $this->categoryService->edit($category->id);
-        return view('backend.CategoryUpdate',['record'=>$category, 'title'=>'Update']);
+        return view('backend.category.CategoryUpdate',['record'=>$category, 'title'=>'Update']);
     }
    
     public function update(CategoryRequest $request, Category $category)

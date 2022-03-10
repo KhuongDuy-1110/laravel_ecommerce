@@ -20,12 +20,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productService->getAllProducts();
-        return view('backend.ProductRead',['products'=>$products,'title'=>'Product']);
+        return view('backend.product.ProductRead',['products'=>$products,'title'=>'Product']);
     }
   
     public function create()
     {
-        return view('backend.ProductCreate',['title'=>'Product create']);      
+        return view('backend.product.ProductCreate',['title'=>'Product create']);      
     }
 
     public function store(ProductRequest $request)
@@ -42,7 +42,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {       
         $product = $this->productService->edit($product->id);
-        return view('backend.ProductUpdate',['record'=>$product, 'title'=>'Update']);   
+        return view('backend.product.ProductUpdate',['record'=>$product, 'title'=>'Update']);   
     }
     
     public function update(ProductRequest $request, Product $product)

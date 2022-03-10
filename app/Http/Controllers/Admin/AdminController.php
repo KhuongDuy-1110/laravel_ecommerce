@@ -16,17 +16,18 @@ class AdminController extends Controller
     public function __construct(AdminService $adminService)
     {
         $this->adminService = $adminService;
+        $this->authorizeResource(Admin::class,'account');
     }
    
     public function index()
     {
         $admins = $this->adminService->getAdmins();
-        return view('backend.AdminRead',['admins' => $admins]);
+        return view('backend.admin.AdminRead',['admins' => $admins]);
     }
 
     public function create()
     {
-        return view('backend.AdminCreate',['title'=>'Create']);
+        return view('backend.admin.AdminCreate',['title'=>'Create']);
     }
 
     public function store(AdminRequest $request)
@@ -40,20 +41,22 @@ class AdminController extends Controller
         //
     }
 
-    public function edit(Admin $admin)
+    public function edit(Admin $account)
     {
-        $admin = $this->adminService->getAdmins($admin->id);
-        return view('backend.AdminUpdate',['record'=>$admin]);
+        $admin = $this->adminService->getAdmins($account->id);
+        return view('backend.admin.AdminUpdate',['record' => $admin]);
     }
 
-    public function update(Request $request, $id)
+    public function update(AdminRequest $request, Admin $account)
     {
-        //
+        $this->adminService->update($request, $account->id);
+        return redirect()->route('account.index')->with('success','Update successfully');
     }
 
-    public function destroy($id)
+    public function destroy(Admin $account)
     {
-        //
+        $this->adminService->delete($account->id);
+        return redirect()->route('account.index')->with('success','Deleted successfully');
     }
 
     public function authenticate(Request $request)

@@ -8,11 +8,11 @@ interface UserRepositoryInterface
 
     public function getDataFiltered($key,$value);
 
-    public function createWithRole($data,$roleId);
+    // public function create($data);
 
-    public function updateWithRole($id, array $arr, $roleId);
+    // public function update($id, array $arr);
 
-    public function deleteWithRole($id);
+    // public function delete($id);
 
     public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n,$findById = null);
     

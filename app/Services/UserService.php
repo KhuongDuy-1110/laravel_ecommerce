@@ -34,7 +34,7 @@ class UserService
             'email_verified_at' => Carbon::now(),
         ];
 
-        $this->userRepository->createWithRole($data,$request->role);
+        $this->userRepository->create($data);
     }
 
     public function edit($id)
@@ -57,12 +57,12 @@ class UserService
                 'name' => $request->name,
             ];
         }
-        $this->userRepository->updateWithRole($id,$data,$request->role);
+        $this->userRepository->update($id,$data);
     }
 
     public function delete( $id)
     {
-        $this->userRepository->deleteWithRole($id);
+        $this->userRepository->delete($id);
     }
 
     public function getUsersByJoin($findById = null)
