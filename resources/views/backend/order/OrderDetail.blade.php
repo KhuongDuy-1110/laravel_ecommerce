@@ -55,9 +55,13 @@
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProducts">
                             See detail
                         </button></td>
-                    <!-- Modal -->
+                    
+                </tr>
+                @endforeach
+            </table>
+            <!-- Modal -->
 
-                    <div class="modal fade" id="modalProducts" tabindex="-1" role="dialog" aria-labelledby="modalProductsLabel" aria-hidden="true">
+            <div class="modal fade" id="modalProducts" tabindex="-1" role="dialog" aria-labelledby="modalProductsLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -67,10 +71,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div>
-                                        <img src="" alt="" class="img-thumbnail">
-                                        <p>jashdkjashd</p>
-                                    </div>
+                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -80,9 +81,6 @@
                     </div>
 
                     <!-- EndModal -->
-                </tr>
-                @endforeach
-            </table>
             <style type="text/css">
                 .pagination {
                     padding: 0px;
