@@ -57,6 +57,24 @@
                     </ul>
                 @else
                 <ul class="navbar-nav ml-auto">
+                
+                @if(Session::has('language') && Session::get('language') === 'en' )
+                    <li class="nav-item">
+                        <img src="{{ asset('images/flag_lang/vietnam.png') }}" alt="" style="margin-top: 9px;">
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/change-language/vi') }}" class="nav-link">vi</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <img src="{{ asset('images/flag_lang/american.png') }}" alt="" style="margin-top: 9px;">
+                    </li>
+                    <li class="nav-item"><a href="{{ url('/change-language/en') }}" class="nav-link">
+                        en
+                    </a></li>
+                @endif
+                
+                <li class="nav-item"><a href="#" class="nav-link"> </a></li>
                     <li class="nav-item">
                         <a href="{{ url('/register') }}" class="nav-link">{{ __('Sign up') }} </a>
                     </li>

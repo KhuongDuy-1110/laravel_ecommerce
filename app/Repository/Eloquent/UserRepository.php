@@ -34,24 +34,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return $this->model->where($key,$value)->first();
     }
 
-    // public function create($data)
-    // {
-    //     return $this->create($data);
-    // }
-
-    // public function update($id, array $arr)
-    // {
-    //     $result = $this->find($id)->roles()->detach();
-        
-    //     return $this->update($id,$arr)->roles()->attach($roleId);
-    // }
-
-    // public function delete($id)
-    // {
-    //     $result = $this->find($id)->roles()->detach();
-    //     return $this->delete($id);
-    // }
-
     public function leftJoinUser($table,$tableId,$table2,$table2Id = [],$table3,$table3Id,$dataSelect = [],$n, $findById = null)
     {
         if($findById == null)

@@ -11,7 +11,7 @@
                         <th>Email</th>
                         <th>Order quantity</th>
                         <th>Detail</th>
-                        <th style="width:100px;"></th>
+                        <th>Status</th>
                     </tr>
                     @foreach($users as $user)
                     
@@ -20,14 +20,11 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->orders_count }}</td>
-                            <td><a href="{{ url('admin/order/detail/'.$user->id) }}">Orders detail</a></td>
+                            <td><a href="{{ url('admin/order/detail/'.$user->id) }}" style="color: #E45826">Orders detail</a></td>
                             <td style="text-align:center;">
-                                <a href="" style="color: #152555;">Edit</a>&nbsp;
-                                <form method="POST" action="" >
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>
-                                </form>
+                                <a href="" style="color: #152555;">Cancel</a>&nbsp;
+                                <a href="" style="color: #152555;">Processing</a>&nbsp;
+                                <a href="" style="color: #152555;">Arriving</a>&nbsp;
                             </td>
                         </tr>
                         @endif

@@ -13,7 +13,7 @@
                         <th>name</th>
                         <th>email</th>
                         <th>role</th>
-                        <th style="width:100px;"></th>
+                        <th></th>
                     </tr>
                     @foreach($admins as $rows)
                         

@@ -14,6 +14,14 @@
                     <td>Email</td>
                     <td>{{ $user->email }}</td>
                 </tr>
+                <tr>
+                    <td>Phone number</td>
+                    <td>{{ $user->phone }}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>{{ $user->address }}</td>
+                </tr>
             </table>
         </div>
     </div>
@@ -28,23 +36,22 @@
                     <th>Number</th>
                     <th>Quantity</th>
                     <th>Total</th>
-                    <th>Phone</th>
-                    <th>Address</th>
                     <th>Order at</th>
+                    <th>Status</th>
                     <th>Products detail</th>
                 </tr>
                 @foreach($user->orders as $num => $order)
-                @php
-                $orderDetail = json_decode($order->orderDetail);
 
+                @php
+                    $orderDetail = json_decode($order->orderDetail);
                 @endphp
+
                 <tr>
                     <td>{{ $num+=1 }}</td>
                     <td>{{ $orderDetail->totalQuantity }}</td>
                     <td>{{ $orderDetail->totalPrice }}</td>
-                    <td>{{ $order->client_phone }}</td>
-                    <td>{{ $order->client_address }}</td>
                     <td>{{ $order->created_at }}</td>
+                    <td></td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProducts">
                             See detail
                         </button></td>
