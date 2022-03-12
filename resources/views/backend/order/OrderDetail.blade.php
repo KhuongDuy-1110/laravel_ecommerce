@@ -51,40 +51,64 @@
                     <td>{{ $orderDetail->totalQuantity }}</td>
                     <td>{{ $orderDetail->totalPrice }}</td>
                     <td>{{ $order->created_at }}</td>
-                    <td></td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProducts">
-                            See detail
-                        </button></td>
+                    <td>
+                        @if($order->status === 0)
+                            <button type="button" class="btn btn-secondary">Processing</button>
+                        @elseif($order->status === 1)
+                            <button type="button" class="btn btn-warning">Transfering</button>
+                        @elseif($order->status === 2)
+                            <button type="button" class="btn btn-success">Finish</button>
+                        @else
+                            <button type="button" class="btn btn-danger">Cancel</button>
+                        @endif
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{ '#collapseExample'.$num }}" aria-expanded="false" aria-controls="collapseExample">See detail</button>
+                    </td>
+                </tr>
+
+                @foreach($orderDetail->products as $product)
+                <tr class="collapse" id="{{ 'collapseExample'.$num }}">
+                    <td colspan="6">
+                        <div>
+                            <div class="card card-body">
+                                <div style="display: flex;">
+                                    <img src="{{ asset('images/'.$product->productInfo->photo) }}" style="width: 100px; height:70px; object-fit: cover;" alt="">
+                                    <div class="product"><b>Name: </b>{{ $product->productInfo->name .' '. $product->productInfo->title }}</div>
+                                    <div class="product"><b>Price: </b>${{ $product->productInfo->price }}</div>
+                                    <div class="product"><b>Quantity: {{ $product->quantity }}</b></div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+
+                <tr class="collapse" id="{{ 'collapseExample'.$num }}">
+                    <td colspan="6">
+                        <b>Update order status number {{ $num }}: </b>
+                        <div class="mt-3"> </div>
+                        <form method="post" action="{{ url('admin/order/status/'.$order->id) }}">
+                            @csrf
+                            <button type="submit" name="sta" value="0" class="btn btn-secondary">Processing</button>
+                            <button type="submit" name="sta" value="1" class="btn btn-warning">Transfering</button>
+                            <button type="submit" name="sta" value="2" class="btn btn-success">Finish</button>
+                            <button type="submit" name="sta" value="3" class="btn btn-danger">Cancel</button>
+                        </form>
+                    </td>
                     
                 </tr>
                 @endforeach
             </table>
-            <!-- Modal -->
-
-            <div class="modal fade" id="modalProducts" tabindex="-1" role="dialog" aria-labelledby="modalProductsLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalProductsLabel">All Products In Order</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- EndModal -->
+            
             <style type="text/css">
                 .pagination {
                     padding: 0px;
                     margin: 0px;
+                }
+                .product {
+                    margin-left: 50px;
+                    margin-top: 25px;
                 }
             </style>
             <ul class="pagination">

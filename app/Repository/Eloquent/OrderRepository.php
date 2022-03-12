@@ -24,6 +24,17 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         return $this->model::with('user')->find($id);
     }
 
+    public function updateStatus($id, array $status)
+    {
+        $order = $this->model->find($id);
+        if($order)
+        {
+            $order->update($status);
+            return $order;
+        }
+        return false;
+    }
+
     // public function countOrderByUser()
     // {
 

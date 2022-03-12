@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::group(['prefix' => 'order'], function(){
             Route::get('/','Admin\OrderController@index');
             Route::get('/detail/{id}','Admin\OrderController@find');
+            Route::post('/status/{id}','Admin\OrderController@updateOrderStatus');
         });
     });   
 });

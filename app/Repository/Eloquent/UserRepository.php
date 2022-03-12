@@ -57,7 +57,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function getAllOrdersPerUser($id = null)
     {
         if($id === null )
-            return $this->model::withCount('orders')->get();
+            return $this->model::withCount('orders')->orderByDesc('id')->get();
         else
         {
             return $this->model::with('orders')->find($id);

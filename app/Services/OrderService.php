@@ -26,4 +26,12 @@ class OrderService
         return $this->userRepository->getAllOrdersPerUser($id);
     }
 
+    public function updateOrderStatus($request)
+    {
+        $status = [
+            'status' => $request->sta,
+        ];
+        return $this->orderRepository->updateStatus($request->id, $status);
+    }
+
 }

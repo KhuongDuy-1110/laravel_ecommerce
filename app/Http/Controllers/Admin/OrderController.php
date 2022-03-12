@@ -24,7 +24,13 @@ class OrderController extends Controller
     public function find(Request $request)
     {
         $user = $this->orderService->getOrdersByUser($request->id);
-        // dd($user->toArray());
+        // dd($user);
         return view('backend.order.OrderDetail',['user' => $user]);
+    }
+
+    public function updateOrderStatus(Request $request)
+    {
+        $result = $this->orderService->updateOrderStatus($request);
+        return redirect()->back()->with('success','Update order status successfully');
     }
 }
