@@ -24,7 +24,6 @@ class OrderController extends Controller
     public function find(Request $request)
     {
         $user = $this->orderService->getOrdersByUser($request->id);
-        // dd($user);
         return view('backend.order.OrderDetail',['user' => $user]);
     }
 
