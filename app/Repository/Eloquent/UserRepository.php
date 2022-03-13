@@ -60,7 +60,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             return $this->model::withCount('orders')->orderByDesc('id')->get();
         else
         {
-            return $this->model::with('orders')->find($id);
+            return $this->model::with(['orders' => function ($query) {
+                $query->orderBy('created_at','desc');
+            } ])->find($id);
         }
     }
 }

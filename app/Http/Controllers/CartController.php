@@ -38,6 +38,7 @@ class CartController extends Controller
 
             $request->session()->put('cart',$newCart);
         }
+        // echo json_encode(Session()->get('cart'));
         return redirect(url('/cart'));
     }
 

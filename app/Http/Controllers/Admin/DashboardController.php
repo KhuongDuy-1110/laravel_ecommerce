@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data = Auth::user();
+        $data = Auth::guard('admin')->user();
         return view('backend.DashboardAdmin',['title'=>'Administrator','data'=>$data]);
     }
 }
