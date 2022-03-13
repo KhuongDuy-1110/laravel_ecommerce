@@ -27,7 +27,7 @@ Route::group(['middleware'=>'lang'], function() {
 
 
 Route::get('/login', function (){
-    return view('frontend/LoginForm',['title'=>'login']);
+    return view('frontend/LoginForm2',['title'=>'login']);
 })->name('user.login');
 Route::post('/login','AuthController@authenticate');
 Route::get('/register', function (){
