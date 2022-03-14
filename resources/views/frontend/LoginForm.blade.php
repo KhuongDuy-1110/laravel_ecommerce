@@ -1,49 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts/client')
+@section('clientContent')
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>{{ isset($title)?$title:"Laravel" }}</title>
-</head>
-
-<body>
-  <div style="width: 40%; margin: auto; margin-top: 20px;">
-    @if (session('flash_success'))
-    <div class="alert alert-success">
-      {{ session('flash_success') }}
+<!-- Image slider -->
+<div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="1"></li>
+        <li data-target="#slides" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:400px; object-fit: cover;" alt="">
+            <!-- <div class="carousel-caption">
+                <h1 class="display-2">Welcome</h1>
+                <h3>Lets take a tour !</h3>
+                <button type="button" class="btn btn-outline-light btn-lg">Lets Go</button>
+            </div> -->
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="{{ asset('images/banner/microsoft-edge-FAaz8lkinzs-unsplash.jpg') }}" style="height:400px; object-fit: cover;" alt="">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="{{ asset('images/banner/windows-wYTd-B7BdoQ-unsplash.jpg') }}" style="height:400px; object-fit: cover;" alt="">
+        </div>
     </div>
-    @endif
-    @if (session('flash_warning'))
-    <div class="alert alert-warning">
-      {{ session('flash_warning') }}
+    <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slides" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- end_image_slider -->
+
+<div class="ml-auto mt-5 mb-5">
+    <div class="bg order-1 order-md-2" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.R5QWIA8_nZ.webp)"></div>
+    <div class="contents order-2 order-md-1">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7">
+                    <h3>Login to <strong>Bao Phat</strong></h3>
+                    <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    <form action="#" method="post">
+                        @csrf
+                        <div class="form-group first">
+                            <label for="username">Email</label>
+                            <input type="text" name="email" class="form-control" placeholder="your-email@gmail.com" id="username">
+                        </div>
+                        <div class="form-group last" >
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Your Password" id="password">
+                        </div>
+                        <div class="d-flex mb-2 align-items-center">
+                            <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                                <input type="checkbox" style="background-color: #6C4A4A;" checked />
+                                <!-- <div class="control__indicator"></div> -->
+                            </label>
+                            <span class="ml-auto"><a href="#" class="forgot-pass" style="color: #6C4A4A;">Forgot Password</a></span>
+                        </div>
+                        <div class="col-md-12 p-0 mt-2">
+                            <input type="submit" value="Log In" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    @endif
-    <form method="POST">
-      @csrf
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-      </div>
-      @if(isset($warning))
-      <div class="p-3 mb-2 bg-danger text-white">{{ $warning }}</div>
-      @endif
+</div>
 
-      <button type="submit" class="btn btn-primary">Login</button>
-      <!-- <a href="{{ url('/get-password') }}" class="btn btn-primary">Forgot password</a> -->
-    </form>
-  </div>
-
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-
-</html>
+@endsection

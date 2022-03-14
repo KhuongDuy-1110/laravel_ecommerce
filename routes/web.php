@@ -27,11 +27,11 @@ Route::group(['middleware'=>'lang'], function() {
 
 
 Route::get('/login', function (){
-    return view('frontend/LoginForm2',['title'=>'login']);
+    return view('frontend/LoginForm',['title'=>'login']);
 })->name('user.login');
 Route::post('/login','AuthController@authenticate');
 Route::get('/register', function (){
-    return view('frontend/RegisterForm',['title'=>'register']);
+    return view('frontend/registerForm2',['title'=>'register']);
 });
 Route::post('/register','AuthController@register');
 Route::get('/logout','AuthController@logout');
