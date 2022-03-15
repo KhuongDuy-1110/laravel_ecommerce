@@ -31,7 +31,7 @@ Route::get('/login', function (){
 })->name('user.login');
 Route::post('/login','AuthController@authenticate');
 Route::get('/register', function (){
-    return view('frontend/registerForm2',['title'=>'register']);
+    return view('frontend/RegisterForm',['title'=>'register']);
 });
 Route::post('/register','AuthController@register');
 Route::get('/logout','AuthController@logout');

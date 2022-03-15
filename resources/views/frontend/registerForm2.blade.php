@@ -46,16 +46,33 @@
                         <h3 class="ml-2 pt-3"><b>Register</b></h3>
                     </div>
                     <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    @include('layouts/flash-message')
                     <form action="#" method="post">
                         @csrf
                         <div class="form-group first">
                             <label for="username">Name: </label>
                             <input type="text" name="name" class="form-control custom" placeholder="Your Name" id="username">
                         </div>
+
+                        @if($errors->has('name'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-10 text-danger">{{ $errors->first('name') }}
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="form-group last">
                             <label for="password">Password:</label>
                             <input type="password" name="password" class="form-control custom" placeholder="Your Password" id="password">
                         </div>
+
+                        @if($errors->has('password'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-10 text-danger">{{ $errors->first('password') }}
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="form-group last">
                             <label for="re-password">Re-enter password:</label>
                             <input type="password" class="form-control custom" placeholder="Re-Password" id="re-password">
@@ -64,18 +81,49 @@
                             <label for="email">Email:</label>
                             <input type="mail" name="email" class="form-control custom" placeholder="your-email@gmail.com" id="email">
                         </div>
+
+                        @if($errors->has('email'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-10 text-danger">{{ $errors->first('email') }}
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="form-group last">
                             <label for="dob">DOB:</label>
                             <input type="date" name="dob" class="form-control custom" placeholder="Date of Birth" id="dob">
                         </div>
+
+                        @if($errors->has('dob'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-10 text-danger">{{ $errors->first('dob') }}
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="form-group last">
                             <label for="phone">Phone number:</label>
                             <input type="text" name="phone" class="form-control custom" placeholder="Your phone number" id="phone">
                         </div>
-                        <div class="form-group last">
-                            <label for="password">Address:</label>
-                            <input type="password" name="address" class="form-control custom" placeholder="Your address" id="password">
+
+                        @if($errors->has('phone'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-10 text-danger">{{ $errors->first('phone') }}
+                            </div>
                         </div>
+                        @endif
+
+                        <div class="form-group last">
+                            <label for="address">Address:</label>
+                            <input type="address" name="address" class="form-control custom" placeholder="Your address" id="address">
+                        </div>
+
+                        @if($errors->has('address'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-10 text-danger">{{ $errors->first('address') }}
+                            </div>
+                        </div>
+                        @endif
 
                         <div class="col-md-12 p-0 mt-4">
                             <input type="submit" value="Submit" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">

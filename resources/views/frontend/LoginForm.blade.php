@@ -41,8 +41,12 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-7">
-                    <h3>Login to <strong>Bao Phat</strong></h3>
+                    <div class="d-flex">
+                        <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
+                        <h3 class="ml-2 pt-3"><b>Sign In</b></h3>
+                    </div>
                     <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    @include('layouts/flash-message')
                     <form action="#" method="post">
                         @csrf
                         <div class="form-group first">
@@ -53,14 +57,14 @@
                             <label for="password">Password</label>
                             <input type="password" name="password" class="form-control" placeholder="Your Password" id="password">
                         </div>
-                        <div class="d-flex mb-2 align-items-center">
-                            <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                        <div class="d-flex mb-2 align-items-center" >
+                            <label class="control control--checkbox mb-0" ><span class="caption">Remember me</span>
                                 <input type="checkbox" style="background-color: #6C4A4A;" checked />
                                 <!-- <div class="control__indicator"></div> -->
                             </label>
                             <span class="ml-auto"><a href="#" class="forgot-pass" style="color: #6C4A4A;">Forgot Password</a></span>
                         </div>
-                        <div class="col-md-12 p-0 mt-2">
+                        <div class="col-md-12 p-0 mt-4">
                             <input type="submit" value="Log In" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
                         </div>
                         

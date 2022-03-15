@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Controllers\MailController;
 use App\Repository\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
@@ -23,6 +24,38 @@ class UserService
     public function getUsers($findById = null)
     {
         return $this->userRepository->getUsers($findById);
+    }
+
+    public function register($request)
+    {
+        $data = [
+            "name" => $request->name,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "address" => $request->address,
+            "dob" => $request->dob,
+            "password" => Hash::make($request->password),
+            "verification_code" => sha1(time()),
+            "expired_at" => Carbon::now('Asia/Ho_Chi_Minh')->addSecond(300),
+        ];
+
+        $user = $this->userRepository->create($data);
+
+        if($user)
+        {
+
+            MailController::verificationMail($user->email, $user->verification_code);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function authenticate($request)
+    {
+        
     }
 
     public function create(UserRequest $request)

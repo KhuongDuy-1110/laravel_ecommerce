@@ -11,76 +11,58 @@ use App\Jobs\SendRegisterMail;
 use Carbon\Carbon;
 use App\Models\Category;
 use App\Repository\UserRepositoryInterface;
+use App\Services\UserService;
 
 class AuthController extends Controller
 {
 
     private $userRepository;
+    private $userService;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserService $userService, UserRepositoryInterface $userRepository)
     {
+        $this->userService = $userService;
         $this->userRepository = $userRepository;
     }
 
     public function index()
     {
-        
+
     }
+
     public function register(AuthRequest $request)
     {
-
-        $data = [
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => Hash::make($request->password),
-            "verification_code" => sha1(time()),
-            "expired_at" => Carbon::now('Asia/Ho_Chi_Minh')->addSecond(300),
-        ];
-
-        $user = $this->userRepository->create($data);
-
-        if($user == true)
+        $result = $this->userService->register($request);
+        if($result)
         {
-            $find = DB::table("users")->where("email","=",$request->email)->first();
-
-            // send verrification mail
-
-            MailController::verificationMail($find->email,$find->verification_code);
-
-            return redirect(url('/login'))->with('flash_success', 'Check your mail to verify');
+            return redirect(url('/login'))->with('success', 'Thank you for register - Please check your mail to verify !');
         }
-
-        return redirect()->back();
+        else
+        {
+            return redirect(url('/login'))->with('warning', 'Something went wrong - Please try again !');
+        }
     }
 
     public function authenticate(Request $request)
     {
-         if(Auth::attempt([
-             'email' => $request->input('email'),
-             'password' => $request->input('password'),
-         ], ))
-         {
-             if(Auth::User()->role == 0)
-             {
+        if (Auth::attempt([
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ],)) {
 
-                if(Auth::User()->email_verified_at == null)
 
-                    return redirect()->back()->with('flash_warning', 'Your mail was unverified');
+            if (Auth::User()->email_verified_at == null)
+            {
+                Auth::logout();
+                return redirect()->back()->with('warning', 'Your mail was unverified');
+            }
 
-                return redirect(url('/'));
+            return redirect(url('/'));
 
-             }
-             else if(Auth::User()->role > 0) {
-
-                 return redirect(url('/admin'));
-
-             }
-
-             return redirect()->back();
-             
-         }
-         return redirect()->back()->with('flash_warning', 'Your password or email is wrong');
+        }
+        return redirect()->back()->with('warning', 'Your password or email is wrong');
     }
+
     public function logout()
     {
         Auth::logout();
@@ -89,20 +71,15 @@ class AuthController extends Controller
 
     public function verified(Request $request)
     {
-        $find = $this->userRepository->getDataFiltered('verification_code',$request->code);
+        $find = $this->userRepository->getDataFiltered('verification_code', $request->code);
 
-        if($find != null && $find->email_verified_at == null )
-        {
-            if(Carbon::now('Asia/Ho_Chi_Minh') < $find->expired_at )
-            {
-                $this->userRepository->update($find->id, ["email_verified_at" => Carbon::now('Asia/Ho_Chi_Minh')] );
-                return redirect(url('/login'))->with('flash_success', 'Your mail was verified, log in now !');
+        if ($find != null && $find->email_verified_at == null) {
+            if (Carbon::now('Asia/Ho_Chi_Minh') < $find->expired_at) {
+                $this->userRepository->update($find->id, ["email_verified_at" => Carbon::now('Asia/Ho_Chi_Minh')]);
+                return redirect(url('/login'))->with('success', 'Your mail was verified, log in now !');
             }
-            return redirect(url('/login'))->with('flash_warning', 'Time expired');
+            return redirect(url('/login'))->with('warning', 'Time expired');
         }
-        return redirect(url('/login'))->with('flash_warning', 'Something went wrong !');
-
-
+        return redirect(url('/login'))->with('warning', 'Something went wrong !');
     }
-  
 }
