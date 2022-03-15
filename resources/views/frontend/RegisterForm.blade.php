@@ -74,9 +74,17 @@
                         @endif
 
                         <div class="form-group last">
-                            <label for="re-password">Re-enter password:</label>
-                            <input type="password" class="form-control custom" placeholder="Re-Password" id="re-password">
+                            <label for="re-password">Password confimation:</label>
+                            <input type="password" name="password_confirmation" class="form-control custom" placeholder="Confirm Password" id="re-password">
                         </div>
+
+                        @if($errors->has('password_confirmation'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-md-10 text-danger">{{ $errors->first('password_confirmation') }}
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="form-group first">
                             <label for="email">Email:</label>
                             <input type="mail" name="email" class="form-control custom" placeholder="your-email@gmail.com" id="email">

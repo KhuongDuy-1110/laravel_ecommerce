@@ -29,7 +29,7 @@ class AuthRequest extends FormRequest
             'phone' => 'required',
             'address' => 'required',
             'dob' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|confirmed',
         ];
     }
 }

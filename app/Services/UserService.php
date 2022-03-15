@@ -13,7 +13,6 @@ use App\Models\User;
 
 class UserService
 {
-
     private $userRepository;
 
     public function __construct(UserRepositoryInterface $userRepository)
@@ -43,7 +42,6 @@ class UserService
 
         if($user)
         {
-
             MailController::verificationMail($user->email, $user->verification_code);
             return true;
         }

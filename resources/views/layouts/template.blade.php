@@ -162,7 +162,15 @@
 							<span class="micon dw dw-paint-brush"></span><span class="mtext">Orders</span>
 						</a>
 					</li>
-					
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-library"></span><span class="mtext">Images</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="#">Slide</a></li>
+							<li><a href="#">DataTables</a></li>
+						</ul>
+					</li>
 					
 				</ul>
 			</div>

@@ -34,18 +34,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Address">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" name="phone" value="{{ $data->phone }}">
                     </div>
                 </div>
-                @if($errors->has('address'))
-                <div class="row" style="margin-top:5px;">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10 text-danger">{{ $errors->first('address') }}
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" name="address" value="{{ $data->address }}">
                     </div>
                 </div>
-                @endif
             </div>
         </div>
     </div>

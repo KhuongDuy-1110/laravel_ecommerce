@@ -52,7 +52,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle border">
-                            <span>{{ Auth::user()->name }}</span>
+                            <span class="ml-2" style="color: black;">{{ Auth::user()->name }}</span>
                         </a>
                         
                         <div class="dropdown-menu dropdown-menu-icon-list" aria-labelledby="navbarDropdownMenuLink">

@@ -38,7 +38,7 @@ class OrderController extends Controller
             event(new NewOrder($request->email));
             // delete cart
             $request->session()->forget('cart');            
-            return back();           
+            return view('frontend.ThankYou');           
         }
     }
 }
