@@ -56,8 +56,8 @@
                         </a>
                         
                         <div class="dropdown-menu dropdown-menu-icon-list" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
-                            <a class="dropdown-item" href="#"><i class="fa-solid fa-bag-shopping"></i>&nbsp; Orders</a>
+                            <a class="dropdown-item" href="{{ url('user/profile/'.Auth::id()) }}"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
+                            <a class="dropdown-item" href="{{ url('user/order/'.Auth::id()) }}"><i class="fa-solid fa-bag-shopping"></i>&nbsp; Orders</a>
                             <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa-solid fa-lock"></i>&nbsp; {{ __('Log out') }}</a>
                         </div>
                     </li> 

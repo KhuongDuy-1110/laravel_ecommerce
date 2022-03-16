@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\Log;
 
 Route::group(['middleware' => 'lang'], function () {
     Route::get('/change-language/{language}', 'LanguageController@change');
+
     Route::get('/', 'HomeController@index');
+
     Route::get('/products', 'ProductController@index');
     Route::get('/products/{id}', 'ProductController@categoryFilter');
     Route::get('/products/detail/{id}', 'ProductController@detail');
+
     Route::group(['middleware' => 'auth.user'], function () {
+        
         Route::group(['prefix' => 'cart'], function () {
             Route::get('/', 'CartController@index');
             Route::get('/addcart/{id}', 'CartController@AddCart');
@@ -21,6 +25,10 @@ Route::group(['middleware' => 'lang'], function () {
             Route::get('/checkout', 'CartController@checkOut');
             Route::post('/order', 'OrderController@mailling');
         });
+
+        Route::get('user/profile/{id}', 'HomeController@profile');
+        Route::get('user/order/{id}', 'HomeController@order');
+
     });
     Route::get('/telegram-message', 'TelegramController@updateActivity');
 });

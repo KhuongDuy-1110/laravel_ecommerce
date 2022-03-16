@@ -3,21 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use App\Services\OrderService;
 
 class HomeController extends Controller
 {
-    private $productRepository;
+    private $orderService;
 
-    public function __construct(ProductRepositoryInterface $productRepository)
+    public function __construct(OrderService $orderService)
     {
-        $this->productRepository = $productRepository;
+        $this->orderService = $orderService;
     }
 
     public function index()
     {
         return view('frontend/Home',['title'=>'Home']);
+    }
+
+    public function profile(Request $request)
+    {
+        dd('ok');
+    }
+
+    public function order(Request $request)
+    {
+        $orders = $this->orderService->getOrdersByUser($request->id);
+        return view('frontend.UserOrders',['orders'=>$orders]);
     }
 }
