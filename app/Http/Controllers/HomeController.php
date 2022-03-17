@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function editProfile(Request $request)
     {
-        
+        dd($request->change);
     }
 
     public function order()

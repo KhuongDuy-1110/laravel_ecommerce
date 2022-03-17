@@ -79,16 +79,16 @@
                         </div>
                     </div>
                     <div class="d-flex mt-2 flex-row-reverse">
-                        <button style="background-color: #6C4A4A;" class="btn btn-primary border-0" type="submit">Update Password</button>
-                        <button type="button" style="background-color: #6C4A4A;" class="btn btn-primary border-0 mr-2" data-toggle="modal" data-target="#exampleModal">Update Information</button>
+                    <button type="button" style="background-color: #6C4A4A;" class="btn btn-primary border-0" data-toggle="modal" data-target="#modalPassword">Update Password</button>
+                        <button type="button" style="background-color: #6C4A4A;" class="btn btn-primary border-0 mr-2" data-toggle="modal" data-target="#modalInformation">Update Information</button>
                     </div>
 
                     <!-- Modal Information -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" aria-labelledby="modalInformationLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Update User Information</h5>
+                                    <h5 class="modal-title" id="modalInformationLabel">Update User Information</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -125,14 +125,60 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-success" style="background-color: #6C4A4A;">Save changes</button>
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="change" value="0" class="btn btn-danger">Save changes</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <!-- End Modal Information -->
+
+                    <!-- Modal Password -->
+                    <div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="modalPasswordLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalPasswordLabel">Update New Password</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="col-md-12 m-auto">
+                                            <div class="form-group row">
+                                                <label for="staticEmail" class="col-form-label">Current Password: </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control-plaintext" id="staticName" name="oldPassword" placeholder="Old Password" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="staticEmail" class="col-form-label">New Password: </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control-plaintext" id="staticEmail" name="password" placeholder="New Password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="staticEmail" class="col-form-label">Confirm New Password: </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control-plaintext" id="staticEmail" name="password-confirmation" placeholder="Confirm">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" name="change" value="1" class="btn btn-danger">Confirm</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modal Password -->
 
                 </div>
             </div>
