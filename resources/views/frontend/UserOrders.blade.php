@@ -1,4 +1,4 @@
-@extends('layouts/client')
+@extends('layouts.client')
 @section('clientContent')
 
 <!-- Image slider -->
@@ -79,7 +79,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{ '#collapseExample'.$num }}" aria-expanded="false" aria-controls="collapseExample">See detail</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{ '#collapseExample'.$num }}" aria-expanded="false" aria-controls="{{ 'collapseExample'.$num }}">See detail</button>
                                 </td>
                             </tr>
 
@@ -99,6 +99,7 @@
                                 </td>
                             </tr>
                             @endforeach
+                            
                         @endforeach
                     </table>
                 </div>
