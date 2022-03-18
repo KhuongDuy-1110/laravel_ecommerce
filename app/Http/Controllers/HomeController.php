@@ -31,7 +31,8 @@ class HomeController extends Controller
 
     public function editProfile(Request $request)
     {
-        dd($request->change);
+        $this->userService->update($request, Auth::id());
+        return redirect()->back()->with('success','Update profile successfully');
     }
 
     public function order()

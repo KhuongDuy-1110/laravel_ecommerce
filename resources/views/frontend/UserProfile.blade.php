@@ -46,6 +46,7 @@
                         <h3 class="ml-2 pt-4"><b>Profile</b></h3>
                     </div>
                     <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    @include('layouts.flash-message')
                     <div class="col-md-12 d-flex" style="border: 3px solid #6C4A4A; border-radius: 5px; border-style: none none solid solid;">
                         <div class="col-md-10 m-auto">
 

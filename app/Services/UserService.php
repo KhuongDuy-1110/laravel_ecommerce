@@ -73,20 +73,16 @@ class UserService
         return $this->userRepository->find($id);
     }
 
-    public function update(UserRequest $request, $id)
+    public function update($request, $id)
     {
         if($request->password)
         {
-            $data = [
-                'name' => $request->name,
-                'password' => Hash::make($request->password),
-            ];
+            $data = $request->all();
+            $data['password'] = Hash::make($request->password);
         }
         else
         {
-            $data = [
-                'name' => $request->name,
-            ];
+            $data = $request->all();
         }
         $this->userRepository->update($id,$data);
     }
