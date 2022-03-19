@@ -46,6 +46,9 @@
                         <h3 class="ml-2 pt-3"><b>Your Orders</b></h3>
                     </div>
                     <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    @if(count($orders->orders)==0)
+                        <div>You haven't ordered anything ! </div>
+                    @else
                     <table class="col-md-12 table table-bordered">
                         <tr>
                             <td colspan="6" style="background-color: #6C4A4A; color: white; border-radius: 5px 5px 0px 0px;">Orders</td>
@@ -102,6 +105,7 @@
                             
                         @endforeach
                     </table>
+                    @endif
                 </div>
             </div>
         </div>

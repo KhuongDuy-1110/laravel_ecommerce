@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/', 'Admin\DashboardController@index');
         Route::resources([
             'account' => Admin\AdminController::class,
+            'image' => Admin\ImageController::class,
             'user' => Admin\UserController::class,
             'category' => Admin\CategoryController::class,
             'product' => Admin\ProductController::class,
