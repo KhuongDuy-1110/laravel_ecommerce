@@ -20,6 +20,6 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
 
     public function getImageByType(int $type)
     {
-        return $this->model->where('type',$type)->get();
+        return $this->model->where('type',$type)->paginate(5);
     }
 }

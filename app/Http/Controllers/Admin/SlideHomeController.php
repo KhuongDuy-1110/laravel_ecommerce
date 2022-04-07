@@ -18,7 +18,8 @@ class SlideHomeController extends Controller
 
     public function index()
     {
-        dd('ok');
+        $data = $this->imageService->getImageByType(1);
+        return view('backend.image.ImageRead',['data' => $data]);
     }
 
     /**
