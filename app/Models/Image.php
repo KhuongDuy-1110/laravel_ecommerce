@@ -8,5 +8,5 @@ class Image extends Model
 {
     protected $table = 'images';
 
-    protected $fillable = ['name', 'type', 'status'];
+    protected $fillable = ['path', 'type', 'status'];
 }
