@@ -19,12 +19,12 @@
                         </div>
                     </div>
                     <!-- Uploaded image area-->
-                    <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                    <div class="image-area mt-4"><img id="imageResult" style="width: 250px;" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                 </div>
-                @if($errors->has('name'))
+                @if($errors->has('image'))
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2"></div>
-                    <div class="col-md-10 text-danger">{{ $errors->first('name') }}
+                    <div class="col-md-10 text-danger">{{ $errors->first('image') }}
                     </div>
                 </div>
                 @endif

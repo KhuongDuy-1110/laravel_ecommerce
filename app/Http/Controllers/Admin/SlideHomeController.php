@@ -37,7 +37,7 @@ class SlideHomeController extends Controller
             'type' => 1
         ]);
         $this->imageService->createImage($request);
-        return redirect()->route('slide-image.index')->with('success','Your image has been created successfully !');
+        return redirect()->route('slide-home.index')->with('success','Your image has been created successfully !');
     }
 
     public function show($id)
@@ -47,16 +47,18 @@ class SlideHomeController extends Controller
 
     public function edit($id)
     {
-        //
+        // 
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $this->imageService->updateStatus($request, $id);
+        return redirect()->route('slide-home.index')->with('success','Update status successfully !');
     }
 
     public function destroy($id)
     {
-        //
+        $this->imageService->deleteImage($id);
+        return redirect()->route('slide-home.index')->with('success','Delete image successfully !');
     }
 }

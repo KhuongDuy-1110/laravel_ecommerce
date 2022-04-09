@@ -50,4 +50,19 @@ class ImageService
         return $this->imageRepository->create($data);
     }
 
+    public function updateStatus($request, $id)
+    {
+        $data = [
+            'status' => $request->sta,
+        ];
+        $this->imageRepository->update($id, $data);
+    }
+
+    public function deleteImage($id)
+    {
+        $image = $this->imageRepository->find($id);
+        $this->imageRepository->delete($id);
+        Storage::delete('images/'.$image->path); 
+    }
+
 }

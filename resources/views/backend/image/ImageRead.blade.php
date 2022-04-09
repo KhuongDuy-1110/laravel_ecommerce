@@ -17,11 +17,19 @@
                 @foreach($data as $rows)
                 <tr>
                     <td><img src="{{ asset('images/'.$rows->path) }}" style="width: 100px; height:70px; object-fit: cover;" alt=""></td>
-                    @if($rows->status == 1)
-                    <td>Active</td>
-                    @endif
+                    <td>
+                        <div class="mt-3"> </div>
+                        <form method="post" action="{{ route('slide-home.update',$rows->id) }}">
+                            @method('PUT')
+                            @csrf
+                            @if($rows->status === 0)
+                                <button type="submit" name="sta" value="1" class="btn btn-warning">Un-active</button>
+                            @else
+                                <button type="submit" name="sta" value="0" class="btn btn-success">Active</button>
+                            @endif
+                        </form>
+                    </td>
                     <td style="text-align:center;">
-                        <a href="{{ url('admin/slide-home/'.$rows->id.'/edit') }}">Edit</a>&nbsp;
                         <form method="POST" action="{{ route('slide-home.destroy',$rows->id) }}">
                             @csrf
                             @method('DELETE')

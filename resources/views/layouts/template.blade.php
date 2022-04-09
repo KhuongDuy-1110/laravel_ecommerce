@@ -167,8 +167,9 @@
 							<span class="micon dw dw-library"></span><span class="mtext">Images</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="{{ url('admin/slide-home') }}">Slide</a></li>
-							<li><a href="#">DataTables</a></li>
+							<li><a href="{{ url('admin/slide-home') }}">Slide homepage</a></li>
+							<li><a href="#">Slide product page</a></li>
+							<li><a href="#">Slide cart page</a></li>
 						</ul>
 					</li>
 					
