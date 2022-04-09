@@ -6,5 +6,5 @@ interface ImageRepositoryInterface
 {
     public function getAllImage();
 
-    public function getImageByType(int $type);
+    public function getImageByType(int $type, $active);
 }

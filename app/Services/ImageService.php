@@ -21,9 +21,9 @@ class ImageService
     type = 3 -> slide Cart
     */
 
-    public function getImageByType($type)
+    public function getImageByType($type, $active = null)
     {
-        return $this->imageRepository->getImageByType($type);
+        return $this->imageRepository->getImageByType($type, $active);
     }
 
     public function createImage($request)

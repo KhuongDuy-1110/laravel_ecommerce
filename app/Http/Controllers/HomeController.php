@@ -6,21 +6,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\OrderService;
 use App\Services\UserService;
+use App\Services\ImageService;
 
 class HomeController extends Controller
 {
     private $orderService;
     private $userService;
+    private $imageService;
 
-    public function __construct(OrderService $orderService, UserService $userService)
+    public function __construct(OrderService $orderService, UserService $userService, ImageService $imageService)
     {
         $this->orderService = $orderService;
         $this->userService = $userService;
+        $this->imageService = $imageService;
     }
 
     public function index()
     {
-        return view('frontend/Home',['title'=>'Home']);
+        $slides = $this->imageService->getImageByType(1, 1);
+        return view('frontend/Home',[
+            'title'=>'Home',
+            'slides' => $slides,
+        ]);
     }
 
     public function profile()

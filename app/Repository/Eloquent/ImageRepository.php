@@ -18,8 +18,10 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
         return $this->model->all();
     }
 
-    public function getImageByType(int $type)
+    public function getImageByType(int $type, $active)
     {
-        return $this->model->where('type',$type)->orderByDesc('id')->paginate(5);
+        return isset($active) ? 
+            $this->model->where('type',$type)->where('status',$active)->orderByDesc('id')->paginate(5) : 
+                $this->model->where('type',$type)->orderByDesc('id')->paginate(5);
     }
 }
