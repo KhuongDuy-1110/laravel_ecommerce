@@ -1,12 +1,43 @@
 
-  
 @extends('layouts.client')
 @section('clientContent')
-    <!-- banner -->
-    <div class="img-fluid" >
-        <img src="{{ asset('/images/banner/murat-demircan-beDmytOHU5k-unsplash.jpg') }}" style="width: 100%; height: 400px; object-fit: cover;" alt="">
+<!-- Image slider -->
+<div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        @if(!empty($slides))
+            @for( $i=1; $i<=count($slides); $i++)
+            <li data-target="#slides" data-slide-to="{{ $i }}"></li>
+            @endfor
+        @endif
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="width: 100%; height: 400px; object-fit: cover;" alt="">
+            <!-- <div class="carousel-caption">
+                <h1 class="display-2">Welcome</h1>
+                <h3>Lets take a tour !</h3>
+                <button type="button" class="btn btn-outline-light btn-lg">Lets Go</button>
+            </div> -->
+        </div>
+        @if(!empty($slides))
+            @foreach($slides as $image)
+            <div class="carousel-item ">
+                <img class="d-block w-100" src="{{ asset('images/'.$image->path) }}" style="width: 100%; height: 400px; object-fit: cover;" alt="">
+            </div>
+            @endforeach
+        @endif
     </div>
-    <!-- end_banner -->
+    <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slides" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- end_image_slider -->
 
     <!-- all products -->
     <div class="container-fluid product-lob">

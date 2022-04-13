@@ -2,7 +2,7 @@
 @section("content")
 <div class="col-md-12">
     <div style="margin-bottom:5px;">
-        <a href="{{ url('admin/slide-home/create') }}" class="btn btn-primary" style="background-color: #152555;">Add image</a>
+        <a href="{{ route('image.create', ['type' => $type]) }}" class="btn btn-primary" style="background-color: #152555;">Add image</a>
     </div>
     @if(count($data))
     <div class="panel panel-primary">
@@ -19,18 +19,18 @@
                     <td><img src="{{ asset('images/'.$rows->path) }}" style="width: 100px; height:70px; object-fit: cover;" alt=""></td>
                     <td>
                         <div class="mt-3"> </div>
-                        <form method="post" action="{{ route('slide-home.update',$rows->id) }}">
+                        <form method="post" action="{{ route('image.update', [$rows->id, 'type' => $type]) }}">
                             @method('PUT')
                             @csrf
                             @if($rows->status === 0)
-                                <button type="submit" name="sta" value="1" class="btn btn-warning">Un-active</button>
+                                <button type="submit" name="sta" value="1" class="btn btn-warning">Un-active</button>   
                             @else
                                 <button type="submit" name="sta" value="0" class="btn btn-success">Active</button>
                             @endif
                         </form>
                     </td>
                     <td style="text-align:center;">
-                        <form method="POST" action="{{ route('slide-home.destroy',$rows->id) }}">
+                        <form method="POST" action="{{ route('image.destroy',[$rows->id, 'type' => $type]) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>

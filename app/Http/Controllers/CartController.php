@@ -10,20 +10,27 @@ use PHPUnit\Framework\Constraint\Count;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Http\Requests\CheckoutRequest;
 use App\Repository\ProductRepositoryInterface;
+use App\Services\ImageService;
 
 class CartController extends Controller
 {
     
     private $productRepository, $cart;
+    private $imageService;
 
-    public function __construct(ProductRepositoryInterface $productRepository)
+    public function __construct(ProductRepositoryInterface $productRepository, ImageService $imageService)
     {
         $this->productRepository = $productRepository;
+        $this->imageService = $imageService;
     }
 
     public function index()
     {
-        return view('frontend/Cart',['title'=>'Cart']);
+        $slides = $this->imageService->getImageByType(3,1);
+        return view('frontend/Cart',[
+            'slides' => $slides,
+            'title'=>'Cart'
+        ]);
     }
 
     public function AddCart(Request $request, $id)
@@ -38,7 +45,6 @@ class CartController extends Controller
 
             $request->session()->put('cart',$newCart);
         }
-        // echo json_encode(Session()->get('cart'));
         return redirect(url('/cart'));
     }
 

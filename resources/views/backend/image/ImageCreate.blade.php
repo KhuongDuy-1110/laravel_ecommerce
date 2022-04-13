@@ -4,7 +4,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading" style="background-color: #152555; color: white; padding: 10px; border-radius: 5px 5px 0px 0px ;">Add image slide</div>
         <div class="panel-body mt-5">
-            <form method="post" action="{{ route('slide-home.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('image.store',['type' => $type]) }}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <!-- rows -->
                 <div class="row" style="margin-top:5px;">

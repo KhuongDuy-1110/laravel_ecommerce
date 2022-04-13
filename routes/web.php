@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
             'user' => Admin\UserController::class,
             'category' => Admin\CategoryController::class,
             'product' => Admin\ProductController::class,
+            'image' => Admin\ImageController::class,
             'slide-home' => Admin\SlideHomeController::class,
         ]);
         Route::group(['prefix' => 'order'], function () {

@@ -123,7 +123,8 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="{{ url('admin') }}">
-				<img src="{{ asset('vendors/images/deskapp-logo-white.svg') }}" alt="" class="light-logo">
+				<img src="{{ asset('vendors/images/favicon-32x32.png') }}" alt="" class="light-logo">
+				<span style="font-weight: bold; font-size: 30px;" class="ml-3">Bao Phat SD</span>
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -159,20 +160,24 @@
 					</li>
 					<li class="dropdown">
 						<a href="{{ url('admin/order') }}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-paint-brush"></span><span class="mtext">Orders</span>
+							<span class="micon dw dw-shopping-cart2"></span><span class="mtext">Orders</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-library"></span><span class="mtext">Images</span>
+							<span class="micon dw dw-image"></span><span class="mtext">Images</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="{{ url('admin/slide-home') }}">Slide homepage</a></li>
-							<li><a href="#">Slide product page</a></li>
-							<li><a href="#">Slide cart page</a></li>
+							<li><a href="{{ route('image.index',['type' => 1]) }}">Slide homepage</a></li>
+							<li><a href="{{ route('image.index',['type' => 2]) }}">Slide product page</a></li>
+							<li><a href="{{ route('image.index',['type' => 3]) }}">Slide cart page</a></li>
 						</ul>
 					</li>
-					
+					<li class="dropdown">
+						<a href="{{ url('admin/post') }}" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-invoice"></span><span class="mtext">Posts</span>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

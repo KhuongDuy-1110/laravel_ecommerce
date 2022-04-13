@@ -4,82 +4,61 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ImageService;
+use App\Http\Requests\ImageRequest;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $imageService;
+
+    public function __construct(ImageService $imageService)
     {
-        dd('ok');
+        $this->imageService = $imageService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index(Request $request)
+    {
+        $data = $this->imageService->getImageByType($request->type);
+        return view('backend.image.ImageRead',[
+            'data' => $data,
+            'type' => $request->type,
+            'nameOfImages' => 'Image slide for hompage'
+        ]);
+    }
+
     public function create()
     {
-        //
+        return view('backend.image.ImageCreate',['type' => request()->type]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {
-        //
+        $request->request->add([
+            'type' => $request->type,
+        ]);
+        $this->imageService->createImage($request);
+        return redirect()->route('image.index',['type' => $request->type])->with('success','Your image has been created successfully !');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        // 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $this->imageService->updateStatus($request, $id);
+        return redirect()->route('image.index',['type' => $request->type])->with('success','Update status successfully !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $this->imageService->deleteImage($id);
+        return redirect()->route('image.index',['type' => $request->type])->with('success','Delete image successfully !');
     }
 }

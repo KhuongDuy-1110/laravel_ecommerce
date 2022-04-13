@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repository\ProductRepositoryInterface;
 use App\Services\ProductService;
+use App\Services\ImageService;
 
 
 class ProductController extends Controller
 {
     private $productRepository, $productService;
+    private $imageService;
 
-    public function __construct(ProductRepositoryInterface $productRepository, ProductService $productService)
+    public function __construct(ProductRepositoryInterface $productRepository, ProductService $productService, ImageService $imageService)
     {
         $this->productRepository = $productRepository;
         $this->productService = $productService;
+        $this->imageService = $imageService;
     }
 
     public function index()
@@ -26,7 +29,12 @@ class ProductController extends Controller
     public function categoryFilter(Request $request)
     {
         $data = $this->productService->categoryFilter($request->id);
-        return view('frontend/Product',['data'=>$data, 'title' => 'Product']);
+        $slides = $this->imageService->getImageByType(2,1);
+        return view('frontend/Product',[
+            'data' => $data, 
+            'slides' => $slides,
+            'title' => 'Product'
+        ]);
     }
 
     public function detail(Request $request)
