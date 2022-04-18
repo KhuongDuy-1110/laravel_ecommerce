@@ -85,4 +85,20 @@
     </div>
 </div>
 <!-- end_hot products -->
+
+<!-- Banner -->
+<div id="slides" class="carousel slide mb-5" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:400px; object-fit: cover; filter: blur(8px);" alt="">
+            <div class="carousel-caption">
+                <h3>Bao Phat Smart Devices</h3>
+                <button type="button" class="btn btn-outline-light btn-lg">Subcribe for more information</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end_banner -->
+
+
 @endsection

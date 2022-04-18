@@ -18,6 +18,7 @@ class AddPostTable extends Migration
             $table->integer('postable_id');
             $table->string('image');
             $table->string('title');
+            $table->string('description');
             $table->string('content');
             $table->tinyInteger('is_recommend');
             $table->tinyInteger('is_pin');
