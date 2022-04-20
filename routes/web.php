@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
             'category' => Admin\CategoryController::class,
             'product' => Admin\ProductController::class,
             'image' => Admin\ImageController::class,
-            'slide-home' => Admin\SlideHomeController::class,
+            'post' => Admin\PostController::class,
         ]);
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', 'Admin\OrderController@index');

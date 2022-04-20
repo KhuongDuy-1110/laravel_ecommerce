@@ -9,6 +9,7 @@ use App\Repository\UserRepositoryInterface;
 use App\Repository\CategoryRepositoryInterface;
 use App\Repository\AdminRepositoryInterface;
 use App\Repository\ImageRepositoryInterface;
+use App\Repository\PostRepositoryInterface;
 
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\Eloquent\ProductRepository;
@@ -17,6 +18,7 @@ use App\Repository\Eloquent\UserRepository;
 use App\Repository\Eloquent\CategoryRepository;
 use App\Repository\Eloquent\AdminRepository;
 use App\Repository\Eloquent\ImageRepository;
+use App\Repository\Eloquent\PostRepository;
 use App\Repository\Eloquent\Cache\CacheProductRepository;
 use App\Repository\Eloquent\Cache\CacheCategoryRepository;
 use Illuminate\Support\Facades\Log;
@@ -31,6 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(AdminRepositoryInterface::class, AdminRepository::class);
         $this->app->bind(ImageRepositoryInterface::class, ImageRepository::class);
+        $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
 
         $this->app->bind(CategoryRepositoryInterface::class, function(){
             $model = \App\Models\Category::class;
