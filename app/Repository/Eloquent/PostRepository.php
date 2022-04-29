@@ -14,7 +14,7 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
     }
 
     public function getRecommendedPosts()
-    {
+    {   
         // 1 -> recommend ; 2 -> unrecommend
         return $this->model->where('is_recommend',1)->get();
     }

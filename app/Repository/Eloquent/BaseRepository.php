@@ -14,7 +14,7 @@ class BaseRepository implements EloquentRepositoryInterface
         $this->model = $model;
     }
 
-    public function read(int $n)
+    public function read(int $n = null)
     {
         return $this->model->orderByDesc('id')->paginate($n);
     }
