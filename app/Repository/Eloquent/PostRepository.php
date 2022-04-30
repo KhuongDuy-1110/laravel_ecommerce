@@ -13,6 +13,11 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         parent::__construct($model);
     }
 
+    public function getPosts($n = null)
+    {
+        return $this->model->with('user')->orderByDesc('id')->paginate($n);
+    }
+
     public function getRecommendedPosts()
     {   
         // 1 -> recommend ; 2 -> unrecommend

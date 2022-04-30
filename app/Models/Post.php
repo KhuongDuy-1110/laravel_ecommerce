@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Admin;
 
 class Post extends Model
 {
@@ -17,4 +18,9 @@ class Post extends Model
         'is_recommend',
         'is_pin',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(Admin::class, 'id', 'postable_id');
+    }
 }

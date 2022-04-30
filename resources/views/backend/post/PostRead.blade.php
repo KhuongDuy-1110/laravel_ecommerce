@@ -26,13 +26,17 @@
                             <td>{{ $post->description }}</td>
                             <td>{{ $post->content }}</td>
                             <td>
-                                {{ $post->is_recommend ? true : false }}
+                                @if($post->is_recommend == 1 )
+                                    <i class="fa-solid fa-check"></i>
+                                @endif
                             </td>
                             <td>
-                                {{ $post->is_recommend ? true : false }}
+                                @if($post->is_pin == 1 )
+                                    <i class="fa-solid fa-check"></i>
+                                @endif
                             </td>
                             <td>
-                                {{ $post->author }}
+                                {{ $post->user->name }}
                             </td>
                            
                             <td style="text-align:center;">
