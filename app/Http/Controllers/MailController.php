@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendActionSetDefaultPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyMail;
@@ -42,5 +43,17 @@ class MailController extends Controller
     {
         $job = new SendProductReportMail($data);
         SendProductReportMail::dispatch($job);
+    }
+
+    public static function sendActionDefaultPassword($email, $verification_code)
+    {
+        $details = [
+            'title' => 'Incoming an important message !',
+            'body' => 'This is your link to set the password of your account to the default: {12345678}',
+            'email' => $email,
+            'verification_code' => $verification_code,
+        ];
+        $job = new SendActionSetDefaultPassword($details);
+        SendActionSetDefaultPassword::dispatch($job);
     }
 }

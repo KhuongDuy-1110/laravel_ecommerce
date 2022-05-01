@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -48,6 +49,8 @@ Route::post('/register', 'AuthController@register');
 Route::get('/logout', 'AuthController@logout');
 Route::get('/get-password', 'AuthController@getpass');
 Route::get('/verify', 'AuthController@verified');
+Route::get('/forgot-password', 'AuthController@forgotPassword')->name('forgotPassword');
+Route::post('/forgot-password', 'AuthController@sendLink');
 
 
 # ===============Backend=================== #

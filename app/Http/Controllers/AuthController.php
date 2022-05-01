@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Models\Category;
 use App\Repository\UserRepositoryInterface;
 use App\Services\UserService;
+use App\Http\Requests\ForgotPassRequest;
 
 class AuthController extends Controller
 {
@@ -44,19 +45,19 @@ class AuthController extends Controller
     }
 
     public function authenticate(Request $request)
-    {
+    {   
+
+        $remember_me = $request->has('remember') ? true : false;  
         if (Auth::attempt([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
-        ],)) {
-
+        ], $remember_me)) {
 
             if (Auth::User()->email_verified_at == null)
             {
                 Auth::logout();
                 return redirect()->back()->with('warning', 'Your mail was unverified');
             }
-
             return redirect(url('/'));
 
         }
@@ -81,5 +82,17 @@ class AuthController extends Controller
             return redirect(url('/login'))->with('warning', 'Time expired');
         }
         return redirect(url('/login'))->with('warning', 'Something went wrong !');
+    }
+
+    public function forgotPassword()
+    {
+        return view('frontend.ForgotPassword', ['title' => 'Forgot password']);
+    }
+
+    public function sendLink(ForgotPassRequest $request)
+    {
+        $data = $request->validated();
+        $this->userService->sendLinkForgotPassword($data);
+        return redirect()->route('user.login')->with('success', 'Check your mail to get link !');
     }
 }

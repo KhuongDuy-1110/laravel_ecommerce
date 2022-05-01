@@ -92,20 +92,22 @@ class UserService
         $this->userRepository->delete($id);
     }
 
-    public function getUsersByJoin($findById = null)
+    public function sendLinkForgotPassword($data)
     {
-        $dataSelect = [
-            'users.id as userId',
-            'users.email as userEmail',
-            'users.name as userName',
-            'roles.id as roleId',
-            'roles.name as roleName',
-        ];
-        $table2Id = [
-            'user' => 'role_user.user_id',
-            'role' => 'role_user.role_id'
-        ];
-
-        return $this->userRepository->leftJoinUser('users','users.id','role_user',$table2Id,'roles','roles.id',$dataSelect,5,$findById);
+        $user = $this->userRepository->getDataFiltered('email',$data['email']);
+        if(!empty($user) && $user->phone === $data['phone']) {
+            $verification_code = sha1(time());
+            $data = [
+                'verification_code' => $verification_code,
+                'expired_at' => Carbon::now('Asia/Ho_Chi_Minh')->addSecond(300)
+            ];
+            $checkUpdate = $this->userRepository->update($user->id, $data);
+            if($checkUpdate) {
+                MailController::sendActionDefaultPassword($user->email, $verification_code);
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }
