@@ -12,15 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <title>{{ isset($title)?$title:'Ecommerce' }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/banner/logo.png') }}">
+    <title>{{ isset($title)?$title:'Bao Phat' }}</title>
 </head>
 
 <body>
     <!-- navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/banner/logo.png') }}" style="width: 70px; " alt="#">Bao Phat Smart Devices</a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/banner/logo.png') }}" style="width: 70px; " alt="#">Bảo Phát</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="nvabar-toggler-icon"></span>
             </button>

@@ -79,4 +79,9 @@ class PostService
         $this->postRepository->delete($id);
         Storage::delete('images/'.$post->photo);
     }
+
+    public function getLastestPost()
+    {
+        return $this->postRepository->getLastest();
+    }
 }

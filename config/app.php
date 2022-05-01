@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
+        // App\Providers\HelperServiceProvider::class,
 
     ],
 
@@ -234,7 +234,6 @@ return [
 
         'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
-        'UserHelper' => App\Helpers\UserInformation\User::class,
 
     ],
 

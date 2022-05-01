@@ -32,6 +32,7 @@ Route::group(['middleware' => 'lang'], function () {
 
     });
     Route::get('/telegram-message', 'TelegramController@updateActivity');
+    Route::get('/posts/{id}', 'HomeController@showPostDetail')->name('showPostDetail');
 });
 
 

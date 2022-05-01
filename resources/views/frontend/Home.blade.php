@@ -1,13 +1,12 @@
 @extends('layouts.client')
 @section('clientContent')
-
 <!-- Image slider -->
 <div id="slides" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
         <li data-target="#slides" data-slide-to="0" class="active"></li>
         @if(!empty($slides))
-            @for( $i=1; $i<=count($slides); $i++)
-            <li data-target="#slides" data-slide-to="{{ $i }}"></li>
+            @for( $i=1; $i<=count($slides); $i++) 
+                <li data-target="#slides" data-slide-to="{{ $i }}"></li>
             @endfor
         @endif
     </ul>
@@ -21,11 +20,11 @@
             </div>
         </div>
         @if(!empty($slides))
-            @foreach($slides as $image)
-            <div class="carousel-item">
-                <img class="d-block w-100" src="{{ asset('images/'.$image->path) }}" style="height:700px; object-fit: cover;" alt="">
-            </div>
-            @endforeach
+        @foreach($slides as $image)
+        <div class="carousel-item">
+            <img class="d-block w-100" src="{{ asset('images/'.$image->path) }}" style="height:700px; object-fit: cover;" alt="">
+        </div>
+        @endforeach
         @endif
     </div>
     <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
@@ -90,7 +89,7 @@
 <div id="slides" class="carousel slide mb-5" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:400px; object-fit: cover; filter: blur(8px);" alt="">
+            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:400px; object-fit: cover; " alt="">
             <div class="carousel-caption">
                 <h3>Bao Phat Smart Devices</h3>
                 <button type="button" class="btn btn-outline-light btn-lg">Subcribe for more information</button>
@@ -99,6 +98,68 @@
     </div>
 </div>
 <!-- end_banner -->
+
+<div class="container-fluid padding mt-5">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4" style="font-family: 'Lobster', cursive;">blog</h1>
+        </div>
+        <hr style="height:0.5px;width:15%;color:gray;background-color:gray">
+    </div>
+</div>
+
+<!-- Page content-->
+<div class="container">
+    <div class="row">
+        <!-- Blog entries-->
+        <div class="col-lg-12">
+            @if(isset($newestPost))
+            <!-- Featured blog post-->
+            <div class="card mb-4">
+                <a href="#!"><img class="card-img-top" style="width: 1108px; height:350px; object-fit: cover; " src="{{ asset('images/'.$newestPost->image) }}" alt="..." /></a>
+                <div class="card-body">
+                    <div class="small text-muted">{{ $newestPost->created_at }}</div>
+                    <h2 class="card-title">{{ $newestPost->title }}</h2>
+                    <p class="card-text">{{ $newestPost->description }}</p>
+                    <a class="btn btn-primary" href="{{ route('showPostDetail', $newestPost->id) }}">Read more →</a>
+                </div>
+            </div>
+            @endif
+            <!-- Nested row for non-featured blog posts-->
+            <div class="row">
+                @if(isset($posts))
+                @foreach($posts as $post)
+                <div class="col-lg-6">
+                    <!-- Blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" style="height:207px; object-fit: cover; " src="{{ asset('images/'.$post->image) }}" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{ $post->created_at }}</div>
+                            <h2 class="card-title h4">{{ $post->title }}</h2>
+                            <p class="card-text">{{ stringLimitedHelper($post->description, 200) }}</p>
+                            <a class="btn btn-primary" href="{{ route('showPostDetail', $post->id) }}">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+            <!-- Pagination-->
+            <nav aria-label="Pagination">
+                <hr class="my-0" />
+                <ul class="pagination justify-content-center my-4">
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 
 
 @endsection

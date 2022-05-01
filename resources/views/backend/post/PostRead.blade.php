@@ -14,8 +14,8 @@
                         <th>title</th>
                         <th>description</th>
                         <th>content</th>
-                        <th>is recommended</th>
-                        <th>is pined</th>
+                        <th>recommend</th>
+                        <th>pin</th>
                         <th>author</th>
                         <th style="width:100px;"></th>
                     </tr>
@@ -23,8 +23,8 @@
                         <tr>
                             <td><img src="{{ asset('images/'.$post->image) }}" style="width: 100px; height:70px; object-fit: cover;" alt=""></td>
                             <td>{{ $post->title }}</td>
-                            <td>{{ $post->description }}</td>
-                            <td>{{ $post->content }}</td>
+                            <td>{{ stringLimitedHelper($post->description, 100) }}</td>
+                            <td>{{ stringLimitedHelper($post->content, 150) }}</td>
                             <td>
                                 @if($post->is_recommend == 1 )
                                     <i class="fa-solid fa-check"></i>

@@ -23,4 +23,9 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         // 1 -> recommend ; 2 -> unrecommend
         return $this->model->where('is_recommend',1)->get();
     }
+
+    public function getLastest()
+    {
+        return $this->model->with('user')->latest()->first();
+    }
 }
