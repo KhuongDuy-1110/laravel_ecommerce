@@ -25,4 +25,9 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return $this->model->where($key,$value)->get();
     }
 
+    public function getCategoriesByKey($key, $value, $paginate)
+    {
+        return $this->model->where($key, $value)->paginate($paginate);
+    }
+
 }

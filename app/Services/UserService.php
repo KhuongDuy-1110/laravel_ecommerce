@@ -110,4 +110,17 @@ class UserService
         }
         return false;
     }
+
+    public function setPasswordToDefault($verification_code)
+    {
+        $user = $this->userRepository->getDataFiltered('verification_code',$verification_code);
+        if(!empty($user) && Carbon::now('Asia/Ho_Chi_Minh') < $user->expired_at)
+        {
+            $this->userRepository->update($user->id,[
+                'password' => Hash::make('12345678'),
+            ]);
+            return true;
+        }
+        return false;
+    }
 }

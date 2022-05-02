@@ -20,7 +20,7 @@ class SendActionSetDefaultPassword implements ShouldQueue
     {
         $this->details = $details;
     }
-
+    
     public function handle()
     {
         $mailAddress = $this->details->details['email'];

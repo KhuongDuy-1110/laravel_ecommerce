@@ -92,7 +92,19 @@ class AuthController extends Controller
     public function sendLink(ForgotPassRequest $request)
     {
         $data = $request->validated();
-        $this->userService->sendLinkForgotPassword($data);
-        return redirect()->route('user.login')->with('success', 'Check your mail to get link !');
+        $result = $this->userService->sendLinkForgotPassword($data);
+        if($result) {
+            return redirect()->route('user.login')->with('success', 'Check your mail to get link !');
+        }
+        return redirect()->route('user.login')->with('warining', 'Your email or password was not true !');
+    }
+
+    public function setDefaultPassword(Request $request)
+    {
+        $result = $this->userService->setPasswordToDefault($request->code);
+        if($result) {
+            return redirect()->route('user.login')->with('success', 'Your password was reseted successfully !');
+        }
+        return redirect()->route('user.login')->with('warning', 'Something went wrong, check it later !');
     }
 }

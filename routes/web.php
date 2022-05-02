@@ -51,6 +51,7 @@ Route::get('/get-password', 'AuthController@getpass');
 Route::get('/verify', 'AuthController@verified');
 Route::get('/forgot-password', 'AuthController@forgotPassword')->name('forgotPassword');
 Route::post('/forgot-password', 'AuthController@sendLink');
+Route::get('/set-default-password', 'AuthController@setDefaultPassword');
 
 
 # ===============Backend=================== #

@@ -37,14 +37,16 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind(CategoryRepositoryInterface::class, function(){
             $model = \App\Models\Category::class;
-            if(env('APP_CACHE'))
+            if(env('APP_CACHE')) {
                 return new CacheCategoryRepository(new $model);
+            }
             return new CategoryRepository(new $model);
         });
         $this->app->bind(ProductRepositoryInterface::class, function(){
             $model = \App\Models\Product::class;
-            if(env('APP_CACHE')) 
+            if(env('APP_CACHE')) {
                 return new CacheProductRepository(new $model);  
+            }
             return new ProductRepository(new $model);
         });
         
