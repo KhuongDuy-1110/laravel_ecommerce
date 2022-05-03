@@ -34,25 +34,22 @@ Route::group(['middleware' => 'lang'], function () {
     });
     Route::get('/telegram-message', 'TelegramController@updateActivity');
     Route::get('/posts/{id}', 'HomeController@showPostDetail')->name('showPostDetail');
+
+    Route::get('/login', function () {
+        return view('frontend/LoginForm', ['title' => 'login']);
+    })->name('user.login');
+    Route::post('/login', 'AuthController@authenticate');
+    Route::get('/register', function () {
+        return view('frontend/RegisterForm', ['title' => 'register']);
+    });
+    Route::post('/register', 'AuthController@register');
+    Route::get('/logout', 'AuthController@logout');
+    Route::get('/get-password', 'AuthController@getpass');
+    Route::get('/verify', 'AuthController@verified');
+    Route::get('/forgot-password', 'AuthController@forgotPassword')->name('forgotPassword');
+    Route::post('/forgot-password', 'AuthController@sendLink');
+    Route::get('/set-default-password', 'AuthController@setDefaultPassword');
 });
-
-
-
-Route::get('/login', function () {
-    return view('frontend/LoginForm', ['title' => 'login']);
-})->name('user.login');
-Route::post('/login', 'AuthController@authenticate');
-Route::get('/register', function () {
-    return view('frontend/RegisterForm', ['title' => 'register']);
-});
-Route::post('/register', 'AuthController@register');
-Route::get('/logout', 'AuthController@logout');
-Route::get('/get-password', 'AuthController@getpass');
-Route::get('/verify', 'AuthController@verified');
-Route::get('/forgot-password', 'AuthController@forgotPassword')->name('forgotPassword');
-Route::post('/forgot-password', 'AuthController@sendLink');
-Route::get('/set-default-password', 'AuthController@setDefaultPassword');
-
 
 # ===============Backend=================== #
 

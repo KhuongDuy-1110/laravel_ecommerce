@@ -34,12 +34,9 @@ class AuthController extends Controller
     public function register(AuthRequest $request)
     {
         $result = $this->userService->register($request);
-        if($result)
-        {
+        if($result) {
             return redirect(url('/login'))->with('success', 'Thank you for register - Please check your mail to verify !');
-        }
-        else
-        {
+        } else {
             return redirect(url('/login'))->with('warning', 'Something went wrong - Please try again !');
         }
     }
@@ -53,8 +50,7 @@ class AuthController extends Controller
             'password' => $request->input('password'),
         ], $remember_me)) {
 
-            if (Auth::User()->email_verified_at == null)
-            {
+            if (Auth::User()->email_verified_at == null) {
                 Auth::logout();
                 return redirect()->back()->with('warning', 'Your mail was unverified');
             }

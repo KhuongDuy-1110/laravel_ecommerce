@@ -43,9 +43,9 @@
                 <div class="col-md-7">
                     <div class="d-flex">
                         <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
-                        <h3 class="ml-2 pt-3"><b>Sign In</b></h3>
+                        <h3 class="ml-2 pt-3"><b>{{ __('Sign in') }}</b></h3>
                     </div>
-                    <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    <p class="mb-4">{{ __('Welcome to Bao Phat Smart Devices !') }}</p>
                     @include('layouts/flash-message')
                     <form action="#" method="post">
                         @csrf
@@ -54,18 +54,18 @@
                             <input type="text" name="email" class="form-control" placeholder="your-email@gmail.com" id="username">
                         </div>
                         <div class="form-group last" >
-                            <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Your Password" id="password">
+                            <label for="password">{{ __('Password') }}</label>
+                            <input type="password" name="password" class="form-control" placeholder="{{ __('Your Password') }}" id="password">
                         </div>
                         <div class="d-flex mb-2 align-items-center" >
-                            <label class="control control--checkbox mb-0" ><span class="caption">Remember me</span>
+                            <label class="control control--checkbox mb-0" ><span class="caption">{{ __('Remember me') }}</span>
                                 <input type="checkbox" name="remember" style="background-color: #6C4A4A;" />
                                 <!-- <div class="control__indicator"></div> -->
                             </label>
-                            <span class="ml-auto"><a href="{{ route('forgotPassword') }}" class="forgot-pass" style="color: #6C4A4A;">Forgot Password</a></span>
+                            <span class="ml-auto"><a href="{{ route('forgotPassword') }}" class="forgot-pass" style="color: #6C4A4A;">{{ __('Forgot password ?') }}</a></span>
                         </div>
                         <div class="col-md-12 p-0 mt-4">
-                            <input type="submit" value="Log In" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
+                            <input type="submit" value="{{ __('Sign in') }}" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
                         </div>
                         
                     </form>

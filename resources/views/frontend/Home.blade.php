@@ -91,8 +91,8 @@
         <div class="carousel-item active">
             <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:400px; object-fit: cover; " alt="">
             <div class="carousel-caption">
-                <h3>Bao Phat Smart Devices</h3>
-                <button type="button" class="btn btn-outline-light btn-lg">Subcribe for more information</button>
+                <h3>{{ __('Bao Phat Smart Devices') }}</h3>
+                <button type="button" class="btn btn-outline-light btn-lg">{{ __('Subcribe for more information') }}</button>
             </div>
         </div>
     </div>
@@ -102,7 +102,7 @@
 <div class="container-fluid padding mt-5">
     <div class="row welcome text-center">
         <div class="col-12">
-            <h1 class="display-4" style="font-family: 'Lobster', cursive;">blog</h1>
+            <h1 class="display-4" style="font-family: 'Lobster', cursive;">{{ __('News & Events') }}</h1>
         </div>
         <hr style="height:0.5px;width:15%;color:gray;background-color:gray">
     </div>
@@ -121,7 +121,7 @@
                     <div class="small text-muted">{{ $newestPost->created_at }}</div>
                     <h2 class="card-title">{{ $newestPost->title }}</h2>
                     <p class="card-text">{{ $newestPost->description }}</p>
-                    <a class="btn btn-primary" href="{{ route('showPostDetail', $newestPost->id) }}">Read more →</a>
+                    <a class="btn btn-primary" href="{{ route('showPostDetail', $newestPost->id) }}">{{ __('Read more') }} →</a>
                 </div>
             </div>
             @endif
@@ -137,7 +137,7 @@
                             <div class="small text-muted">{{ $post->created_at }}</div>
                             <h2 class="card-title h4">{{ $post->title }}</h2>
                             <p class="card-text">{{ stringLimitedHelper($post->description, 200) }}</p>
-                            <a class="btn btn-primary" href="{{ route('showPostDetail', $post->id) }}">Read more →</a>
+                            <a class="btn btn-primary" href="{{ route('showPostDetail', $post->id) }}">{{ __('Read more') }} →</a>
                         </div>
                     </div>
                 </div>
