@@ -28,5 +28,13 @@
     "Password": "Mật khẩu",
     "Remember me": "Ghi nhớ đăng nhập",
     "Forgot password ?": "Quên mật khẩu ?",
-    "Your Password": "Mật khẩu của bạn"
+    "Your Password": "Mật khẩu của bạn",
+    "User name": "Họ tên",
+    "Password confirmation": "Xác nhận mật khẩu",
+    "DOB": "Ngày, tháng, năm sinh",
+    "Phone number": "Số điện thoại",
+    "Address": "Địa chỉ",
+    "Forgot password": "Quên mật khẩu",
+    "Enter your email, phone number in the form below": "Xin mời nhập email, số điện thoại bạn đã đăng ký vào mẫu dưới !",
+    "Confirm": "Xác nhận"
 }

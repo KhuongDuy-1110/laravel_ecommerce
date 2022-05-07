@@ -38,14 +38,14 @@
                 <div class="col-md-7">
                     <div class="d-flex">
                         <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
-                        <h3 class="ml-2 pt-3"><b>Register</b></h3>
+                        <h3 class="ml-2 pt-3"><b>{{ __('Sign up') }}</b></h3>
                     </div>
-                    <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    <p class="mb-4">{{ __('Welcome to Bao Phat Smart Devices !') }}</p>
                     @include('layouts/flash-message')
                     <form action="#" method="post">
                         @csrf
                         <div class="form-group first">
-                            <label for="username">Name: </label>
+                            <label for="username">{{ __('User name') }}: </label>
                             <input type="text" name="name" class="form-control custom" placeholder="Your Name" id="username">
                         </div>
 
@@ -57,7 +57,7 @@
                         @endif
 
                         <div class="form-group last">
-                            <label for="password">Password:</label>
+                            <label for="password">{{ __('Password') }}:</label>
                             <input type="password" name="password" class="form-control custom" placeholder="Your Password" id="password">
                         </div>
 
@@ -69,7 +69,7 @@
                         @endif
 
                         <div class="form-group last">
-                            <label for="re-password">Password confimation:</label>
+                            <label for="re-password">{{ __('Password confirmation') }}:</label>
                             <input type="password" name="password_confirmation" class="form-control custom" placeholder="Confirm Password" id="re-password">
                         </div>
 
@@ -93,7 +93,7 @@
                         @endif
 
                         <div class="form-group last">
-                            <label for="dob">DOB:</label>
+                            <label for="dob">{{ __('DOB') }}:</label>
                             <input type="date" name="dob" class="form-control custom" placeholder="Date of Birth" id="dob">
                         </div>
 
@@ -105,7 +105,7 @@
                         @endif
 
                         <div class="form-group last">
-                            <label for="phone">Phone number:</label>
+                            <label for="phone">{{ __('Phone number') }}:</label>
                             <input type="text" name="phone" class="form-control custom" placeholder="Your phone number" id="phone">
                         </div>
 
@@ -117,7 +117,7 @@
                         @endif
 
                         <div class="form-group last">
-                            <label for="address">Address:</label>
+                            <label for="address">{{ __('Address') }}:</label>
                             <input type="address" name="address" class="form-control custom" placeholder="Your address" id="address">
                         </div>
 
@@ -129,7 +129,7 @@
                         @endif
 
                         <div class="col-md-12 p-0 mt-4">
-                            <input type="submit" value="Submit" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
+                            <input type="submit" value="{{ __('Sign up') }}" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
                         </div>
 
                     </form>

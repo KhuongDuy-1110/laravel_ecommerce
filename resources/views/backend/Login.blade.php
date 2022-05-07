@@ -27,7 +27,9 @@
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
 				<a href="login.html">
-					<img src="{{ asset('vendors/images/deskapp-logo.svg') }}" alt="">
+					<!-- <img src="{{ asset('vendors/images/deskapp-logo.svg') }}" alt=""> -->
+					<img src="{{ asset('vendors/images/favicon-32x32.png') }}">
+					<span style="font-weight: bold; font-size: 30px; color:brown" class="ml-3">Bao Phat SD</span>
 				</a>
 			</div>
 		</div>

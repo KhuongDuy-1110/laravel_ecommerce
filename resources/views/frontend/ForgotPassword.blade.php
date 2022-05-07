@@ -38,9 +38,9 @@
                 <div class="col-md-7">
                     <div class="d-flex">
                         <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
-                        <h3 class="ml-2 pt-3"><b>Forgot password</b></h3>
+                        <h3 class="ml-2 pt-3"><b>{{ __('Forgot password') }}</b></h3>
                     </div>
-                    <p class="mb-4 text-danger">* Enter your email, phone number in the form below</p>
+                    <p class="mb-4 text-danger">* {{ __('Enter your email, phone number in the form below') }}</p>
                     @include('layouts/flash-message')
                     <form action="#" method="post">
                         @csrf
@@ -49,11 +49,11 @@
                             <input type="text" name="email" class="form-control" placeholder="your-email@gmail.com" id="username">
                         </div>
                         <div class="form-group first">
-                            <label for="phone">Phone</label>
+                            <label for="phone">{{ __('Phone number') }}</label>
                             <input type="number" name="phone" class="form-control" placeholder="0935717***" id="phone">
                         </div>
                         <div class="col-md-12 p-0 mt-4">
-                            <input type="submit" value="Confirm" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
+                            <input type="submit" value="{{ __('Confirm') }}" class="btn btn-block btn-primary border-0 p-3" style="background-color: #6C4A4A;">
                         </div>
                         
                     </form>
