@@ -27,8 +27,9 @@ Route::group(['middleware' => 'lang'], function () {
             Route::post('/order', 'OrderController@mailling');
         });
 
-        Route::get('user/profile', 'HomeController@profile');
+        Route::get('user/profile', 'HomeController@profile')->name('profile');
         Route::post('user/profile', 'HomeController@editProfile');
+        Route::post('user/password', 'HomeController@changePassword')->name('changePassword');
         Route::get('user/order', 'HomeController@order');
 
     });

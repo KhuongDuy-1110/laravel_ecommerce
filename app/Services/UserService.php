@@ -123,4 +123,16 @@ class UserService
         }
         return false;
     }
+
+    public function changePassword($data)
+    {
+        $user = $this->userRepository->find($data['id']);
+        if( !empty($user) && Hash::check($data['oldPassword'], $user->password)) {
+            $this->userRepository->update($user->id,[
+                'password' => Hash::make($data['password']),
+            ]);
+            return true;
+        }
+        return false;
+    }
 }

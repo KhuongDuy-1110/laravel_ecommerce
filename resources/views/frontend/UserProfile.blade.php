@@ -47,6 +47,18 @@
                     </div>
                     <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
                     @include('layouts.flash-message')
+                    @if($errors->has('oldPassword'))
+                    <div class="row m-3">
+                        <div class="col-md-10 text-danger">{{ $errors->first('oldPassword') }}
+                        </div>
+                    </div>
+                    @endif
+                    @if($errors->has('password'))
+                    <div class="row m-3" >
+                        <div class="col-md-10 text-danger">{{ $errors->first('password') }}
+                        </div>
+                    </div>
+                    @endif
                     <div class="col-md-12 d-flex" style="border: 3px solid #6C4A4A; border-radius: 5px; border-style: none none solid solid;">
                         <div class="col-md-10 m-auto">
 
@@ -56,6 +68,13 @@
                                     <input type="text" readonly class="form-control-plaintext" id="staticName" name="name" value="{{ $user->name }}">
                                 </div>
                             </div>
+                            @if($errors->has('name'))
+                            <div class="row" style="margin-top:5px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-10 text-danger">{{ $errors->first('name') }}
+                                </div>
+                            </div>
+                            @endif
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Email: </label>
                                 <div class="col-sm-10">
@@ -68,12 +87,26 @@
                                     <input type="text" readonly class="form-control-plaintext" id="staticEmail" name="phone" value="{{ $user->phone }}">
                                 </div>
                             </div>
+                            @if($errors->has('phone'))
+                            <div class="row" style="margin-top:5px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-10 text-danger">{{ $errors->first('phone') }}
+                                </div>
+                            </div>
+                            @endif
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-2 col-form-label">Address: </label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext" id="staticEmail" name="address" value="{{ $user->address }}">
                                 </div>
                             </div>
+                            @if($errors->has('address'))
+                            <div class="row" style="margin-top:5px;">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-10 text-danger">{{ $errors->first('address') }}
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         <div class="col-md-2">
                             <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="200" height="200" class="rounded-circle">
@@ -145,7 +178,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form method="post">
+                                <form method="post" action="{{ route('changePassword') }}">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="col-md-12 m-auto">
@@ -158,13 +191,13 @@
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-form-label">New Password: </label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control-plaintext" id="staticEmail" name="password" placeholder="New Password">
+                                                <input type="password" name="password" class="form-control custom" placeholder="Your New Password" id="password">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="staticEmail" class="col-form-label">Confirm New Password: </label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" class="form-control-plaintext" id="staticEmail" name="password-confirmation" placeholder="Confirm">
+                                                <input type="password" name="password_confirmation" class="form-control custom" placeholder="Confirm Password" id="re-password">
                                                 </div>
                                             </div>
                                             

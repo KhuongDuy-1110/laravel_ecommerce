@@ -14,9 +14,9 @@ class PostService
         $this->postRepository = $postRepository;
     }
 
-    public function getAllPosts()
+    public function getAllPosts($paginate = null)
     {
-        return $this->postRepository->getPosts();
+        return $this->postRepository->getPosts($paginate);
     }
 
     public function create($request, $authorId)
