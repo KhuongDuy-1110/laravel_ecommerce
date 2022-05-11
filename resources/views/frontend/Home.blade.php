@@ -1,7 +1,15 @@
 @extends('layouts.client')
 @section('clientContent')
+
+<!-- Search form -->
+<form class="d-flex form-inline active-pink active-pink-2 justify-content-center md-form form-sm p-5">
+    <input class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Search" aria-label="Search" id="search">
+    <i class="fas fa-search" aria-hidden="true"></i>
+</form>
+
+
 <!-- Image slider -->
-<div id="slides" class="carousel slide" data-ride="carousel">
+<div id="slides" class="carousel slide pl-5 pr-5" data-ride="carousel">
     <ul class="carousel-indicators">
         <li data-target="#slides" data-slide-to="0" class="active"></li>
         @if(!empty($slides))
@@ -12,7 +20,7 @@
     </ul>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:700px; object-fit: cover;" alt="">
+            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:600px; object-fit: cover;" alt="">
             <div class="carousel-caption">
                 <h1 class="display-2">Welcome</h1>
                 <h3>Lets take a tour !</h3>
@@ -22,7 +30,7 @@
         @if(!empty($slides))
         @foreach($slides as $image)
         <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('images/'.$image->path) }}" style="height:700px; object-fit: cover;" alt="">
+            <img class="d-block w-100" src="{{ asset('images/'.$image->path) }}" style="height:600px; object-fit: cover;" alt="">
         </div>
         @endforeach
         @endif
@@ -86,7 +94,7 @@
 <!-- end_hot products -->
 
 <!-- Banner -->
-<div id="slides" class="carousel slide mb-5" data-ride="carousel">
+<div id="slides" class="carousel slide mb-5 pl-5 pr-5" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:400px; object-fit: cover; " alt="">
@@ -155,5 +163,18 @@
     </div>
 </div>
 
+<style>
+    .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
+        border: none;
+  border-bottom: 2px solid #f48fb1;
+  /* box-shadow: 0 1px 0 0 #f48fb1; */
+}
+.active-pink input.form-control[type=text] {
+    border: none;
+  border-bottom: 2px solid #f48fb1;
+  /* box-shadow: 0 1px 0 0 #f48fb1; */
+}
+
+</style>
 
 @endsection
