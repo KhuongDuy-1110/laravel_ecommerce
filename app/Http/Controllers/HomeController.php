@@ -10,6 +10,7 @@ use App\Services\ImageService;
 use App\Services\PostService;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\ChangePasswordRequest;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -72,5 +73,26 @@ class HomeController extends Controller
     {
         $post = $this->postService->find($id);
         return view('frontend.PostDetail', ['post'=>$post]);
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->get();
+            if ($products) {
+                foreach ($products as $key => $product) {
+                    $output .= 
+                    '<tr>
+                        <td>'. '<img src="' . 'images/'.$product->photo.'">'. '</td>
+                        <td>' . $product->name . '</td>
+                        <td>' . $product->description . '</td>
+                        <td>' . $product->price . '</td>
+                    </tr>';
+                }
+            }
+            
+            return Response($output);
+        }
     }
 }

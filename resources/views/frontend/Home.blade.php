@@ -7,6 +7,49 @@
     <i class="fas fa-search" aria-hidden="true"></i>
 </form>
 
+<div class="smart-search">
+    <ul>
+        <li>
+            <img src="http://localhost:8000/images/mb_1639537275.jpg">
+            <a href="#">18-Macbook Pro 16 Touch Bar 2.6GHz Core</a>
+        </li>
+        <li>
+            <img src="http://localhost:8000/images/mb_1639537275.jpg">
+            <a href="#">18-Macbook Pro 16 Touch Bar 2.6GHz Core</a>
+        </li>
+        <li>
+            <img src="http://localhost:8000/images/mb_1639537275.jpg">
+            <a href="#">18-Macbook Pro 16 Touch Bar 2.6GHz Core</a>
+        </li>
+    </ul>
+</div>
+<style>
+    .smart-search{
+        position: absolute;
+        width: 30%;
+        left: 650px;
+        background: white;
+        z-index: 1;
+        display: none;
+        height: 250px;
+        overflow: scroll;
+    }
+    .smart-search ul{
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+    }
+    .smart-search ul li{
+        padding: 5px;
+        margin: 5px;
+        border-bottom: 1px solid #dddddd;
+    }
+    .smart-search img{
+        width: 70px;
+        margin-right: 5px;
+        margin: 5px;
+    }
+</style>
 
 <!-- Image slider -->
 <div id="slides" class="carousel slide pl-5 pr-5" data-ride="carousel">
@@ -166,15 +209,38 @@
 <style>
     .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
         border: none;
-  border-bottom: 2px solid #f48fb1;
-  /* box-shadow: 0 1px 0 0 #f48fb1; */
-}
-.active-pink input.form-control[type=text] {
-    border: none;
-  border-bottom: 2px solid #f48fb1;
-  /* box-shadow: 0 1px 0 0 #f48fb1; */
-}
+        border-bottom: 2px solid #f48fb1;
+        /* box-shadow: 0 1px 0 0 #f48fb1; */
+    }
+    .active-pink input.form-control[type=text] {
+        border: none;
+        border-bottom: 2px solid #f48fb1;
+        /* box-shadow: 0 1px 0 0 #f48fb1; */
+    }
 
 </style>
 
+<!-- <script src="{{ asset('ajaxSearchJs/index.js') }}"></script> -->
+<script type="text/javascript">
+    $('#search').on('keyup',function(){
+    $value = $(this).val();
+    var strKey = $value;
+    if (strKey.trim() == "")
+        $(".smart-search").attr("style","display:none;");
+    else
+        $(".smart-search").attr("style","display:block;");
+    $.ajax({
+        type: 'get',
+        url: "{{ route('search') }}",
+        data: {
+            'search': $value
+        },
+        success:function(data){
+            $(".smart-search ul").empty();
+            $(".smart-search ul").append(data);
+        }
+        });
+    })
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 @endsection

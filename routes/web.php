@@ -50,6 +50,8 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('/forgot-password', 'AuthController@forgotPassword')->name('forgotPassword');
     Route::post('/forgot-password', 'AuthController@sendLink');
     Route::get('/set-default-password', 'AuthController@setDefaultPassword');
+    Route::get('/search','HomeController@search')->name('search');
+
 });
 
 # ===============Backend=================== #
