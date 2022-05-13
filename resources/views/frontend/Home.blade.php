@@ -3,7 +3,7 @@
 
 <!-- Search form -->
 <form class="d-flex form-inline active-pink active-pink-2 justify-content-center md-form form-sm p-5">
-    <input class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Search" aria-label="Search" id="search">
+    <input autocomplete="off" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Type here to search products" aria-label="Search" id="search">
     <i class="fas fa-search" aria-hidden="true"></i>
 </form>
 
@@ -27,6 +27,7 @@
     .smart-search{
         position: absolute;
         width: 30%;
+        top: 180px;
         left: 650px;
         background: white;
         z-index: 1;

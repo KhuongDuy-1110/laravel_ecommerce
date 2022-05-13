@@ -82,12 +82,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{ '#collapseExample'.$num }}" aria-expanded="false" aria-controls="{{ 'collapseExample'.$num }}">See detail</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{ '.collapseExample'.$num }}" aria-expanded="false" aria-controls="{{ 'collapseExample'.$num }}">See detail</button>
                                 </td>
                             </tr>
 
                             @foreach($orderDetail->products as $product)
-                            <tr class="collapse" id="{{ 'collapseExample'.$num }}">
+                            <tr class="collapse {{ 'collapseExample'.$num }}">
                                 <td colspan="6">
                                     <div>
                                         <div class="card card-body">

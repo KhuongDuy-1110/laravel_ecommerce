@@ -14,7 +14,7 @@ Route::group(['middleware' => 'lang'], function () {
 
     Route::get('/products', 'ProductController@index');
     Route::get('/products/{id}', 'ProductController@categoryFilter');
-    Route::get('/products/detail/{id}', 'ProductController@detail');
+    Route::get('/products/detail/{id}', 'ProductController@detail')->name('productDetailCl');
 
     Route::group(['middleware' => 'auth.user'], function () {
         
