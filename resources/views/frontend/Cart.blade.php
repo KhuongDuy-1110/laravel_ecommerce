@@ -89,7 +89,7 @@
             <li class="cart-total">{{ __('Total') }} <span>$ {{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
         </ul>
         <div class="row m-auto">
-            <a href="#" class="col-lg-5 btn process-btn">{{ __('Update') }}</a>
+            <a href="{{ route('homePage') }}" class="col-lg-5 btn process-btn">{{ __('Continue shopping') }}</a>
             <a href="{{ url('/cart/checkout') }}" class="col-lg-5 btn process-btn ml-auto">{{ __('Checkout') }}</a>
         </div>
     </div>

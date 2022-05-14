@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 Route::group(['middleware' => 'lang'], function () {
     Route::get('/change-language/{language}', 'LanguageController@change');
 
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('homePage');
 
     Route::get('/products', 'ProductController@index');
     Route::get('/products/{id}', 'ProductController@categoryFilter');

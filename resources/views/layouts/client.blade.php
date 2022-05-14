@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/localization.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/x-icon" href="{{ asset('images/banner/logo.png') }}">
     <script src="{{ asset('ajaxSearchJs/jquery-3.6.0.min.js') }}"></script>
@@ -199,107 +200,6 @@
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Muli');
-        body {
-        font-family: Arial;
-        font-family: 'Muli', sans-serif;
-        }
-        .nav-wrapper {
-        width: 150px;
-        margin-top: 10px;
-        }
-        .sl-nav {
-        display: inline;
-        }
-        .sl-nav ul {
-        margin:0;
-        padding:0;
-        list-style: none;
-        position: relative;
-        display: inline-block;
-        }
-        .sl-nav li {
-        cursor: pointer;
-        padding-bottom:10px;
-        }
-        .sl-nav li ul {
-        display: none;
-        }
-        .sl-nav li:hover ul {
-        position: absolute;
-        top:29px;
-        right:-15px;
-        display: block;
-        background: #fff;
-        width: 120px;
-        padding-top: 0px;
-        z-index: 1;
-        border-radius:5px;
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-        }
-        .sl-nav li:hover .triangle {
-        position: absolute;
-        top: 15px;
-        right: -10px;
-        z-index:10;
-        height: 14px;
-        overflow:hidden;
-        width: 30px;
-        background: transparent;
-        }
-        .sl-nav li:hover .triangle:after {
-        content: '';
-        display: block;
-        z-index: 20;
-        width: 15px;
-        transform: rotate(45deg) translateY(0px) translatex(10px);
-        height: 15px;
-        background: #fff;
-        border-radius:2px 0px 0px 0px;
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-        }
-        .sl-nav li ul li {
-        position: relative;
-        text-align: left;
-        background: transparent;
-        padding: 15px 15px;
-        padding-bottom:0;
-        z-index: 2;
-        font-size: 15px;
-        color: #3c3c3c;
-        }
-        .sl-nav li ul li:last-of-type {
-        padding-bottom: 15px;
-        }
-        .sl-nav li ul li span {
-        padding-left: 5px;
-        }
-        .sl-nav li ul li span:hover, .sl-nav li ul li span.active {
-        color: #146c78;
-        }
-        .sl-flag {
-        display: inline-block;
-        box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
-        width: 15px;
-        height: 15px;
-        background: #aaa;
-        border-radius: 50%;
-        position: relative;
-        top: 2px;
-        overflow: hidden;
-        }
-        .flag-de {
-        background-image: url('images/flag_lang/american.png');
-        background-size: 25px;
-        background-position: center center;
-        }
-        .flag-usa {
-        background-size: 25px;
-        background-position: 50% 50%;
-        background-image: url('images/flag_lang/vietnam.png');
-        }
-    </style>
 </body>
 
 </html>

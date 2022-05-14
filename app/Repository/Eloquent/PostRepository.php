@@ -15,7 +15,7 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
 
     public function getPosts($n = null)
     {
-        return $this->model->with('user')->orderByDesc('id')->paginate($n);
+        return $this->model->with('user')->orderByDesc('id')->simplePaginate($n);
     }
 
     public function getRecommendedPosts()

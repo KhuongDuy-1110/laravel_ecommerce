@@ -117,7 +117,7 @@ class ProductService
     {
         $product = $this->productRepository->find($id);
         $this->productRepository->delete($id);
-        Storage::delete('images/'.$product->photo);       
+        // Storage::delete('images/'.$product->photo);       
     }
 
 }
