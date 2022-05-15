@@ -25,7 +25,7 @@
                                 <form method="POST" action="{{ route('user.destroy',$rows->id) }}" >
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="return window.confirm('Are you sure?');" class="btn">Delete</button>
+                                    <button type="submit" onclick="return window.confirm('Are you sure, this action delete include all order of user if there are any?');" class="btn">Delete</button>
                                 </form>
                             </td>
                         </tr>
