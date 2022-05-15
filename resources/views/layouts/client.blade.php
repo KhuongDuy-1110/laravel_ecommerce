@@ -73,8 +73,8 @@
                         </a>
                         
                         <div class="dropdown-menu dropdown-menu-icon-list" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url('user/profile') }}"><i class="fa-solid fa-user"></i>&nbsp; Profile</a>
-                            <a class="dropdown-item" href="{{ url('user/order') }}"><i class="fa-solid fa-bag-shopping"></i>&nbsp; Orders</a>
+                            <a class="dropdown-item" href="{{ url('user/profile') }}"><i class="fa-solid fa-user"></i>&nbsp; {{ __('Profile') }}</a>
+                            <a class="dropdown-item" href="{{ url('user/order') }}"><i class="fa-solid fa-bag-shopping"></i>&nbsp; {{ __('Orders') }}</a>
                             <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa-solid fa-lock"></i>&nbsp; {{ __('Log out') }}</a>
                         </div>
                     </li> 
@@ -93,7 +93,7 @@
                     <div class="sl-nav">
                         <ul>
                         <li>
-                            <span class="ml-3">Language</span>
+                            <span class="ml-3">{{ __('Language') }}</span>
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
                             <div class="triangle"></div>
                             <ul>

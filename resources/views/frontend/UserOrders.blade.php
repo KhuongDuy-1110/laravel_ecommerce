@@ -43,23 +43,23 @@
                 <div class="col-md-12">
                     <div class="d-flex">
                         <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
-                        <h3 class="ml-2 pt-3"><b>Your Orders</b></h3>
+                        <h3 class="ml-2 pt-3"><b>{{ __('Your Orders') }}</b></h3>
                     </div>
-                    <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    <p class="mb-4">{{ __('Welcome to Bao Phat Smart Devices !') }}</p>
                     @if(count($orders->orders)==0)
-                        <div>You haven't ordered anything ! </div>
+                        <div>{{ __('You have not ordered anything !') }} </div>
                     @else
                     <table class="col-md-12 table table-bordered">
                         <tr>
-                            <td colspan="6" style="background-color: #6C4A4A; color: white; border-radius: 5px 5px 0px 0px;">Orders</td>
+                            <td colspan="6" style="background-color: #6C4A4A; color: white; border-radius: 5px 5px 0px 0px;">{{ __('Orders') }}</td>
                         </tr>
                         <tr>
-                            <th>Number</th>
-                            <th>Quantity</th>
-                            <th>Total Price</th>
-                            <th>Order At</th>
-                            <th>Status</th>
-                            <th>Detail</th>
+                            <th>{{ __('Number') }}</th>
+                            <th>{{ __('Quantity') }}</th>
+                            <th>{{ __('Total Price') }}</th>
+                            <th>{{ __('Order At') }}</th>
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Detail') }}</th>
                         </tr>
                         @foreach($orders->orders as $num => $order)
                             @php
@@ -72,17 +72,17 @@
                                 <td>{{ $order->created_at }}</td>
                                 <td>
                                     @if($order->status === 0)
-                                    <button type="button" class="btn btn-secondary">Processing</button>
+                                    <button type="button" class="btn btn-secondary">{{ __('Processing') }}</button>
                                     @elseif($order->status === 1)
-                                    <button type="button" class="btn btn-warning">Transfering</button>
+                                    <button type="button" class="btn btn-warning">{{ __('Transfering') }}</button>
                                     @elseif($order->status === 2)
-                                    <button type="button" class="btn btn-success">Finish</button>
+                                    <button type="button" class="btn btn-success">{{ __('Finished') }}</button>
                                     @else
-                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                    <button type="button" class="btn btn-danger">{{ __('Canceled') }}</button>
                                     @endif
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{ '.collapseExample'.$num }}" aria-expanded="false" aria-controls="{{ 'collapseExample'.$num }}">See detail</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{ '.collapseExample'.$num }}" aria-expanded="false" aria-controls="{{ 'collapseExample'.$num }}">{{ __('See detail') }}</button>
                                 </td>
                             </tr>
 
@@ -93,7 +93,7 @@
                                         <div class="card card-body">
                                             <div style="display: flex;">
                                                 <img src="{{ asset('images/'.$product->productInfo->photo) }}" style="width: 100px; height:70px; object-fit: cover;" alt="">
-                                                <div class="product"><b>Name: </b>{{ $product->productInfo->name .' '. $product->productInfo->title }}</div>
+                                                <div class="product"><b>Name: </b>{{ $product->productInfo->name }}</div>
                                                 <div class="product"><b>Price: </b>${{ $product->productInfo->price }}</div>
                                                 <div class="product"><b>Quantity: {{ $product->quantity }}</b></div>
                                             </div>

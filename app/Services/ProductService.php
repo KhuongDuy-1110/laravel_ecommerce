@@ -88,7 +88,7 @@ class ProductService
         
 
         if($request->hasFile('photo')){
-            Storage::delete('images/'.$product->photo);
+            // Storage::delete('images/'.$product->photo);
             $filenameWithExt = $request->file('photo')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('photo')->getClientOriginalExtension();

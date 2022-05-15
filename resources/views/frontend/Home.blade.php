@@ -3,7 +3,7 @@
 
 <!-- Search form -->
 <form class="d-flex form-inline active-pink active-pink-2 justify-content-center md-form form-sm p-5">
-    <input autocomplete="off" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="Type here to search products" aria-label="Search" id="search">
+    <input autocomplete="off" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="{{ __('Type here to search products') }}" aria-label="Search" id="search">
     <i class="fas fa-search" aria-hidden="true"></i>
 </form>
 
@@ -109,14 +109,14 @@
                 <div class="product-1 align-item-center p-2 text-center">
                     <img src="{{ asset('images/'.$rows->photo) }}" style="width: 330px; height: 206px; object-fit: contain; " alt="" class="rounded">
                     <a href="{{ url('/products/detail/'.$rows->id) }}" class="badge card-link text-dark">
-                        <h5>{{ $rows->name }}</h5>
+                        <h5>{{ stringLimitedHelper($rows->name, 26) }}</h5>
                     </a>
                     <div class="mt-3 info">
                         <span class="text1 d-block">{{ $rows->title }}</span>
                         <span class="text1">{{ $rows->name }} / {{ $rows->title }}</span>
                     </div>
                     <div class="cost mt-3 text-dark">
-                        <span>$ {{ $rows->price }}</span>
+                        <span><b>$ {{ $rows->price }}</b></span>
                         <div class="star mt-3 align-items-center">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>

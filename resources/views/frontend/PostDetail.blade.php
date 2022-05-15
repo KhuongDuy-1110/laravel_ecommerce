@@ -1,5 +1,6 @@
 @extends('layouts.client')
 @section('clientContent')
+<!-- fb comment -->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v13.0&appId=786455488710698&autoLogAppEvents=1" nonce="u254CuZj"></script>
 <!-- Image slider -->

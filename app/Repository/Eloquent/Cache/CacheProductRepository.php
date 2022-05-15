@@ -91,6 +91,11 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
         Cache::flush();
     }
 
+    public function getCategoryByProductDetail($id)
+    {
+        return $this->model->with('category')->where('id',$id)->first();
+    }
+
     public function leftJoinTable($table,$table1Id, $dataSelect = [], $n, $table2Id)
     {
         // if(Redis::get('product.all'))

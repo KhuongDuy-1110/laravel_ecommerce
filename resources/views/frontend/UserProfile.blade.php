@@ -43,9 +43,9 @@
                 <div class="col-md-8">
                     <div class="d-flex">
                         <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
-                        <h3 class="ml-2 pt-4"><b>Profile</b></h3>
+                        <h3 class="ml-2 pt-4"><b>{{ __('Profile') }}</b></h3>
                     </div>
-                    <p class="mb-4">Welcome to Bao Phat Smart Devices !</p>
+                    <p class="mb-4">{{ __('Welcome to Bao Phat Smart Devices !') }}</p>
                     @include('layouts.flash-message')
                     @if($errors->has('oldPassword'))
                     <div class="row m-3">
@@ -113,8 +113,8 @@
                         </div>
                     </div>
                     <div class="d-flex mt-2 flex-row-reverse">
-                    <button type="button" style="background-color: #6C4A4A;" class="btn btn-primary border-0" data-toggle="modal" data-target="#modalPassword">Update Password</button>
-                        <button type="button" style="background-color: #6C4A4A;" class="btn btn-primary border-0 mr-2" data-toggle="modal" data-target="#modalInformation">Update Information</button>
+                    <button type="button" style="background-color: #6C4A4A;" class="btn btn-primary border-0" data-toggle="modal" data-target="#modalPassword">{{ __('Update Password') }}</button>
+                        <button type="button" style="background-color: #6C4A4A;" class="btn btn-primary border-0 mr-2" data-toggle="modal" data-target="#modalInformation">{{ __('Update Information') }}</button>
                     </div>
 
                     <!-- Modal Information -->
@@ -122,7 +122,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalInformationLabel">Update User Information</h5>
+                                    <h5 class="modal-title" id="modalInformationLabel">{{ __('Update Information') }}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -159,8 +159,8 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="change" value="0" class="btn btn-danger">Save changes</button>
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">{{ __('Cancel') }}</button>
+                                        <button type="submit" name="change" value="0" class="btn btn-danger">{{ __('Save changes') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -173,7 +173,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalPasswordLabel">Update New Password</h5>
+                                    <h5 class="modal-title" id="modalPasswordLabel">{{ __('Update Password') }}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -205,8 +205,8 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="change" value="1" class="btn btn-danger">Confirm</button>
+                                        <button type="button" class="btn btn-light" data-dismiss="modal">{{ __('Cancel') }}</button>
+                                        <button type="submit" name="change" value="1" class="btn btn-danger">{{ __('Confirm') }}</button>
                                     </div>
                                 </form>
                             </div>

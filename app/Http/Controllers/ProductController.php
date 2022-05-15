@@ -39,7 +39,7 @@ class ProductController extends Controller
 
     public function detail(Request $request)
     {
-        $data = $this->productRepository->find($request->id);
+        $data = $this->productRepository->getCategoryByProductDetail($request->id);
         return view('frontend/ProductDetail',['data'=>$data]);
     }
 

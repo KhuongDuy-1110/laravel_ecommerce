@@ -16,7 +16,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12 text-center mb-3">
-                <h2 style="font-family: 'Lobster', cursive;">Confirm Your Infomation</h2>
+                <h2 style="font-family: 'Lobster', cursive;">{{ __('Confirm Your Infomation') }}</h2>
                 <hr>
             </div>
             <div class="col-md-6 m-auto">
@@ -52,8 +52,8 @@
         <div class="checkout">
             <ul>
                 @if( Session::has('cart') )
-                    <li class="subtotal">Subtotal <span>${{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
-                    <li class="cart-total">Total <span>${{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
+                    <li class="subtotal">{{ __('Subtotal') }} <span>${{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
+                    <li class="cart-total">{{ __('Total') }} <span>${{ number_format(Session::get('cart')->totalPrice) }}</span> </li>
                 @endif
             </ul>
             <input type="submit" class="btn process-btn col-lg-12" value="Confirm">

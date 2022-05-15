@@ -11,7 +11,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12 text-center mb-3">
-                <h2 style="font-family: 'Lobster', cursive; color: #6C4A4A;">Thank You - Your orders is being processed</h2>
+                <h2 style="font-family: 'Lobster', cursive; color: #6C4A4A;">{{ __('Thank You - Your orders is being processed') }}</h2>
                 <hr>
             </div>
             <div class="col-md-12 text-center">
@@ -21,7 +21,7 @@
     </div>
     <div class="container col-lg-4 offset-lg-4 ml-auto mb-5 mt-5">
         <div class="checkout text-center">
-            <a href="{{ url('/') }}" class="nva-link" style="color: #6C4A4A;">Back To Home</a>
+            <a href="{{ url('/') }}" class="nva-link" style="color: #6C4A4A;">{{ __('Back To Home') }}</a>
         </div>
     </div>
 

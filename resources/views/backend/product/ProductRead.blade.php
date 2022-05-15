@@ -24,7 +24,7 @@
                             <td><img src="{{ asset('images/'.$product->photo) }}" style="width: 100px; height:70px; object-fit: cover;" alt=""></td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->title }}</td>
-                            <td>{{ $product->description }}</td>
+                            <td>{{ stringLimitedHelper($product->description, 150) }}</td>
                             <td>{{ $product->price }}</td>
                             <td>
                                 @if($product->category)

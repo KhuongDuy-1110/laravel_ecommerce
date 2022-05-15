@@ -86,12 +86,11 @@ class HomeController extends Controller
                     '<tr>
                         <td style="padding:10px 50px 10px 10px">'. '<img src="' . 'images/'.$product->photo.'">'. '</td>
                         <td style="padding-right:50px"><a href="products/detail/'.$product->id.'" class="alert-link" style="color: black;">' . stringLimitedHelper($product->name, 10) . '</a></td>
-                        <td style="padding-right:50px">' .'('. stringLimitedHelper($product->description, 12) .')'. '</td>
+                        <td style="padding-right:50px">' .'('. stringLimitedHelper($product->title, 12) .')'. '</td>
                         <td style="padding-right:25px">' .'$'. $product->price . '</td>
                     </tr>';
                 }
             }
-            
             return Response($output);
         }
     }
