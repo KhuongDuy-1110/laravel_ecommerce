@@ -51,7 +51,7 @@
         position: absolute;
         width: 30%;
         top: 180px;
-        left: 650px;
+        left: 730px;
         background: white;
         z-index: 1;
         display: none;
