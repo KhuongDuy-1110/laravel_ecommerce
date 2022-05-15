@@ -52,12 +52,13 @@
                     </li> -->
 
                     <li class="nav-item dropdown {{ (isset($title)&&$title === 'Product')?'active':'' }}">
-                        <a href="#" class="nav-link dropdown-toggle" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('Products') }}</a>
+                        <a href="{{ url('/products') }}" class="nav-link">{{ __('Products') }}</a>
+                        <!-- <a href="#" class="nav-link dropdown-toggle" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('Products') }}</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @foreach($Category as $rows)
                             <a class="dropdown-item" href="{{ url('/products/'.$rows->id) }}">{{ $rows->name }}</a>
                             @endforeach
-                        </div>
+                        </div> -->
                     </li>
 
                     <li class="nav-item {{ (isset($title)&&$title === 'Cart')?'active':'' }} ">
@@ -126,7 +127,7 @@
                     <div class="sl-nav">
                         <ul>
                         <li>
-                            <span class="ml-3">Language</span>
+                            <span class="ml-3">{{ __('Language') }}</span>
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
                             <div class="triangle"></div>
                             <ul>

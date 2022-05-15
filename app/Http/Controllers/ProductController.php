@@ -22,8 +22,8 @@ class ProductController extends Controller
 
     public function index()
     {
-        $data = json_decode($this->productRepository->all());
-        return view('frontend/Product',['data'=>$data,'title' => 'Product' ]);             
+        $data = $this->productRepository->all();
+        return view('frontend/Product',['data'=>$data,'title' => 'Product', 'paginate' => true ]);             
     }
 
     public function categoryFilter(Request $request)

@@ -47,10 +47,9 @@
                 <h6 style="color: #FF6D6D;">All you need for your life !</h6>
             </div>
         </div>
-        <div class="row mb-5">
-            
+        <!-- <div class="row mb-5">
             @foreach($data as $rows)
-                <div class="col-lg-3 text-center mb-5">
+                <div class="col-md-4 text-center mb-5">
                     <div class="card border-0 bg-light mb-2">
                         <div class="card-body">
                             <img src="{{ asset('/images/'.$rows->photo) }}" class="img-fluid"  style="width: 330px; height: 206px; object-fit: contain;" alt="">
@@ -61,9 +60,32 @@
                     <a href="{{ url('/cart/addcart/'.$rows->id) }}" class="card-link btn btnCart"><i class="fas fa-cart-plus"></i></a> 
                 </div>
             @endforeach
-        </div>
-        
-
+        </div>         -->
     </div>
+    <div class="container">
+        <div class="row mb-5">
+            @foreach($data as $rows)
+                <div class="col-md-4 text-center mb-5">
+                    <div class="card border-0 bg-light mb-2">
+                        <div class="card-body">
+                            <img src="{{ asset('/images/'.$rows->photo) }}" class="img-fluid"  style="width: 330px; height: 206px; object-fit: contain;" alt="">
+                        </div>
+                    </div>
+                    <a href="{{ url('/products/detail/'.$rows->id) }}" class="badge card-link text-dark" ><h5 class="pt-2">{{ stringLimitedHelper($rows->name, 26) }}</h5></a>
+                    <p class="price">$ {{ $rows->price }}</p>    
+                    <a href="{{ url('/cart/addcart/'.$rows->id) }}" class="card-link btn btnCart"><i class="fas fa-cart-plus"></i></a> 
+                </div>
+            @endforeach
+        </div> 
+    </div>
+    @if(!empty($paginate))
+    <div class="container ">
+        <div class="row d-flex" style="margin-left: 420px;">
+            <ul>
+                {{ $data->links() }}
+            </ul>
+        </div>
+    </div>
+    @endif
     <!-- end_all products -->
 @endsection

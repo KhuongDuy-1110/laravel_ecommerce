@@ -1,12 +1,35 @@
 @extends('layouts.client')
 @section('clientContent')
 
-<!-- Search form -->
-<form class="d-flex form-inline active-pink active-pink-2 justify-content-center md-form form-sm p-5">
-    <input autocomplete="off" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="{{ __('Type here to search products') }}" aria-label="Search" id="search">
-    <i class="fas fa-search" aria-hidden="true"></i>
-</form>
+<div class="container">
+    <div class="col-md-12 d-flex flex-row">
+        <div class="col-md-3 align-middle p-0">
+            <button class="btn btn-success pr-2 btn-block" style="margin-top: 45px; background-color: #6C4A4A; border:0;" type="button" id="btnDropdownDemo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ __('Category') }} &nbsp;
+                <i class="fas fa-bars ml-2"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnDropdownDemo">
+                @foreach($Category as $rows)
+                    <a class="dropdown-item" href="{{ url('/products/'.$rows->id) }}">{{ $rows->name }}</a>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-md-9">
+            
+            <form class="d-flex form-inline active-pink active-pink-2 justify-content-center md-form form-sm pt-5 pb-5 pr-5">
+                <input autocomplete="off" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="{{ __('Type here to search products') }}" aria-label="Search" id="search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </form>
+        </div>
+    </div>
+</div>
 
+
+    <!-- Search form -->
+    <!-- <form class="d-flex form-inline active-pink active-pink-2 justify-content-center md-form form-sm p-5">
+        <input autocomplete="off" class="form-control form-control-sm mr-3 w-50" type="text" placeholder="{{ __('Type here to search products') }}" aria-label="Search" id="search">
+        <i class="fas fa-search" aria-hidden="true"></i>
+    </form> -->
 <div class="smart-search">
     <ul>
         <li>
@@ -210,12 +233,12 @@
 <style>
     .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
         border: none;
-        border-bottom: 2px solid #f48fb1;
+        border-bottom: 2px solid #6C4A4A;
         /* box-shadow: 0 1px 0 0 #f48fb1; */
     }
     .active-pink input.form-control[type=text] {
         border: none;
-        border-bottom: 2px solid #f48fb1;
+        border-bottom: 2px solid #6C4A4A;
         /* box-shadow: 0 1px 0 0 #f48fb1; */
     }
 

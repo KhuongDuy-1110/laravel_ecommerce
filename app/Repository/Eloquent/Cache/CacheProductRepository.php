@@ -21,7 +21,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
     public function all()
     {
         $products = Cache::remember('product-page-'.request('page',1),self::CACHE_TTL, function (){
-            return $this->model->with('category')->orderByDesc('id')->paginate(5);
+            return $this->model->with('category')->orderByDesc('id')->paginate(6);
         });
         return $products;
     }
