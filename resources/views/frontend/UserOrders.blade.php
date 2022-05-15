@@ -93,7 +93,7 @@
                                         <div class="card card-body">
                                             <div style="display: flex;">
                                                 <img src="{{ asset('images/'.$product->productInfo->photo) }}" style="width: 100px; height:70px; object-fit: cover;" alt="">
-                                                <div class="product"><b>Name: </b>{{ $product->productInfo->name .' '. $product->productInfo->title }}</div>
+                                                <div class="product"><b>Name: </b>{{ $product->productInfo->name }}</div>
                                                 <div class="product"><b>Price: </b>${{ $product->productInfo->price }}</div>
                                                 <div class="product"><b>Quantity: {{ $product->quantity }}</b></div>
                                             </div>

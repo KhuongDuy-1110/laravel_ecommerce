@@ -12,5 +12,7 @@ interface ProductRepositoryInterface
 
     public function filterByCategory($id);
 
+    public function getCategoryByProductDetail($id);
+
     // public function deleteOldCache();
 }

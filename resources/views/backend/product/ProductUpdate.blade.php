@@ -89,7 +89,12 @@
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Description</div>
                     <div class="col-md-10">
-                        <input type="text" value="{{ isset($record->description)?$record->description:'' }}" name="description" class="form-control">
+                        <!-- <input type="text" value="{{ isset($record->description)?$record->description:'' }}" name="description" class="form-control"> -->
+                        <textarea name="description"  id="product-description" rows="10" cols="80" class="form-control">
+                            {{ isset($record->description)?$record->description:'' }}
+                        </textarea>
+                        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+                        <script> CKEDITOR.replace( 'product-description' ); </script>
                     </div>
                 </div>
                 @if($errors->has('Description'))
