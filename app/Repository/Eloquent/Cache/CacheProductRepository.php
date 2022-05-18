@@ -81,7 +81,7 @@ class CacheProductRepository extends BaseRepository implements ProductRepository
     public function filterByCategory($id)
     {
         $products = Cache::remember('product.category_id.'.$id,self::CACHE_TTL, function() use ($id) {
-            return $this->model->where('category_id',$id)->get();
+            return $this->model->where('category_id',$id)->orderByDesc('id')->get();
         } );
         return $products;
     }

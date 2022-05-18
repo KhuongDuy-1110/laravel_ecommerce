@@ -16,7 +16,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function all()
     {
-        return $this->model->all();
+        return $this->model->orderByDesc('id')->paginate(6);
     }
 
     public function getHotProduct()
@@ -26,7 +26,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function filterByCategory($id)
     {
-        return $this->model->where('category_id',$id)->get();
+        return $this->model->where('category_id',$id)->orderByDesc('id')->get();
     }
 
     public function getCategoryByProductDetail($id)
