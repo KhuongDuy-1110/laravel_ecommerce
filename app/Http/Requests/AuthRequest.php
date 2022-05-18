@@ -25,8 +25,8 @@ class AuthRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:50',
-            'email' => 'required|email',
-            'phone' => 'required|min:11|numeric',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|min:10|numeric',
             'address' => 'required',
             'dob' => 'required',
             'password' => 'required|min:8|confirmed',
