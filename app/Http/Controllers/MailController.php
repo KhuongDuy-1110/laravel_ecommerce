@@ -20,10 +20,11 @@ class MailController extends Controller
             'body' => 'Please click the link below to verify your account: ',
             'verification_code' => $verification_code,
             'email' => $email,
+            'app_url' => env('APP_URL')
         ];
 
         $job = new SendRegisterMail($details);
-        SendRegisterMail::dispatch($job);        
+        SendRegisterMail::dispatch($job);
     }
 
     public static function confirmOrderMail($email,$orderDetail)

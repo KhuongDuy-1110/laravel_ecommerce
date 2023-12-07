@@ -10,7 +10,7 @@
 <body>
     <h1>Incoming mail from Khuong Pham</h1>
     <p>Please click the link below to verify your account: </p>
-    <a class="btn btn-success" href="http://localhost:8000/verify?code={{ $details->details['verification_code'] }}" role="button">Verify</a>
+    <a class="btn btn-success" href="{{$details->details['app_url']}}/verify?code={{ $details->details['verification_code'] }}" role="button">Verify</a>
     
     <p>Thank you !</p>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
