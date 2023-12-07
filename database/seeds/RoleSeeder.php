@@ -23,7 +23,7 @@ class RoleSeeder extends Seeder
                 'name' => 'user'
             ]
         ];
-        $roleData = Role::all();
+        $roleData = Role::all()->count();
         if (empty($roleData)) {
             Role::insert($data);
         }
