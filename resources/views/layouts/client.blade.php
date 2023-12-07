@@ -72,22 +72,21 @@
                             <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle border">
                             <span class="ml-2" style="color: black;">{{ Auth::user()->name }}</span>
                         </a>
-                        
                         <div class="dropdown-menu dropdown-menu-icon-list" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('user/profile') }}"><i class="fa-solid fa-user"></i>&nbsp; {{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ url('user/order') }}"><i class="fa-solid fa-bag-shopping"></i>&nbsp; {{ __('Orders') }}</a>
                             <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fa-solid fa-lock"></i>&nbsp; {{ __('Log out') }}</a>
                         </div>
-                    </li> 
+                    </li>
                     <li class="nav-item"><a href="#" class="nav-link"> </a></li>
 
                     @if(Config::get('app.locale') == 'en')
                     <li class="nav-item">
-                        <img src="{{ asset('images/flag_lang/american.png') }}" alt="" style="margin-top: 15px;">
+                        <img src="{{ asset('images/flag_lang/american.png') }}" alt="" style="margin-top: 15px; width: 28px;">
                     </li>
                     @else
                     <li class="nav-item">
-                        <img src="{{ asset('images/flag_lang/vietnam.png') }}" alt="" style="margin-top: 15px;">
+                        <img src="{{ asset('images/flag_lang/vietnam.png') }}" alt="" style="margin-top: 15px; width: 28px;">
                     </li>
                     @endif
                     <div class="nav-wrapper ml-auto" style="margin-top: 15px;">
@@ -108,7 +107,7 @@
                                 </li>
                             </ul>
                         </li>
-                        </ul>                        
+                        </ul>
                     </div>
                     </div>
                 </ul>
@@ -116,11 +115,11 @@
                 <ul class="navbar-nav ml-auto">
                     @if(Config::get('app.locale') == 'en')
                     <li class="nav-item">
-                        <img src="{{ asset('images/flag_lang/american.png') }}" alt="" style="margin-top: 9px;">
+                        <img src="{{ asset('images/flag_lang/american.png') }}" alt="" style="margin-top: 9px; width: 28px;">
                     </li>
                     @else
                     <li class="nav-item">
-                        <img src="{{ asset('images/flag_lang/vietnam.png') }}" alt="" style="margin-top: 9px;">
+                        <img src="{{ asset('images/flag_lang/vietnam.png') }}" alt="" style="margin-top: 9px; width: 28px;">
                     </li>
                     @endif
                     <div class="nav-wrapper ml-auto">
@@ -141,7 +140,7 @@
                                 </li>
                             </ul>
                         </li>
-                        </ul>                        
+                        </ul>
                     </div>
                     </div>
                     <li class="nav-item"><a href="#" class="nav-link"> </a></li>
@@ -169,7 +168,7 @@
                 <img src="{{ asset('images/banner/logo.png') }}" style="width: 70px;" alt="">
                 <!-- <hr class="light"> -->
                 <p>12-3456-789</p>
-                <p>khuong.pham@tda.company</p>
+                <p>khuong.pd@zinza.com.vn</p>
                 <p>Bac Tu Liem, Ha Noi, Viet Nam</p>
             </div>
             <div class="col-md-4">

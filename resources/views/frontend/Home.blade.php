@@ -80,14 +80,14 @@
     <ul class="carousel-indicators">
         <li data-target="#slides" data-slide-to="0" class="active"></li>
         @if(!empty($slides))
-            @for( $i=1; $i<=count($slides); $i++) 
+            @for( $i=1; $i<=count($slides); $i++)
                 <li data-target="#slides" data-slide-to="{{ $i }}"></li>
             @endfor
         @endif
     </ul>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:600px; object-fit: cover;" alt="">
+            <img class="d-block w-100 " src="{{ asset('images/banner/main-banner.jpg') }}" style="height:600px; object-fit: cover;" alt="">
             <div class="carousel-caption">
                 <h1 class="display-2">Welcome</h1>
                 <h3>Lets take a tour !</h3>
@@ -164,7 +164,7 @@
 <div id="slides" class="carousel slide mb-5 pl-5 pr-5" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100 " src="{{ asset('images/banner/surface-cLTHKmQS0zI-unsplash.jpg') }}" style="height:400px; object-fit: cover; " alt="">
+            <img class="d-block w-100 " src="{{ asset('images/banner/second-banner.jpg') }}" style="height:400px; object-fit: cover; " alt="">
             <div class="carousel-caption">
                 <h3>{{ __('Bao Phat Smart Devices') }}</h3>
                 <button type="button" class="btn btn-outline-light btn-lg">{{ __('Subcribe for more information') }}</button>
